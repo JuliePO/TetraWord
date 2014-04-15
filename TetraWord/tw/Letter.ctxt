@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.params=v\ c
-comment0.target=Letter(short,\ char)
-comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Letter\r\n
-comment1.params=
-comment1.target=char\ getChar()
-comment2.params=
-comment2.target=short\ getValue()
-numComments=3
