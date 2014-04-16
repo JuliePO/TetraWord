@@ -1,7 +1,5 @@
-import GameState.Game;
+import utility.Dictionary;
 import GameState.GameState;
-import GameState.Option;
-import GameState.Start;
 
 
 
@@ -24,7 +22,11 @@ public class Engine
             dicFile = new Dictionary("../french.txt");
         
     }
-
+    
+    public void update(){
+    	currentState.update();
+    }
+    
     public static void main(String[] args)
     {
         Engine e= new Engine();
