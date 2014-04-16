@@ -1,3 +1,4 @@
+package utility;
 
 /**
  * Write a description of class Square here.
