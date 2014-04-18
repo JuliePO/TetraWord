@@ -1,5 +1,6 @@
 package utility;
 
+
 /**
  * Write a description of class Square here.
  * 
@@ -20,37 +21,37 @@ public class Square
     char nextState;
     Letter letter;
     
-    boolean[] fieldTemp;// Field field;
+    //boolean[] fieldTemp;
+    private Board field;
     boolean newTemp;
     
 
     /**
      * Constructor for objects of class Square
      */
-    public Square(int pX, int pY, Letter pL, boolean[] fT)
+    public Square(int pX, int pY, Letter pL, Board f)
     {
         nextState= '?';
         x = pX;
         y = pY;
         letter= pL;
-       
-        fieldTemp= fT; // Joueur master;
+        field= f;
         
         newTemp= true;
-        busyTemp();
+        setBusy();
     }
     
-    void busyTemp(){
-        fieldTemp[ x + y*10 ] = true;
+    void setBusy(){
+        field.busyAt( x , y );
     }
     
-    boolean isBusyTemp( int x, int y ){
+    /*boolean isBusyTemp( int x, int y ){
         
         if( x < 0 || x > 9 || y < 0 || y > 19 ) //field.bornes
             return true;
         
         return fieldTemp[ x + y*10 ];
-    }
+    }*/
     
     void fall(){
         if( 0 == y ) //field.bornes 
@@ -64,7 +65,7 @@ public class Square
         if( down != null )
             return down.isBlocked();
 
-        if( isBusyTemp(this.x, this.y-1) )
+        if( field.isBusy(x, y-1) )//OLD: if( isBusyTemp(this.x, this.y-1) )
             return true;
     
         return false;
@@ -145,16 +146,18 @@ public class Square
         Square[] squares= new Square[nb];
         
         Player J1= new Player();
-        boolean[] fd= J1.getField();
-        Dictionary dico= new Dictionary("../french.txt");
+        Board b= J1.getBoardTemp();
+        boolean[] fd= b.getField();
+        Dictionary dico= new Dictionary("../../french.txt");
+        
         
         //printFieldTemp(fd, 40);
         
         //Creation d'une brique -------------------
-        squares[0] = new Square( 2, 3, dico.pickLetter(), fd );
-        squares[1] = new Square( 3, 3, dico.pickLetter(), fd );
-        squares[2] = new Square( 3, 2, dico.pickLetter(), fd );
-        squares[3] = new Square( 4, 3, dico.pickLetter(), fd );
+        squares[0] = new Square( 2, 3, dico.pickLetter(), b );
+        squares[1] = new Square( 3, 3, dico.pickLetter(), b );
+        squares[2] = new Square( 3, 2, dico.pickLetter(), b );
+        squares[3] = new Square( 4, 3, dico.pickLetter(), b );
         
         squares[0].right= squares[1];
         squares[1].left= squares[0];
@@ -163,51 +166,50 @@ public class Square
         squares[2].up= squares[1];
         squares[3].left= squares[1];
         //-----------------------------------------
-        squares[4] = new Square( 1, 0, dico.pickLetter(), fd );
-        squares[5] = new Square( 2, 0, dico.pickLetter(), fd );
-        squares[6] = new Square( 3, 0, dico.pickLetter(), fd );
-        squares[7] = new Square( 4, 0, dico.pickLetter(), fd );
+        squares[4] = new Square( 1, 0, dico.pickLetter(), b );
+        squares[5] = new Square( 2, 0, dico.pickLetter(), b );
+        squares[6] = new Square( 3, 0, dico.pickLetter(), b );
+        squares[7] = new Square( 4, 0, dico.pickLetter(), b );
         
         for(int i= 0; i < nb; ++i )
-            J1.addCase( squares[i] );
+            b.addCase( squares[i] );
             
         squares= null;
         
         printFieldTemp(fd, 40);
         
         for( int i= 0; i < nb; ++i ) 
-            System.out.println( J1.elmtAt(i).toString() );
+            System.out.println( J1.getBoardTemp().elmtAt(i).toString() );
         
         // Calculate nextState ------------------------   
         for( int i= 0; i < nb; ++i )  
-            if( J1.elmtAt(i).nextState == '?' )
-                J1.elmtAt(i).becoming();    
+            if( b.elmtAt(i).nextState == '?' )
+                b.elmtAt(i).becoming();    
         // --------------------------------------------
             
         System.out.println();               
         for( int i= 0; i < nb; ++i ) 
-            System.out.println( J1.elmtAt(i).toString() );
+            System.out.println( b.elmtAt(i).toString() );
             
         //UPDATE------------------------  
         
             //Reset  
-            for( int j= 0; j < 40; ++j )
-                fd[j] = false;
+            b.freeAll();
                 
             for( int i= 0; i < nb; ++i ){
-                switch( J1.elmtAt(i).nextState ){
-                    case 's':   J1.elmtAt(i).busyTemp();
+                switch( b.elmtAt(i).nextState ){
+                    case 's':   b.elmtAt(i).setBusy();
                                 break;
                     
-                    case 'f':   J1.elmtAt(i).fall();
-                                J1.elmtAt(i).busyTemp();
+                    case 'f':   b.elmtAt(i).fall();
+                                b.elmtAt(i).setBusy();
                                 break;
                                 
-                    default : System.err.println( "Error : nextState of a Square is " +  J1.elmtAt(i).nextState );
+                    default : System.err.println( "Error : nextState of a Square is " +  b.elmtAt(i).nextState );
                                 
                 }
                 
-                J1.elmtAt(i).nextState= '?';
+                b.elmtAt(i).nextState= '?';
             }
         
         //------------------------------
