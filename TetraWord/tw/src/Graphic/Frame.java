@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 public class Frame extends JFrame {
 	
+	private int width = 976, height = 695;
 	JPanel contentPane = new JPanel();
 	
 	private char panelState = 's';
@@ -33,8 +34,7 @@ public class Frame extends JFrame {
 		setContentPane(contentPane);
 	
 		//4. Size the frame.
-		pack();
-		//setSize(200, 200);
+		onSize();
 	
 		//5. Show it.
 		setVisible(true);	
@@ -48,7 +48,24 @@ public class Frame extends JFrame {
 		panelState = newState;
 	}
 	
+	private void onSize(){
+		setSize(width, height);
+		//pack();
+	}
+	
+	public int getHeight(){
+		return height;
+	}
+	
+	public int getWidth(){
+		return width;
+	}
+	
 	public void update(){
+		
+
+		repaint();
+		
 		char tmpState = ((PanelBase)contentPane.getComponent(0)).getState();
 		if(getPanelState() != tmpState){
 			switch (tmpState) {
@@ -56,7 +73,7 @@ public class Frame extends JFrame {
 				contentPane.removeAll();
 				contentPane.add(new PanelTetraWord());
 				setContentPane(contentPane);
-				pack();
+				onSize();
 				setPanelState('g');
 				break;
 
@@ -64,7 +81,7 @@ public class Frame extends JFrame {
 				contentPane.removeAll();
 				contentPane.add(new PanelOption());
 				setContentPane(contentPane);
-				pack();
+				onSize();
 				setPanelState('o');
 				break;
 
@@ -72,7 +89,7 @@ public class Frame extends JFrame {
 				contentPane.removeAll();
 				contentPane.add(new PanelAccueil());
 				setContentPane(contentPane);
-				pack();
+				onSize();
 				setPanelState('s');
 				break;
 
