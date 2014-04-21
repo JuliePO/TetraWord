@@ -16,7 +16,7 @@ public class Dictionary
     private Scanner sc;
     private char[] index;
     private Letter letters[];
-
+    
     /**
      * Constructor for objects of class File
      */
@@ -32,7 +32,7 @@ public class Dictionary
         }
     }
     
-    public void generateLetters(){
+ public void generateLetters(){
         
         int it= -1;
         
@@ -115,7 +115,7 @@ public class Dictionary
         //index= new String( "eeeeeeeeeeeeeeeaaaaaaaaaiiiiiiiinnnnnnoooooorrrrrrssssssttttttuuuuuullllldddmmmggbbccppffhhvvjqkwxyz" ).toCharArray(); 
                
     }
-    
+  
     public Letter pickLetter(){
             /*
         int r= 0;
