@@ -13,11 +13,11 @@ public class Anagramme {
 	//taille minimum pour le resultat d'un anagramme
 	private int limit;
 	
-	//à chacun des mots du dictionnaire est associé une valeur dépendant des lettres qui le compose "mot" => m*o*t.
+	//ï¿½ chacun des mots du dictionnaire est associï¿½ une valeur dï¿½pendant des lettres qui le compose "mot" => m*o*t.
 	private TreeMap<Long, TreeSet<String>> dictionnaire = new TreeMap<Long, TreeSet<String>>();
 	
-	//chaque lettre de l'alphabet a un nombre premier qui lui est attribué. Ainsi tout les mots qui ont les mêmes lettres ont la même valeurs.
-	//et une valeur différente des mots n'ayant pas les mêmes lettres
+	//chaque lettre de l'alphabet a un nombre premier qui lui est attribuï¿½. Ainsi tout les mots qui ont les mï¿½mes lettres ont la mï¿½me valeurs.
+	//et une valeur diffï¿½rente des mots n'ayant pas les mï¿½mes lettres
 	private short lettersAnagramme[] = {	2,
 								            3,
 								            5,
@@ -78,8 +78,8 @@ public class Anagramme {
 	                Long value = new Long(getWordValue(tmp));
 	                
 	                if(dictionnaire.get(value) == null){
-	                	TreeSet<String> TreeSet = new TreeSet<String>();
-	                	TreeSet.add(tmp);
+	                	TreeSet<String> TreeSet = new TreeSet<String>(); // ne nomme pas des var locales avec des majuscules !! (surtout avec un nom de classe !)
+	                	TreeSet.add(tmp); 
 	                	dictionnaire.put(value,TreeSet);
 	                }
 	                else{
@@ -95,10 +95,10 @@ public class Anagramme {
 		}
 	}
 	
-	//à partir d'une lettre on retrouve sa valeur dans le tableau de valeurs
+	//ï¿½ partir d'une lettre on retrouve sa valeur dans le tableau de valeurs
 	private long getCharValue(char letter){
 		if( letter >= 'a' && letter <= 'z'){
-			//on décale de 97 car 'a' = 97, ainsi on retrouve la case 0 du tableau
+			//on dï¿½cale de 97 car 'a' = 97, ainsi on retrouve la case 0 du tableau
 			return  lettersAnagramme[letter - 97];}
 		else
 			return 0;
@@ -118,12 +118,12 @@ public class Anagramme {
 		return result;
 	}
 	
-	//on récupère l'ensemble des mots ayant une valeur commune
+	//on rï¿½cupï¿½re l'ensemble des mots ayant une valeur commune
 	public TreeSet<String> getWords(long value){
 		return dictionnaire.get(new Long(value));
 	}
 	
-	//à partir d'un ensemble de lettre, on récupère tout les mots ayant la même valeur
+	//ï¿½ partir d'un ensemble de lettre, on rï¿½cupï¿½re tout les mots ayant la mï¿½me valeur
 	public TreeSet<String> resolve(String word){
 		if(word.length() >= limit)
 			return getWords(getWordValue(word));
@@ -131,7 +131,7 @@ public class Anagramme {
 			return null;
 	}
 	
-	//on récupère tout les mots possible à partir d'une combinaison de lettre
+	//on rï¿½cupï¿½re tout les mots possible ï¿½ partir d'une combinaison de lettre
 	public TreeSet<String> allCombination(String word){
 		if(word.isEmpty())
 			return null;
@@ -140,7 +140,7 @@ public class Anagramme {
 			TreeSet<String> resolve = resolve(word);
 			if(resolve != null)
 				result.addAll(resolve);
-			//on recommence l'opération en retirant chacune des lettres
+			//on recommence l'opï¿½ration en retirant chacune des lettres
 			for(int i = 0; i < word.length(); ++i){
 				StringBuilder tmp = new StringBuilder(word);
 				tmp.deleteCharAt(i);
