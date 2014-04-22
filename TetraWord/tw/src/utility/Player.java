@@ -1,5 +1,6 @@
 package utility;
-import java.util.Vector;
+
+
 /**
  * Write a description of class Player here.
  * 
@@ -8,28 +9,21 @@ import java.util.Vector;
  */
 public class Player
 {
-    private Vector<Square> cases;
-    private boolean[] field; //Maybe Field field;
+    private Board board;
 
     /**
      * Constructor for objects of class Player
      */
     public Player()
     {
-        cases= new Vector<Square>(0);
-        field= new boolean[200];
+        board= new Board();
+    }
+    
+    public Board getBoardTemp(){
+        return board;
     }
 
-    public void addCase(Square s)
-    {
-        cases.add( s );
-    }
     
-    public Square elmtAt( int index ){
-        return cases.elementAt(index);
-    }
     
-    public boolean[] getField(){
-        return field;
-    }
+    
 }
