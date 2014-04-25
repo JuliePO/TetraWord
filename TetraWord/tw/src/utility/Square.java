@@ -1,5 +1,7 @@
 package utility;
 
+import java.awt.Color;
+
 
 /**
  * Write a description of class Square here.
@@ -20,6 +22,7 @@ public class Square
     
     char nextState;
     Letter letter;
+    String color;
     
     //boolean[] fieldTemp;
     private Board field;
@@ -29,20 +32,24 @@ public class Square
     /**
      * Constructor for objects of class Square
      */
-    public Square(int pX, int pY, Letter pL, Board f)
+    public Square(int pX, int pY, Letter pL, Board f, String color)
     {
         nextState= '?';
         x = pX;
         y = pY;
         letter= pL;
         field= f;
+        this.color = color;
         
         newTemp= true;
         setBusy();
     }
     
     void setBusy(){
-        field.busyAt( x , y );
+    	if(field != null)
+    		field.busyAt( x , y );
+    	else
+    		System.out.println("Error : field null");
     }
     
     /*boolean isBusyTemp( int x, int y ){
@@ -140,6 +147,18 @@ public class Square
         
     }
 
+    public int getX(){
+    	return x;
+    }
+    
+    public int getY(){
+    	return y;
+    }
+    
+    public String getColor(){
+    	return color;
+    }
+    
     public static void main(String[] args){ 
         
         int nb= 8;
@@ -154,10 +173,10 @@ public class Square
         //printFieldTemp(fd, 40);
         
         //Creation d'une brique -------------------
-        squares[0] = new Square( 2, 3, dico.pickLetter(), b );
-        squares[1] = new Square( 3, 3, dico.pickLetter(), b );
-        squares[2] = new Square( 3, 2, dico.pickLetter(), b );
-        squares[3] = new Square( 4, 3, dico.pickLetter(), b );
+        squares[0] = new Square( 2, 3, dico.pickLetter(), b , "blue");
+        squares[1] = new Square( 3, 3, dico.pickLetter(), b , "blue");
+        squares[2] = new Square( 3, 2, dico.pickLetter(), b , "blue");
+        squares[3] = new Square( 4, 3, dico.pickLetter(), b , "blue");
         
         squares[0].right= squares[1];
         squares[1].left= squares[0];
@@ -166,10 +185,10 @@ public class Square
         squares[2].up= squares[1];
         squares[3].left= squares[1];
         //-----------------------------------------
-        squares[4] = new Square( 1, 0, dico.pickLetter(), b );
-        squares[5] = new Square( 2, 0, dico.pickLetter(), b );
-        squares[6] = new Square( 3, 0, dico.pickLetter(), b );
-        squares[7] = new Square( 4, 0, dico.pickLetter(), b );
+        squares[4] = new Square( 1, 0, dico.pickLetter(), b , "blue");
+        squares[5] = new Square( 2, 0, dico.pickLetter(), b , "blue");
+        squares[6] = new Square( 3, 0, dico.pickLetter(), b , "blue");
+        squares[7] = new Square( 4, 0, dico.pickLetter(), b , "blue");
         
         for(int i= 0; i < nb; ++i )
             b.addCase( squares[i] );

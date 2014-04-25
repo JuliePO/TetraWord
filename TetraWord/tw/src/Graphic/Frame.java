@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 
 public class Frame extends JFrame {
 	
-	private int width = 976, height = 695;
+	private int width = 1024, height = 700;
 	JPanel contentPane = new JPanel();
 	
-	private char panelState = 's';
+	private char panelState = 'Z';
 	
 	Frame(){		
 		
@@ -45,8 +45,8 @@ public class Frame extends JFrame {
 	}
 	
 	private void onSize(){
-		setSize(width, height);
-		//pack();
+		//setSize(width, height);
+		pack();
 	}
 	
 	public int getHeight(){

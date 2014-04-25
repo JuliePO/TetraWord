@@ -78,9 +78,9 @@ public class Anagramme {
 	                Long value = new Long(getWordValue(tmp));
 	                
 	                if(dictionnaire.get(value) == null){
-	                	TreeSet<String> TreeSet = new TreeSet<String>(); // ne nomme pas des var locales avec des majuscules !! (surtout avec un nom de classe !)
-	                	TreeSet.add(tmp); 
-	                	dictionnaire.put(value,TreeSet);
+	                	TreeSet<String> treeSet = new TreeSet<String>(); // ne nomme pas des var locales avec des majuscules !! (surtout avec un nom de classe !)
+	                	treeSet.add(tmp); 
+	                	dictionnaire.put(value,treeSet);
 	                }
 	                else{
 	                	dictionnaire.get(value).add(tmp); 

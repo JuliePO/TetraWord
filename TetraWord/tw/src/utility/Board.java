@@ -53,6 +53,10 @@ public class Board
         return field;
     }
     
+    public Vector<Square> getCases(){
+    	return cases;
+    }
+    
     /**
      * Return the state of the given coordinates 
      * 
