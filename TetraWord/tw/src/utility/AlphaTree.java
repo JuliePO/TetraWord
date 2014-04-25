@@ -7,28 +7,27 @@ package utility;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class AlphaTree
+public class AlphaTree //Arbre ternaire lexicographique
 {
-    // instance variables - replace the example below with your own
-    private Letter L;
-    private AlphaTree fg;
-    private AlphaTree fd;
-    private AlphaTree f;
+    private Letter L;   //Lettre du noeud courant
+    private AlphaTree fg;   //fils gauche
+    private AlphaTree fd;   //fils droit
+    private AlphaTree f;    //fils direct
     
     private Letter[] alphabet;
     /**
      * Constructor for objects of class AlphaTree
      */
-    public AlphaTree(Letter l, Letter[] a)
+    public AlphaTree(Letter let, Letter[] alph)
     {
-        this.L= l;
-        alphabet= a;
+        this.L= let;
+        alphabet= alph;
     }
     
-    public AlphaTree(Letter[] a)
+    public AlphaTree(Letter[] alph)
     {
-        this.L= null;
-        alphabet= a;
+        L= null;
+        alphabet= alph;
     }
     
     //ONLY FOR DEVELOPMENT
@@ -61,24 +60,25 @@ public class AlphaTree
     }
 
     public int add(String word){
-        char[] tab= word.toCharArray();
-        Letter[] l= new Letter[tab.length+1];
+        char[] chars= word.toCharArray();
+        Letter[] letters= new Letter[chars.length+1];
         
-        for(int i=0; i < tab.length; ++i){
+        for(int i=0; i < chars.length; ++i){
 
-            if( tab[i]-'a' < 0 || tab[i]-'a' > 26 ){             //Problème des tirets...
-                 l[i]= alphabet[0];
-                 System.err.println( "ERROR : character '"+ tab[i] +"' unknown" );
+            if( chars[i]-'a' < 0 || chars[i]-'a' > 26 ){ // Si caractere special             
+                 letters[i]= alphabet[0];                         //Temporaire...
+                 System.err.println( "ERROR : character '"+ chars[i] +"' unknown" );
             }
             else
-                l[i]= alphabet[tab[i]-'a'];
+                letters[i]= alphabet[chars[i]-'a'];
         }
             
-        l[tab.length] = alphabet[26];
+        letters[chars.length] = alphabet[26]; //On rajoute un caractere d'arret à la fin
         
-        return add( l );
+        return add( letters );
     }
     
+    //cf search
     public int add(Letter[] ls)
     {
         if ( L == null ){
@@ -119,16 +119,17 @@ public class AlphaTree
                 }
     }
     
+    //Traduction d'un mot String en un mot Letter[]
     public int search(String word){
-        char[] tab= word.toCharArray();
-        Letter[] l= new Letter[tab.length+1];
+        char[] chars= word.toCharArray();
+        Letter[] letters= new Letter[chars.length+1];
         
-        for(int i=0; i < tab.length; ++i)
-            l[i]= alphabet[tab[i]-'a'];
+        for(int i=0; i < chars.length; ++i)
+            letters[i]= alphabet[chars[i]-'a'];
             
-        l[tab.length] = new Letter( (short) 0, '\0' );
+        letters[chars.length] = new Letter( (short) 0, '\0' );
         
-        return search( l );
+        return search( letters );
     }
     
     // -1 Introuvable | 0 prefixe | 1 mot du dico
@@ -146,8 +147,8 @@ public class AlphaTree
                         return fg.search( ls );
                     }
                 else
-                    if( L.equals(ls[0]) ){
-                        System.arraycopy(ls, 1, ls, 0, ls.length-1);
+                    if( L.equals(ls[0]) ){ //Si la 1ere lettre du mot à chercher = la 1ere lettre de l'arbre
+                        System.arraycopy(ls, 1, ls, 0, ls.length-1); //On continue la recherche dans le fils direct sans la 1ere lettre
                         if( f == null )
                             return -1;
                         return f.search( ls );
@@ -190,31 +191,30 @@ public class AlphaTree
         
     }
     
-    public void findWith( String prefix, char[] lets ){
+    public void findWith( String prefix, char[] nextLets ){
         
-        
-        for( int i= 0; i < lets.length; ++i ){
+        for( int i= 0; i < nextLets.length; ++i ){
                 /*   Décommenter pour voir le détail de la recherche
             System.out.print( prefix );
             System.out.print( lets[i] + "\t" );
                 */
-               
-            char[] ls= new char[lets.length-1];
+            char[] ls= new char[nextLets.length-1];
             int j= 0;
             int k= 0;
-            while( j < lets.length-1 ){
+            while( j < nextLets.length-1 ){ //On remplit les futures prochaines lettres sans celle juste après
                 
-                    ls[j] = lets[k];
+                    ls[j] = nextLets[k];
                     if( i != k )
                         ++j;
                     ++k;
             }
             
-            int tmp= search( prefix + lets[i] );
+            int tmp= search( prefix + nextLets[i] );
             if(  tmp != -1 ){
                 if( tmp == 1 )
-                    System.out.print( prefix + lets[i] + "\t" );
-                findWith( prefix + lets[i], ls );
+                    System.out.print( prefix + nextLets[i] + "\t" );
+                
+                findWith( prefix + nextLets[i], ls ); //On concatene la juste après avec le prefix deja existant
             }
         }
         
