@@ -14,8 +14,10 @@ import java.text.Normalizer;
 public class Dictionary
 {
     private Scanner sc;
-    private char[] index;
+    //private char[] index;
     private Letter letters[];
+    private Letter alphabet[];
+    private AlphaTree tree;
     
     /**
      * Constructor for objects of class File
@@ -30,87 +32,107 @@ public class Dictionary
         catch( FileNotFoundException e ){
             System.err.println("Error 404: File \""+ path + "\" not Found !");
         }
+        
+        tree= new AlphaTree( alphabet );
+        
+        generateTree();
     }
     
- public void generateLetters(){
+    public Letter[] getAlphabet(){
+        
+        return alphabet;
+    }
+    
+    public void generateTree(){
+        String str= getNextWord();
+        while ( str != null ){
+            tree.add( str );
+            str= getNextWord();
+        }
+    }
+    
+    public void generateLetters(){
         
         int it= -1;
         
-        Letter a= new Letter( (short) 1, 'a' );
-        Letter b= new Letter( (short) 3, 'b' );
-        Letter c= new Letter( (short) 3, 'c' );
-        Letter d= new Letter( (short) 1, 'd' );
-        Letter e= new Letter( (short) 1, 'e' );
-        Letter f= new Letter( (short) 4, 'f' );
-        Letter g= new Letter( (short) 1, 'g' );
-        Letter h= new Letter( (short) 4, 'h' );
-        Letter i= new Letter( (short) 1, 'i' );
-        Letter j= new Letter( (short) 8, 'j' );
-        Letter k= new Letter( (short) 10, 'k' );
-        Letter l= new Letter( (short) 1, 'l' );
-        Letter m= new Letter( (short) 1, 'm' );
-        Letter n= new Letter( (short) 1, 'n' );
-        Letter o= new Letter( (short) 1, 'o' );
-        Letter p= new Letter( (short) 3, 'p' );
-        Letter q= new Letter( (short) 8, 'q' );
-        Letter r= new Letter( (short) 1, 'r' );
-        Letter s= new Letter( (short) 1, 's' );
-        Letter t= new Letter( (short) 1, 't' );
-        Letter u= new Letter( (short) 1, 'u' );
-        Letter v= new Letter( (short) 4, 'v' );
-        Letter w= new Letter( (short) 10, 'w' );
-        Letter x= new Letter( (short) 10, 'x' );
-        Letter y= new Letter( (short) 10, 'y' );
-        Letter z= new Letter( (short) 10, 'z' );
+        alphabet= new Letter[27];
+        
+        alphabet[0]= new Letter( (short) 1, 'a' );
+        alphabet[1]= new Letter( (short) 3, 'b' );
+        alphabet[2]= new Letter( (short) 3, 'c' );
+        alphabet[3]= new Letter( (short) 1, 'd' );
+        alphabet[4]= new Letter( (short) 1, 'e' );
+        alphabet[5]= new Letter( (short) 4, 'f' );
+        alphabet[6]= new Letter( (short) 1, 'g' );
+        alphabet[7]= new Letter( (short) 4, 'h' );
+        alphabet[8]= new Letter( (short) 1, 'i' );
+        alphabet[9]= new Letter( (short) 8, 'j' );
+        alphabet[10]= new Letter( (short) 10, 'k' );
+        alphabet[11]= new Letter( (short) 1, 'l' );
+        alphabet[12]= new Letter( (short) 1, 'm' );
+        alphabet[13]= new Letter( (short) 1, 'n' );
+        alphabet[14]= new Letter( (short) 1, 'o' );
+        alphabet[15]= new Letter( (short) 3, 'p' );
+        alphabet[16]= new Letter( (short) 8, 'q' );
+        alphabet[17]= new Letter( (short) 1, 'r' );
+        alphabet[18]= new Letter( (short) 1, 's' );
+        alphabet[19]= new Letter( (short) 1, 't' );
+        alphabet[20]= new Letter( (short) 1, 'u' );
+        alphabet[21]= new Letter( (short) 4, 'v' );
+        alphabet[22]= new Letter( (short) 10, 'w' );
+        alphabet[23]= new Letter( (short) 10, 'x' );
+        alphabet[24]= new Letter( (short) 10, 'y' );
+        alphabet[25]= new Letter( (short) 10, 'z' );
+        alphabet[26]= new Letter( (short) 0, '\0' );
         
         letters= new Letter[100];
         
         for(int ic= 0; ic < 15; ++ic)
-            letters[++it]= e;
+            letters[++it]= alphabet[4];
         for(int ic= 0; ic < 9; ++ic)
-            letters[++it]= a;
+            letters[++it]= alphabet[0];
         for(int ic= 0; ic < 8; ++ic)
-            letters[++it]= i;
+            letters[++it]= alphabet[8];
         for(int ic= 0; ic < 6; ++ic)
-            letters[++it]= n;
+            letters[++it]= alphabet[13];
         for(int ic= 0; ic < 6; ++ic)
-            letters[++it]= o;
+            letters[++it]= alphabet[14];
         for(int ic= 0; ic < 6; ++ic)
-            letters[++it]= r;
+            letters[++it]= alphabet[17];
         for(int ic= 0; ic < 6; ++ic)
-            letters[++it]= s;
+            letters[++it]= alphabet[18];
         for(int ic= 0; ic < 6; ++ic)
-            letters[++it]= t;
+            letters[++it]= alphabet[19];
         for(int ic= 0; ic < 6; ++ic)
-            letters[++it]= u;
+            letters[++it]= alphabet[20];
         for(int ic= 0; ic < 5; ++ic)
-            letters[++it]= l;
+            letters[++it]= alphabet[11];
         for(int ic= 0; ic < 3; ++ic)
-            letters[++it]= d;
+            letters[++it]= alphabet[3];
         for(int ic= 0; ic < 3; ++ic)
-            letters[++it]= m;
+            letters[++it]= alphabet[12];
         for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= g;   
+            letters[++it]= alphabet[6];   
         for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= b;
+            letters[++it]= alphabet[1];
         for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= c;
+            letters[++it]= alphabet[2];
         for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= p;
+            letters[++it]= alphabet[15];
         for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= f;
+            letters[++it]= alphabet[5];
         for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= h;
+            letters[++it]= alphabet[7];
         for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= v;    
+            letters[++it]= alphabet[21];    
         
-        letters[++it]= j;
-        letters[++it]= q;
-        letters[++it]= k;
-        letters[++it]= w;
-        letters[++it]= x;
-        letters[++it]= y;
-        letters[++it]= z;
+        letters[++it]= alphabet[9];
+        letters[++it]= alphabet[16];
+        letters[++it]= alphabet[10];
+        letters[++it]= alphabet[22];
+        letters[++it]= alphabet[23];
+        letters[++it]= alphabet[24];
+        letters[++it]= alphabet[25];
         
         //index= new String( "eeeeeeeeeeeeeeeaaaaaaaaaiiiiiiiinnnnnnoooooorrrrrrssssssttttttuuuuuullllldddmmmggbbccppffhhvvjqkwxyz" ).toCharArray(); 
                
@@ -140,18 +162,11 @@ public class Dictionary
         
     }
     
-    public void generate(){
+    public void findWith( String s ){
         
-       
-        sc= null;
+        tree.findWith( "", s.toCharArray() ); 
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
     public void printNextWord()
     {
         try{
@@ -166,5 +181,41 @@ public class Dictionary
         catch( NullPointerException e ){
             System.err.println("Error: Dictionary cannot be read ! It may not be initialized.");
         }
+    }
+    
+    public String getNextWord(){
+        
+        try{
+            if( sc.hasNext() )
+                return Normalizer.normalize(sc.next(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+                
+        }
+        catch( NullPointerException e ){
+            System.err.println("Error: Dictionary cannot be read ! It may not be initialized.");
+        }
+        
+        return null;
+    }
+    
+    public static void main(String[] args){
+        
+        System.out.print( "loading..." );    
+        Dictionary dico= new Dictionary("../../french.txt");
+        System.out.println( "DONE !" );
+        
+        Scanner scanner;
+        String str;
+      
+        System.out.println( "Tapez l'ensemble de lettres... " );
+        scanner=new Scanner(System.in);
+        str=scanner.next();
+        
+        if( str.isEmpty() )
+            return;
+        else
+            dico.findWith( str );
+       
+    
+        
     }
 }
