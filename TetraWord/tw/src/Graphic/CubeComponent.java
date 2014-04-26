@@ -1,6 +1,7 @@
 package Graphic;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -14,22 +15,19 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
-public class ButtonTetra extends JButton {
+public class CubeComponent extends JButton {
 	
 	private BufferedImage texture, hover;
 	private TexturePaint paint;
+	private int scale = 24;
 	private int w; 
 	private int h;
-	
-	@Override
-	public void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paintComponents(g);
+	private char letter;
 		
-		Graphics2D g2 = (Graphics2D)g;
-		
-		g2.setPaint(paint);
-		g2.fillRect(0, 0, w, h);
+	public CubeComponent(String path1, String path2, char letter){
+		this.letter = letter;
+		loadImage(path1, path2);
+		loadButton(path1, path2);	
 	}
 	
 	private void loadImage(String path1, String path2){
@@ -39,14 +37,12 @@ public class ButtonTetra extends JButton {
        } catch (IOException ex) {
     	   System.out.println("Error 404: '"+path1+"' and '"+path2+"' not Found !");
        }
-		
-		w = texture.getWidth();
-		h = texture.getHeight();
-	}
-	
-	ButtonTetra(String path1, String path2){
-		loadImage(path1, path2);
-		loadButton(path1, path2);		
+
+        texture.getScaledInstance(scale, scale, Image.SCALE_DEFAULT);
+        hover.getScaledInstance(scale, scale, Image.SCALE_DEFAULT);
+        
+    	w = scale;
+		h = scale;
 	}
 	
 	private void loadButton(String path1, String path2){
@@ -72,12 +68,21 @@ public class ButtonTetra extends JButton {
 	public int getWidthTexture(){
 		return w;
 	}
-	
-	public static void main(String[] args) {
-		ButtonTetra start = new ButtonTetra("texture/start/button-solo.png", "texture/start/hoover-button-solo.png");
-		//start.addActionListener(actionGame);
-		start.setBounds(322, 246, start.getWidthTexture(), start.getHeightTexture());
-		//add(start);
+
+	@Override
+	public void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponents(g);
 		
+		Graphics2D g2 = (Graphics2D)g;
+		
+		g2.setPaint(paint);
+		g2.fillRect(0, 0, w, h);
+		char[] tmp = new char[1];
+		tmp[0] = letter;
+		
+		g2.setFont(new Font("Serif", Font.BOLD, 20));
+		g2.setColor(Color.WHITE);
+		g2.drawChars(tmp, 0, 1, w/3, (h*2)/3);
 	}
 }
