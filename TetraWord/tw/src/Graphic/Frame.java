@@ -1,18 +1,29 @@
 package Graphic;
 
+import java.awt.Component;
+
 import javax.swing.BoxLayout;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import utility.Letter;
+import utility.Player;
+import utility.Square;
 
 
 public class Frame extends JFrame {
 	
 	private int width = 1024, height = 700;
 	JPanel contentPane = new JPanel();
+	Player P1, P2;
 	
 	private char panelState = 'Z';
 	
-	Frame(){		
+	Frame(Player P1, Player P2){		
+		
+		this.P1 = P1;
+		this.P2 = P2;
 		
 		//1. Create the frame.
 		setTitle("TetraWord");
@@ -44,7 +55,7 @@ public class Frame extends JFrame {
 		panelState = newState;
 	}
 	
-	private void onSize(){
+	public void onSize(){
 		//setSize(width, height);
 		pack();
 	}
@@ -67,7 +78,7 @@ public class Frame extends JFrame {
 			switch (tmpState) {
 			case 'g':
 				contentPane.removeAll();
-				contentPane.add(new PanelTetraWord());
+				contentPane.add(new PanelTetraWord(P1, P2));
 				setContentPane(contentPane);
 				onSize();
 				setPanelState('g');
@@ -97,15 +108,48 @@ public class Frame extends JFrame {
 				break;
 			}
 		}
+		else{
+
+			((PanelBase)contentPane.getComponent(0)).update();
+			//setContentPane(contentPane);
+		}
 	}
 	
 	
 	public static void main(String[] args) {
-		
-		Frame tmp = new Frame();
 
+		Player p = new Player("georges", "ninja");
+		Player p2 = new Player("louis", "panda");
+		p.increaseScrore(8000);
+		p2.increaseScrore(452);
+
+		p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k'), null, "blue"));
+		p.getBoardTemp().addCase(new Square(2, 2, new Letter((short) 1, 'w'), null, "green"));
+		
+		Frame tmp = new Frame(p, p2);
+		
+		/*new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				for(int i = 0; i < 200; ++i){
+					p.increaseScrore(200);
+					System.out.println(p.getScore());
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+			}
+		}).start();*/
 		while(tmp.getPanelState() != 'e'){
 			tmp.update();
+			p.increaseScrore(1);
+			p2.increaseScrore(1);
+			//System.out.println(p.getScore());
 		}
 		
 		tmp.dispose();

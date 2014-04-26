@@ -4,9 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
-public abstract class PanelBase extends JPanel {
-	
-	protected char state;
+public abstract class TetraComponent extends JPanel {
 	
 	protected int w, h;
 	
@@ -14,9 +12,13 @@ public abstract class PanelBase extends JPanel {
 	public Dimension getPreferredSize() {
 		return new Dimension(w, h);
 	}
-	 
-	public char getState(){
-		return state;
+	
+	public int getH(){
+		return h;
+	}
+	
+	public int getW(){
+		return w;
 	}
 	
 	abstract public void update();

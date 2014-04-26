@@ -24,4 +24,10 @@ public class PanelOption extends PanelBase {
 		option.addActionListener(actionOption);
 		add(option);
 	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
 }

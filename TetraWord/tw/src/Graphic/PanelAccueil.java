@@ -97,4 +97,10 @@ public class PanelAccueil extends PanelBase {
 		add(option);
 		
 	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
 }

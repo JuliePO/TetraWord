@@ -155,6 +155,10 @@ public class Square
     	return y;
     }
     
+    public char getChar(){
+    	return letter.getChar();
+    }
+    
     public String getColor(){
     	return color;
     }
