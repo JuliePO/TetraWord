@@ -71,9 +71,12 @@ public class Player
     public String getAvatar(){
     	return avatar;
     }
-    
 
+    public Square getSquareAt(int x, int y){
+    	return board.getSquareAt(x, y);
+    }
     
-    
-    
+    public boolean isSquareAt(int x, int y){
+    	return board.isSquareAt(x, y);
+    }    
 }

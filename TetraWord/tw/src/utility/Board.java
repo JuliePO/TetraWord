@@ -57,6 +57,22 @@ public class Board
     	return cases;
     }
     
+    public Square getSquareAt(int x, int y){
+    	for(Square square : cases){
+    		if( square.getX() == x && square.getY() == y)
+    			return square;
+    	}
+    	return null;
+    }
+    
+	public boolean isSquareAt(int x, int y) {
+		for(Square square : cases){
+    		if( square.getX() == x && square.getY() == y)
+    			return true;
+    	}
+    	return false;
+	}
+    
     /**
      * Return the state of the given coordinates 
      * 
