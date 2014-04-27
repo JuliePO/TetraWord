@@ -1,6 +1,7 @@
 package Graphic;
 
 import java.awt.Component;
+import java.awt.event.MouseWheelListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
@@ -39,7 +40,10 @@ public class Frame extends JFrame {
 		contentPane.add(new PanelAccueil());
 	
 		setContentPane(contentPane);
-	
+
+		addMouseMotionListener(new MouseMotionListenerTetra());
+		addMouseListener(new MouseListenerTetra());
+		
 		//4. Size the frame.
 		onSize();
 	
@@ -66,6 +70,14 @@ public class Frame extends JFrame {
 	
 	public int getWidth(){
 		return width;
+	}
+	
+	public Player getPlayer1(){
+		return P1;
+	}
+	
+	public Player getPlayer2(){
+		return P2;
 	}
 	
 	public void update(){
