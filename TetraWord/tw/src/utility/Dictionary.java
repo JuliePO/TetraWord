@@ -141,7 +141,7 @@ public class Dictionary
     public Letter pickLetter(){
   
         int r = (int) (Math.random() * 100);
-                /* Décommenter pour voir les lettres random
+                /* DÃ©commenter pour voir les lettres random
         if( r%5 == 0 )
             System.out.println( Character.toUpperCase(letters[r].getChar()) + " " );
         else
@@ -192,7 +192,7 @@ public class Dictionary
         Dictionary dico;
         System.out.print( "loading..." );    
         
-        if( !args[0].isEmpty() ) 
+        if( args.length != 0 ) 
             dico= new Dictionary("../../french.txt");
         else
             dico= new Dictionary("../french.txt");
