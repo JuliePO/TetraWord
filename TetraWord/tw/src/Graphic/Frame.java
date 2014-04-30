@@ -139,12 +139,12 @@ public class Frame extends JFrame {
         Board b= J1.getBoardTemp();
         boolean[] fd= b.getField();
 
-        if( args[0].isEmpty() )
+        if( args.length == 0 )
             dico= new Dictionary("../french.txt");
         else
             dico= new Dictionary("../../french.txt");
 
-        //Création des blocs
+        //Creation des blocs
         squares[0] = new Square( 2, 19, dico.pickLetter(), b , "blue");
         squares[1] = new Square( 3, 19, dico.pickLetter(), b , "blue");
         squares[2] = new Square( 3, 18, dico.pickLetter(), b , "blue");
