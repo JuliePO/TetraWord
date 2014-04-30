@@ -56,6 +56,7 @@ public class Letter implements Comparable
     @Override 
     public int compareTo(Object o){
         Letter L = (Letter) o;
+      
         if( character == L.character )
             return 0;
         if ( character < L.character )

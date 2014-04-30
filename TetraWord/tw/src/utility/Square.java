@@ -11,7 +11,6 @@ import java.awt.Color;
  */
 public class Square
 {
-    // instance variables - replace the example below with your own
     private int x;
     private int y;
     
@@ -26,7 +25,7 @@ public class Square
     
     //boolean[] fieldTemp;
     private Board field;
-    boolean newTemp;
+    boolean newBloc;
     
 
     /**
@@ -41,15 +40,15 @@ public class Square
         field= f;
         this.color = color;
         
-        newTemp= true;
+        newBloc= true;
         setBusy();
     }
     
-    void setBusy(){
-    	if(field != null)
-    		field.busyAt( x , y );
-    	else
-    		System.out.println("Error : field null");
+    public void setBusy(){
+        if(field != null)
+            field.busyAt( x , y );
+        else
+            System.out.println("Error : field null");
     }
     
     /*boolean isBusyTemp( int x, int y ){
@@ -60,7 +59,7 @@ public class Square
         return fieldTemp[ x + y*10 ];
     }*/
     
-    void fall(){
+    public void fall(){
         if( 0 == y ) //field.bornes 
             System.err.println("Error: Overfall");
         else
@@ -77,15 +76,23 @@ public class Square
     
         return false;
     }
+    
+    public void setNeighbour( Square up, Square left, Square right, Square down ){
+        this.up= up;
+        this.left= left;
+        this.right= right;
+        this.down= down;
+    }
 
 
     void stopThemAll(){
         
         this.nextState = 's';
         
-        if( newTemp )
+        if( newBloc ) // Seuls les nouveaux bloc rapportent des pts
             System.out.println ("  >> SCORE + 5 << ");
-        newTemp= false;  
+            
+        newBloc= false;  
     
         if( this.up != null && this.up.nextState != 's' )       
             this.up.stopThemAll();
@@ -102,7 +109,7 @@ public class Square
     }
 
 
-    boolean becoming(){
+    public boolean becoming(){
     
         this.nextState = 'f'; 
     
@@ -148,19 +155,30 @@ public class Square
     }
 
     public int getX(){
-    	return x;
+        return x;
     }
     
     public int getY(){
-    	return y;
+        return y;
     }
     
     public char getChar(){
-    	return letter.getChar();
+        return letter.getChar();
     }
     
     public String getColor(){
-    	return color;
+        return color;
+    }
+    
+    public char getNextState(){
+        return nextState;
+    }
+    
+    public void setNextState(char n){
+        //if( f s r )
+            nextState= n;
+        /*else
+            nextState= '?';*/
     }
     
     public static void main(String[] args){ 
