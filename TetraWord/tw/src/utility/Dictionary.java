@@ -141,7 +141,7 @@ public class Dictionary
     public Letter pickLetter(){
   
         int r = (int) (Math.random() * 100);
-                /* Décommenter pour voir les lettres random
+                /* Decommenter pour voir les lettres random
         if( r%5 == 0 )
             System.out.println( Character.toUpperCase(letters[r].getChar()) + " " );
         else
