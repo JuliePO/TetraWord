@@ -133,15 +133,16 @@ public class Frame extends JFrame {
         int nb= 8;
         Square[] squares= new Square[nb];
         
+        Dictionary dico;        
         Player J1= new Player("georges", "ninja");
         Player J2 = new Player("louis", "panda");
         Board b= J1.getBoardTemp();
         boolean[] fd= b.getField();
 
         if( args[0].isEmpty() )
-            Dictionary dico= new Dictionary("../french.txt");
+            dico= new Dictionary("../french.txt");
         else
-            Dictionary dico= new Dictionary("../../french.txt");
+            dico= new Dictionary("../../french.txt");
 
         //Création des blocs
         squares[0] = new Square( 2, 19, dico.pickLetter(), b , "blue");
