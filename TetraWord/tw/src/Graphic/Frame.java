@@ -25,7 +25,7 @@ public class Frame extends JFrame {
 	
 	private char panelState = 'Z';
 	
-	Frame(Player P1, Player P2){		
+	public Frame(Player P1, Player P2){		
 		
 		this.P1 = P1;
 		this.P2 = P2;

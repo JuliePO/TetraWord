@@ -14,7 +14,7 @@ public abstract class PanelBase extends JPanel {
 	
 	protected PanelBase(){
 	    
-	    //mPath= "../";// A commenter sous Ecllipse
+	    mPath= "../";// A commenter sous Ecllipse
 		
 	    setFocusable(true);
 	}

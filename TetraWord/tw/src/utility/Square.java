@@ -85,53 +85,56 @@ public class Square
     }
 
 
-    void stopThemAll(){
+    int stopThemAll(){
         
+        int pts= 0;
         this.nextState = 's';
         
         if( newBloc ) // Seuls les nouveaux bloc rapportent des pts
-            System.out.println ("  >> SCORE + 5 << ");
+            //System.out.println ("  >> SCORE + 5 << ");
+            pts += 5;
             
         newBloc= false;  
     
         if( this.up != null && this.up.nextState != 's' )       
-            this.up.stopThemAll();
+            pts += this.up.stopThemAll();
     
         if( this.left != null && this.left.nextState != 's' )       
-            this.left.stopThemAll();
+            pts += this.left.stopThemAll();
     
         if( this.right != null && this.right.nextState != 's' )     
-            this.right.stopThemAll();
+            pts += this.right.stopThemAll();
     
         if( this.down != null && this.down.nextState != 's' )       
-            this.down.stopThemAll();
+            pts += this.down.stopThemAll();
     
+        return pts;
     }
 
 
-    public boolean becoming(){
+    public boolean becoming(Player J){
     
         this.nextState = 'f'; 
     
         if( this.isBlocked() ){
-            this.stopThemAll();
+            J.increaseScore( this.stopThemAll() );
             return true;
         }
     
         if( this.up != null && this.up.nextState == '?'  )
-            if( this.up.becoming() )
+            if( this.up.becoming(J) )
                 return true;
     
         if( this.left != null && this.left.nextState == '?'  )
-            if( this.left.becoming() )
+            if( this.left.becoming(J) )
                 return true;
     
         if( this.right != null && this.right.nextState == '?'  )
-            if( this.right.becoming() )
+            if( this.right.becoming(J) )
                 return true;
     
         if( this.down != null && this.down.nextState == '?'  )
-            if( this.down.becoming() )
+            if( this.down.becoming(J) )
                 return true;
     
         return false;
@@ -225,7 +228,7 @@ public class Square
         // Calculate nextState ------------------------   
         for( int i= 0; i < nb; ++i )  
             if( b.elmtAt(i).nextState == '?' )
-                b.elmtAt(i).becoming();    
+                b.elmtAt(i).becoming(J1);    
         // --------------------------------------------
             
         System.out.println();               

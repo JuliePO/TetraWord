@@ -44,7 +44,7 @@ public class Player
     	return board.getCases();
     }
     
-    public void increaseScrore(int i){
+    public void increaseScore(int i){
     	score +=i;
     }
     

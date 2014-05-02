@@ -12,7 +12,7 @@ public abstract class TetraComponent extends JPanel {
     
     public TetraComponent(){
     
-        //mPath= "../";// A commenter sous Ecllipse
+        mPath= "../";// A commenter sous Ecllipse
     }
     
     @Override
