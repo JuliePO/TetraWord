@@ -41,7 +41,7 @@ public class PersoSelectComponent extends TetraComponent {
 	
 	private void loadImages(String path){
 		try {
-            BufferedImage tmp = ImageIO.read(new File("texture/selection/icon-"+path+".png"));
+            BufferedImage tmp = ImageIO.read(new File(mPath+"texture/selection/icon-"+path+".png"));
     		texture = new TexturePaint(tmp, new Rectangle(0, 0, tmp.getWidth(), tmp.getHeight()));
     		w = tmp.getWidth();
     		h = tmp.getHeight();
@@ -51,7 +51,7 @@ public class PersoSelectComponent extends TetraComponent {
         }
 		
 		try {
-            BufferedImage tmp = ImageIO.read(new File("texture/selection/icon-player1.png"));
+            BufferedImage tmp = ImageIO.read(new File(mPath+"texture/selection/icon-player1.png"));
     		p1 = new TexturePaint(tmp, new Rectangle(0, 0, tmp.getWidth(), tmp.getHeight()));
         } catch (IOException ex) {
         	System.out.println("Error 404: 'texture/selection/icon-player1.png' not Found !");
@@ -59,7 +59,7 @@ public class PersoSelectComponent extends TetraComponent {
 		
 
 		try {
-            BufferedImage tmp = ImageIO.read(new File("texture/selection/icon-player2.png"));
+            BufferedImage tmp = ImageIO.read(new File(mPath+"texture/selection/icon-player2.png"));
     		p2 = new TexturePaint(tmp, new Rectangle(0, 0, tmp.getWidth(), tmp.getHeight()));
 
         } catch (IOException ex) {

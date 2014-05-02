@@ -52,11 +52,11 @@ public class PresentationPlayerComponent extends TetraComponent {
 		persoName.setBounds(w/2 - 80 + (decalage * 50), 323, 104, 27);
 		add(persoName);
 		
-		JLabel bandeau = new JLabel(new ImageIcon("texture/selection/j"+player+"/player"+player+"-name.png"));
+		JLabel bandeau = new JLabel(new ImageIcon(mPath+ "texture/selection/j"+player+"/player"+player+"-name.png"));
 		bandeau.setBounds(0, 288, 386, 69);
 		add(bandeau);
 		
-		JLabel persoPlayer = new JLabel(new ImageIcon("texture/selection/j"+player+"/player"+player+".png"));
+		JLabel persoPlayer = new JLabel(new ImageIcon(mPath+"texture/selection/j"+player+"/player"+player+".png"));
 		persoPlayer.setBounds(215 + (decalage * - 190), 25, 153, 33);
 		add(persoPlayer);
 		
@@ -68,14 +68,14 @@ public class PresentationPlayerComponent extends TetraComponent {
 		persoBot.setBounds(w/2 - 199, 378, persoBot.getW(), persoBot.getH());
 		add(persoBot);
 
-		JLabel topBack = new JLabel(new ImageIcon("texture/selection/j"+player+"/background-player"+player+".jpg"));
+		JLabel topBack = new JLabel(new ImageIcon(mPath+"texture/selection/j"+player+"/background-player"+player+".jpg"));
 		topBack.setBounds(0, 0, 387, 387);
 		add(topBack);
 	}
 	
 	private TexturePaint[] loadDir(String path){
 		
-		File repertoire = new File("texture/selection/"+path);
+		File repertoire = new File(mPath+"texture/selection/"+path);
 		String [] listefichiers; 
 		listefichiers=repertoire.list();
 
@@ -83,7 +83,7 @@ public class PresentationPlayerComponent extends TetraComponent {
 		
 		for(int i= 0; i < listefichiers.length; i++){ 
 			try {
-	            BufferedImage image = ImageIO.read(new File("texture/selection/"+path+"/"+ listefichiers[i]));
+	            BufferedImage image = ImageIO.read(new File(mPath+"texture/selection/"+path+"/"+ listefichiers[i]));
 	    		tmp[i] = new TexturePaint(image, new Rectangle(0, 0, image.getWidth(), image.getHeight()));
 	
 	        } catch (IOException ex) {

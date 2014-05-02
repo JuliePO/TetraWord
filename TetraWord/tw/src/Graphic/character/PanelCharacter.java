@@ -27,7 +27,7 @@ public class PanelCharacter extends PanelBase{
 	 PresentationPlayerComponent j1;
 	 PresentationPlayerComponent j2;
 	 	 
-	@Override
+	@Override 
 	public void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponents(g);
@@ -41,7 +41,7 @@ public class PanelCharacter extends PanelBase{
 	
 	private void loadImages(){
 		
-		String path = "texture/selection/background-characters.jpg";
+		String path = mPath +  "texture/selection/background-characters.jpg";
 		try {
             BufferedImage tmp = ImageIO.read(new File(path));
     		h = tmp.getHeight();

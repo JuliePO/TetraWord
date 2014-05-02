@@ -33,7 +33,7 @@ public class CharacterLabel extends TetraComponent {
 	
 	private void loadImages(String path){
 		
-		File repertoire = new File("texture/selection/"+path);
+		File repertoire = new File(mPath+"texture/selection/"+path);
 		String [] listefichiers; 
 		listefichiers=repertoire.list();
 
@@ -41,7 +41,7 @@ public class CharacterLabel extends TetraComponent {
 		
 		for(int i= 0; i < listefichiers.length; i++){ 
 			try {
-	            BufferedImage image = ImageIO.read(new File("texture/selection/"+path +"/"+ listefichiers[i]));
+	            BufferedImage image = ImageIO.read(new File(mPath+"texture/selection/"+path +"/"+ listefichiers[i]));
 	    		textures[i] = new TexturePaint(image, new Rectangle(0, 0, image.getWidth(), image.getHeight()));
 	
 	        } catch (IOException ex) {

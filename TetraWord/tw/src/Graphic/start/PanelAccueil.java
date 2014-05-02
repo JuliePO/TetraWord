@@ -26,7 +26,6 @@ public class PanelAccueil extends PanelBase {
 	 BufferedImage accueil;
 	 TexturePaint accueilP;
 	 
-	 String path; //ONLY FOR DEVELOPMENT
 	 	 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -42,7 +41,7 @@ public class PanelAccueil extends PanelBase {
 	
 	private void loadImage(){
 		try {
-            accueil = ImageIO.read(new File( path + "texture/start/background-start.jpg"));
+            accueil = ImageIO.read(new File( mPath + "texture/start/background-start.jpg"));
 
         } catch (IOException ex) {
 
@@ -58,8 +57,6 @@ public class PanelAccueil extends PanelBase {
 	public PanelAccueil() {
 	    
 		super();
-		//path= "../";// A commenter sous Ecllipse
-		path="";
 		
 		state = 's';
 		loadImage();
@@ -89,17 +86,17 @@ public class PanelAccueil extends PanelBase {
 		
 		setLayout(null);
 		
-		ButtonTetra start = new ButtonTetra(path+"texture/start/button-solo.png", path+"texture/start/hoover-button-solo.png");
+		ButtonTetra start = new ButtonTetra(mPath+"texture/start/button-solo.png", mPath+"texture/start/hoover-button-solo.png");
 		start.addActionListener(actionGame);
 		start.setBounds(322, 246, start.getWidthTexture(), start.getHeightTexture());
 		add(start);
 
-		ButtonTetra multi = new ButtonTetra(path+"texture/start/button-multi.png", path+"texture/start/hoover-button-multi.png");
+		ButtonTetra multi = new ButtonTetra(mPath+"texture/start/button-multi.png", mPath+"texture/start/hoover-button-multi.png");
 		multi.addActionListener(actionGame);
 		multi.setBounds(322, 342, multi.getWidthTexture(), multi.getHeightTexture());
 		add(multi);
 		
-		ButtonTetra option = new ButtonTetra(path+"texture/start/button-options.png", path+"texture/start/hoover-button-option.png");
+		ButtonTetra option = new ButtonTetra(mPath+"texture/start/button-options.png", mPath+"texture/start/hoover-button-option.png");
 		option.addActionListener(actionOption);
 		option.setBounds(322, 443, option.getWidthTexture(), option.getHeightTexture());
 		add(option);

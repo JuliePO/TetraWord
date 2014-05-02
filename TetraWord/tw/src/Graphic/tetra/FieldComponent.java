@@ -40,8 +40,6 @@ public class FieldComponent extends TetraComponent {
     
     private JComponent[][] panelHolder = new JComponent[ySize][xSize];
     
-    String path; //ONLY FOR DEVELOPMENT
-    
     /*private class emptyComponent extends JComponent{
         @Override
         public void paintComponent(Graphics g) {
@@ -55,57 +53,13 @@ public class FieldComponent extends TetraComponent {
               
         try {
             for(int i= 0; i < paths.length; ++i ){
-              BufferedImage texture = ImageIO.read(new File(path+"texture/game/"+paths[i]+".jpg"));
+              BufferedImage texture = ImageIO.read(new File(mPath+"texture/game/"+paths[i]+".jpg"));
               texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
               paints.put(paths[i], new TexturePaint(texture, new Rectangle(0, 0, 25, 25)));
             }
        } catch (IOException ex) {
            System.out.println("Error 404: color missing !" );
-       }
-        /*try {
-              BufferedImage texture = ImageIO.read(new File(path+"texture/game/green.jpg"));
-              texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
-              paints.put("green", new TexturePaint(texture, new Rectangle(0, 0, 25, 25)));           
-       } catch (IOException ex) {
-           System.out.println("Error 404: 'texture/game/green.jpg' not Found !");
-       }
-        try {
-              BufferedImage texture = ImageIO.read(new File(path+"texture/game/orange.jpg"));
-              texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
-              paints.put("orange", new TexturePaint(texture, new Rectangle(0, 0, 25, 25)));           
-       } catch (IOException ex) {
-           System.out.println("Error 404: 'texture/game/orange.jpg' not Found !");
-       }
-        try {
-              BufferedImage texture = ImageIO.read(new File(path+"texture/game/pink.jpg"));
-              texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
-              paints.put("pink", new TexturePaint(texture, new Rectangle(0, 0, 25, 25)));           
-       } catch (IOException ex) {
-           System.out.println("Error 404: 'texture/game/pink.jpg' not Found !");
-       }
-        try {
-              BufferedImage texture = ImageIO.read(new File(path+"texture/game/purple.jpg"));
-              texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
-              paints.put("purple", new TexturePaint(texture, new Rectangle(0, 0, 25, 25)));           
-       } catch (IOException ex) {
-           System.out.println("Error 404: 'texture/game/purple.jpg' not Found !");
-       }
-        try {
-              BufferedImage texture = ImageIO.read(new File(path+"texture/game/red.jpg"));
-              texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
-              paints.put("red", new TexturePaint(texture, new Rectangle(0, 0, 25, 25)));           
-       } catch (IOException ex) {
-           System.out.println("Error 404: 'texture/game/red.jpg' not Found !");
-       }
-        try {
-              BufferedImage texture = ImageIO.read(new File(path+"texture/game/yellow.jpg"));
-              texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
-              paints.put("yellow", new TexturePaint(texture, new Rectangle(0, 0, 25, 25)));           
-       } catch (IOException ex) {
-           System.out.println("Error 404: 'texture/game/yellow.jpg' not Found !");
-       }*/
-
-        
+       }        
         
     }
     
@@ -133,9 +87,6 @@ public class FieldComponent extends TetraComponent {
     }
     
     FieldComponent(Player player){
-        
-        //path= "../";// A commenter sous Ecllipse
-        path = "";
         
         this.w = 275;
         this.h = 550;
