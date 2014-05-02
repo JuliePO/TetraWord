@@ -1,4 +1,4 @@
-package Graphic;
+package Graphic.tetra;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -25,6 +25,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.xml.bind.Marshaller.Listener;
 
+import Graphic.TetraComponent;
 import utility.Board;
 import utility.Letter;
 import utility.Player;

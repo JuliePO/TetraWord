@@ -10,6 +10,10 @@ public abstract class PanelBase extends JPanel {
 	
 	protected int w, h;
 	
+	protected PanelBase(){
+		setFocusable(true);
+	}
+	
 	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(w, h);

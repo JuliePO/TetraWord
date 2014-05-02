@@ -8,6 +8,9 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Graphic.character.PanelCharacter;
+import Graphic.start.PanelAccueil;
+import Graphic.tetra.PanelTetraWord;
 import utility.Letter;
 import utility.Player;
 import utility.Square;
@@ -40,9 +43,6 @@ public class Frame extends JFrame {
 		contentPane.add(new PanelAccueil());
 	
 		setContentPane(contentPane);
-
-		addMouseMotionListener(new MouseMotionListenerTetra());
-		addMouseListener(new MouseListenerTetra());
 		
 		//4. Size the frame.
 		onSize();
@@ -82,12 +82,13 @@ public class Frame extends JFrame {
 	
 	public void update(){
 		
-
 		repaint();
 		
 		char tmpState = ((PanelBase)contentPane.getComponent(0)).getState();
 		if(getPanelState() != tmpState){
 			switch (tmpState) {
+			
+			//le jeu
 			case 'g':
 				contentPane.removeAll();
 				contentPane.add(new PanelTetraWord(P1, P2));
@@ -95,7 +96,19 @@ public class Frame extends JFrame {
 				onSize();
 				setPanelState('g');
 				break;
-
+				
+			//le menu de slection
+			case 'c':
+				contentPane.removeAll();
+				PanelCharacter chara = new PanelCharacter(P1, P2);
+				contentPane.add(chara);
+				setContentPane(contentPane);
+				onSize();
+				setPanelState('c');
+				chara.requestFocusInWindow();
+				break;
+				
+			//option
 			case 'o':
 				contentPane.removeAll();
 				contentPane.add(new PanelOption());
@@ -103,7 +116,8 @@ public class Frame extends JFrame {
 				onSize();
 				setPanelState('o');
 				break;
-
+				
+			//ecran start
 			case 's':
 				contentPane.removeAll();
 				contentPane.add(new PanelAccueil());
@@ -111,7 +125,8 @@ public class Frame extends JFrame {
 				onSize();
 				setPanelState('s');
 				break;
-
+				
+			//exit
 			case 'e':
 				setPanelState('e');
 				break;
@@ -132,7 +147,7 @@ public class Frame extends JFrame {
 
 		Player p = new Player("georges", "ninja");
 		Player p2 = new Player("louis", "panda");
-		p.increaseScrore(8000);
+		p.increaseScrore(12);
 		p2.increaseScrore(452);
 
 		p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k'), null, "blue"));
@@ -159,8 +174,8 @@ public class Frame extends JFrame {
 		}).start();*/
 		while(tmp.getPanelState() != 'e'){
 			tmp.update();
-			p.increaseScrore(1);
-			p2.increaseScrore(1);
+			/*p.increaseScrore(1);
+			p2.increaseScrore(1);*/
 			//System.out.println(p.getScore());
 		}
 		

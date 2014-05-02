@@ -1,4 +1,4 @@
-package Graphic;
+package Graphic.start;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -17,6 +17,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import Graphic.ButtonTetra;
+import Graphic.PanelBase;
 
 public class PanelAccueil extends PanelBase {
 	
@@ -52,6 +55,8 @@ public class PanelAccueil extends PanelBase {
 	
 	public PanelAccueil() {
 		
+		super();
+		
 		state = 's';
 		
 		loadImage();
@@ -60,7 +65,7 @@ public class PanelAccueil extends PanelBase {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				state = 'g';
+				state = 'c';
 			}
 		};	
 		final ActionListener actionOption= new ActionListener() {

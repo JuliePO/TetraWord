@@ -1,4 +1,4 @@
-package Graphic;
+package Graphic.tetra;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -21,6 +21,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Graphic.PanelBase;
+import Graphic.TetraComponent;
 import utility.Letter;
 import utility.Player;
 import utility.Square;
@@ -71,6 +73,8 @@ public class PanelTetraWord extends PanelBase {
 	
 	public PanelTetraWord(Player player1, Player player2) {
 		
+		super();
+		
 		state = 'g';
 		
 		P1 = player1;
@@ -99,7 +103,7 @@ public class PanelTetraWord extends PanelBase {
 			add(fieldP1);
 			
 			ScoreComponent scoreP1 = new ScoreComponent(P1);
-			scoreP1.setBounds(412, 644, scoreP1.getW(), scoreP1.getH());
+			scoreP1.setBounds(395, 648, scoreP1.getW(), scoreP1.getH());
 			add(scoreP1);
 		}
 		
@@ -109,14 +113,19 @@ public class PanelTetraWord extends PanelBase {
 			add(fieldP2);
 			
 			ScoreComponent scoreP2 = new ScoreComponent(P2);
-			scoreP2.setBounds(512, 644, scoreP2.getW(), scoreP2.getH());
+			scoreP2.setBounds(507, 648, scoreP2.getW(), scoreP2.getH());
 			add(scoreP2);
 		}
 		
 		VersusComponent versus = new VersusComponent(P1, P2);
 		versus.setBounds(405, 448, versus.getW(), versus.getH());
 		add(versus);
+		
+		addMouseMotionListener(new MouseMotionListenerTetra());
+		addMouseListener(new MouseListenerTetra());
 	}
+	
+	
 	
 	/*public void update(Vector<Square> casesP1, Vector<Square>casesP2){
 		//this.cases = cases;
@@ -175,5 +184,15 @@ public class PanelTetraWord extends PanelBase {
 				
 			}
 		}).start();
+	}
+
+	public Player getPlayer2() {
+		// TODO Auto-generated method stub
+		return P2;
+	}
+
+	public Player getPlayer1() {
+		// TODO Auto-generated method stub
+		return P1;
 	}
 }

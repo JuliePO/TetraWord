@@ -1,4 +1,4 @@
-package Graphic;
+package Graphic.tetra;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;

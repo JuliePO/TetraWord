@@ -1,4 +1,4 @@
-package Graphic;
+package Graphic.tetra;
 
 import java.awt.Color;
 import java.awt.Font;

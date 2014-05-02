@@ -44,7 +44,7 @@ public class ButtonTetra extends JButton {
 		h = texture.getHeight();
 	}
 	
-	ButtonTetra(String path1, String path2){
+	public ButtonTetra(String path1, String path2){
 		loadImage(path1, path2);
 		loadButton(path1, path2);		
 	}
