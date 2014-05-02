@@ -25,6 +25,8 @@ public class PanelAccueil extends PanelBase {
 	
 	 BufferedImage accueil;
 	 TexturePaint accueilP;
+	 
+	 String path; //ONLY FOR DEVELOPMENT
 	 	 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -35,12 +37,12 @@ public class PanelAccueil extends PanelBase {
 		
 		g2.setPaint(accueilP);
 	    g2.fillRect(0, 0, w, h);
-	
+	    
 	}
 	
 	private void loadImage(){
 		try {
-            accueil = ImageIO.read(new File("texture/start/background-start.jpg"));
+            accueil = ImageIO.read(new File( path + "texture/start/background-start.jpg"));
 
         } catch (IOException ex) {
 
@@ -52,13 +54,14 @@ public class PanelAccueil extends PanelBase {
 		
 		accueilP= new TexturePaint(accueil, new Rectangle(0, 0, w, h));
 	}
-	
+
 	public PanelAccueil() {
-		
+	    
 		super();
+		//path= "../";// A commenter sous Ecllipse
+		path="";
 		
 		state = 's';
-		
 		loadImage();
 				
 		final ActionListener actionGame= new ActionListener() {
@@ -86,17 +89,17 @@ public class PanelAccueil extends PanelBase {
 		
 		setLayout(null);
 		
-		ButtonTetra start = new ButtonTetra("texture/start/button-solo.png", "texture/start/hoover-button-solo.png");
+		ButtonTetra start = new ButtonTetra(path+"texture/start/button-solo.png", path+"texture/start/hoover-button-solo.png");
 		start.addActionListener(actionGame);
 		start.setBounds(322, 246, start.getWidthTexture(), start.getHeightTexture());
 		add(start);
 
-		ButtonTetra multi = new ButtonTetra("texture/start/button-multi.png", "texture/start/hoover-button-multi.png");
+		ButtonTetra multi = new ButtonTetra(path+"texture/start/button-multi.png", path+"texture/start/hoover-button-multi.png");
 		multi.addActionListener(actionGame);
 		multi.setBounds(322, 342, multi.getWidthTexture(), multi.getHeightTexture());
 		add(multi);
 		
-		ButtonTetra option = new ButtonTetra("texture/start/button-options.png", "texture/start/hoover-button-option.png");
+		ButtonTetra option = new ButtonTetra(path+"texture/start/button-options.png", path+"texture/start/hoover-button-option.png");
 		option.addActionListener(actionOption);
 		option.setBounds(322, 443, option.getWidthTexture(), option.getHeightTexture());
 		add(option);

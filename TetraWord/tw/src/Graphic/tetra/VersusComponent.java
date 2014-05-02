@@ -25,6 +25,8 @@ public class VersusComponent extends TetraComponent {
 	TexturePaint avatar1, avatar2, cadre, versus, separator;
 	String name1, name2;
 	
+	String path; //ONLY FOR DEVELOPMENT
+	
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
@@ -33,7 +35,7 @@ public class VersusComponent extends TetraComponent {
 
 	private void loadAvatar1(String avatar1){
 		try {
-	          BufferedImage texture = ImageIO.read(new File("texture/game/vs/"+avatar1+"-left.png"));
+	          BufferedImage texture = ImageIO.read(new File(path+"texture/game/vs/"+avatar1+"-left.png"));
 	          this.avatar1 =  new TexturePaint(texture, new Rectangle(3, 3, texture.getWidth(), texture.getHeight()));           
 	   } catch (IOException ex) {
 		   System.out.println("Error 404: 'texture/game/vs/"+avatar1+"-left.png' not Found !");
@@ -43,7 +45,7 @@ public class VersusComponent extends TetraComponent {
 
 	private void loadAvatar2(String avatar2){
 		try {
-	          BufferedImage texture = ImageIO.read(new File("texture/game/vs/"+avatar2+"-right.png"));
+	          BufferedImage texture = ImageIO.read(new File(path+"texture/game/vs/"+avatar2+"-right.png"));
 	          this.avatar2 =  new TexturePaint(texture, new Rectangle(92, 3, texture.getWidth(), texture.getHeight()));           
 	   } catch (IOException ex) {
 		   System.out.println("Error 404: 'texture/game/vs/"+avatar2+"-right.png' not Found !");
@@ -53,7 +55,7 @@ public class VersusComponent extends TetraComponent {
 
 	private void loadRessources(){
 		try {
-	          BufferedImage texture = ImageIO.read(new File("texture/game/vs/cadre.png"));
+	          BufferedImage texture = ImageIO.read(new File(path+"texture/game/vs/cadre.png"));
 	          this.cadre =  new TexturePaint(texture, new Rectangle(0, 0, texture.getWidth(), texture.getHeight())); 
 	          h = texture.getHeight();
 	          w = texture.getWidth();
@@ -62,14 +64,14 @@ public class VersusComponent extends TetraComponent {
 	   }
 		
 		try {
-	          BufferedImage texture = ImageIO.read(new File("texture/game/vs/vs.png"));
+	          BufferedImage texture = ImageIO.read(new File(path+"texture/game/vs/vs.png"));
 	          this.versus =  new TexturePaint(texture, new Rectangle(70, 30, texture.getWidth(), texture.getHeight()));           
 	   } catch (IOException ex) {
 		   System.out.println("Error 404: 'texture/game/vs/vs.png' not Found !");
 	   }
 		
 		try {
-	          BufferedImage texture = ImageIO.read(new File("texture/game/vs/separation.png"));
+	          BufferedImage texture = ImageIO.read(new File(path+"texture/game/vs/separation.png"));
 	          this.separator =  new TexturePaint(texture, new Rectangle(91, 3, texture.getWidth(), texture.getHeight()));           
 	   } catch (IOException ex) {
 		   System.out.println("Error 404: 'texture/game/vs/separation.png' not Found !");
@@ -77,6 +79,11 @@ public class VersusComponent extends TetraComponent {
 	}
 
 	public VersusComponent(Player p1, Player p2) {
+
+	    //path= "../";// A commenter sous Ecllipse
+		path="";
+
+
 		if(p1 != null){
 			loadAvatar1(p1.getAvatar());
 			name1 = p1.getName();
@@ -92,6 +99,7 @@ public class VersusComponent extends TetraComponent {
 			name2 = null;
 		
 		loadRessources();
+		
 	}
 	
 	@Override

@@ -14,7 +14,6 @@ import java.text.Normalizer;
 public class Dictionary
 {
     private Scanner sc;
-    //private char[] index;
     private Letter letters[];
     private Letter alphabet[];
     private AlphaTree tree;
@@ -44,11 +43,14 @@ public class Dictionary
     }
     
     public void generateTree(){
+        int ignored= 0;
         String str= getNextWord();
         while ( str != null ){
-            tree.add( str );
+            ignored += tree.add( str );
             str= getNextWord();
         }
+        System.out.println( tree.getNbWords() + " words added !" );
+        System.err.println( "Caution: " + ignored + " words ignored (special character)" );
     }
     
     public void generateLetters(){
@@ -133,38 +135,25 @@ public class Dictionary
         letters[++it]= alphabet[23];
         letters[++it]= alphabet[24];
         letters[++it]= alphabet[25];
-        
-        //index= new String( "eeeeeeeeeeeeeeeaaaaaaaaaiiiiiiiinnnnnnoooooorrrrrrssssssttttttuuuuuullllldddmmmggbbccppffhhvvjqkwxyz" ).toCharArray(); 
-               
+         
     }
   
     public Letter pickLetter(){
-            /*
-        int r= 0;
-            
-        while(index[r] != 't' ){    
-            r = (int) (Math.random() * 100);
-            if( r%5 == 0 )
-                System.out.println( Character.toUpperCase(index[r]) + " " );
-            else
-                System.out.print( Character.toUpperCase(index[r]) + " " );
-        }
-            */
-         
+  
         int r = (int) (Math.random() * 100);
-        
+                /* Decommenter pour voir les lettres random
         if( r%5 == 0 )
             System.out.println( Character.toUpperCase(letters[r].getChar()) + " " );
         else
             System.out.print( Character.toUpperCase(letters[r].getChar()) + " " );
+                */
             
         return letters[r];
-        
     }
     
-    public void findWith( String s ){
+    public int findWith( String s ){
         
-        tree.findWith( "", s.toCharArray() ); 
+        return tree.findWith( "", s.toCharArray() ); 
     }
 
     public void printNextWord()
@@ -199,8 +188,15 @@ public class Dictionary
     
     public static void main(String[] args){
         
+        int nb= 0;
+        Dictionary dico;
         System.out.print( "loading..." );    
-        Dictionary dico= new Dictionary("../../french.txt");
+        
+        if( args.length != 0 ) 
+            dico= new Dictionary("../../french.txt");
+        else
+            dico= new Dictionary("../french.txt");
+        
         System.out.println( "DONE !" );
         
         Scanner scanner;
@@ -213,9 +209,9 @@ public class Dictionary
         if( str.isEmpty() )
             return;
         else
-            dico.findWith( str );
+            nb = dico.findWith( str );
+            
+        System.out.println( "\n"+ nb + " words found(s) !" );    
        
-    
-        
     }
 }

@@ -34,6 +34,8 @@ public class PanelTetraWord extends PanelBase {
     
     Player P1, P2;
     
+    String path; //ONLY FOR DEVELOPMENT
+    
     
     //grille de 11*22
     //private Vector<Square> cases = null;
@@ -55,8 +57,8 @@ public class PanelTetraWord extends PanelBase {
 	
 	private void loadImage(){
 		try {
-            grillage = ImageIO.read(new File("texture/game/field/blue.png"));
-            background = ImageIO.read(new File("texture/game/background/bamboo.jpg"));
+            grillage = ImageIO.read(new File(path+"texture/game/field/blue.png"));
+            background = ImageIO.read(new File(path+"texture/game/background/bamboo.jpg"));
 
         } catch (IOException ex) {
 
@@ -70,10 +72,13 @@ public class PanelTetraWord extends PanelBase {
 		backgroundP= new TexturePaint(background, new Rectangle(0, 0, w, h));
 	}
 	
-	
-	public PanelTetraWord(Player player1, Player player2) {
+	//Le constructeur en premier c'est plus cool
+	public PanelTetraWord(Player player1, Player player2) {	
 		
 		super();
+
+		//path= "../";// A commenter sous Ecllipse
+		path = "";
 		
 		state = 'g';
 		

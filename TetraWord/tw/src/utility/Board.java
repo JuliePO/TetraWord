@@ -79,7 +79,7 @@ public class Board
      * @param  x, y   Coordinates
      * @return     true if there is a Square here 
      */
-    boolean isBusy( int x, int y ){
+    public boolean isBusy( int x, int y ){
         
         if( x < 0 || x > 9 || y < 0 || y > 19 ) //limite (attribut)
             return true;
@@ -92,7 +92,7 @@ public class Board
         field[ x + y*10 ] = true;
     }
     
-    void freeAll(){
+    public void freeAll(){
         
         for( int i= 0; i < 200; ++i ) // limite
                 field[i] = false;

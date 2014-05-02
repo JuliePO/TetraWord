@@ -13,6 +13,7 @@ public class AlphaTree //Arbre ternaire lexicographique
     private AlphaTree fg;   //fils gauche
     private AlphaTree fd;   //fils droit
     private AlphaTree f;    //fils direct
+    private int nbWords;
     
     private Letter[] alphabet;
     /**
@@ -59,18 +60,20 @@ public class AlphaTree //Arbre ternaire lexicographique
         
     }
 
+    //0 mot ajouté | 1 mot ignoré
     public int add(String word){
         char[] chars= word.toCharArray();
         Letter[] letters= new Letter[chars.length+1];
         
         for(int i=0; i < chars.length; ++i){
-
-            if( chars[i]-'a' < 0 || chars[i]-'a' > 26 ){ // Si caractere special             
-                 letters[i]= alphabet[0];                         //Temporaire...
-                 System.err.println( "ERROR : character '"+ chars[i] +"' unknown" );
-            }
-            else
-                letters[i]= alphabet[chars[i]-'a'];
+            
+            if ( !(chars[i] < 'A' || chars[i] > 'Z') )
+                chars[i] = Character.toLowerCase(chars[i]);
+                
+            if( chars[i]-'a' < 0 || chars[i]-'a' > 26 ) // Si caractere special   
+                 return 1;
+           
+            letters[i]= alphabet[chars[i]-'a'];
         }
             
         letters[chars.length] = alphabet[26]; //On rajoute un caractere d'arret à la fin
@@ -78,15 +81,20 @@ public class AlphaTree //Arbre ternaire lexicographique
         return add( letters );
     }
     
-    //cf search
+    public int getNbWords(){
+        return nbWords;
+    }
+    
     public int add(Letter[] ls)
     {
+        ++nbWords;
+        
         if ( L == null ){
             //System.out.println( "+" + ls[0] );
             L= ls[0];
             
             if( ls[0].endChar() )
-                return 1;
+                return 0;
             else{
                 System.arraycopy(ls, 1, ls, 0, ls.length-1);
                 if( f == null )
@@ -97,7 +105,7 @@ public class AlphaTree //Arbre ternaire lexicographique
         }
         else
             if( L.endChar() && ls[0].endChar() )
-                return 1;
+                return 0;
             else{
                 if( L.equals(ls[0]) ){
                     System.arraycopy(ls, 1, ls, 0, ls.length-1);
@@ -191,7 +199,9 @@ public class AlphaTree //Arbre ternaire lexicographique
         
     }
     
-    public void findWith( String prefix, char[] nextLets ){
+    public int findWith( String prefix, char[] nextLets ){
+        
+        int founds= 0;
         
         for( int i= 0; i < nextLets.length; ++i ){
                 /*   Décommenter pour voir le détail de la recherche
@@ -211,19 +221,22 @@ public class AlphaTree //Arbre ternaire lexicographique
             
             int tmp= search( prefix + nextLets[i] );
             if(  tmp != -1 ){
-                if( tmp == 1 )
+                if( tmp == 1 ){
                     System.out.print( prefix + nextLets[i] + "\t" );
+                    ++founds;
+                }
                 
                 findWith( prefix + nextLets[i], ls ); //On concatene la juste après avec le prefix deja existant
             }
         }
+        
+        return founds;
         
     }
     
     public static void main(String[] args){
         
         Dictionary dic= new Dictionary( "../../french.txt" );
-        
         
         AlphaTree aT= new AlphaTree( dic.getAlphabet() );
         System.out.println( "go" );
@@ -248,8 +261,5 @@ public class AlphaTree //Arbre ternaire lexicographique
         //findAll( "", randLets ); 
         System.out.println();
         aT.findWith( "", randLets ); 
-        
-        
-    
     }
 }
