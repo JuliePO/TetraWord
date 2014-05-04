@@ -18,6 +18,7 @@ public class CharacterLabel extends TetraComponent {
 	int select;
 	
 	public void paintComponent(java.awt.Graphics g) {
+		super.paintComponents(g);
 		Graphics2D g2 = (Graphics2D)g;
 		
 		g2.setPaint(textures[select]);

@@ -92,10 +92,12 @@ public class Frame extends JFrame {
 			//le jeu
 			case 'g':
 				contentPane.removeAll();
-				contentPane.add(new PanelTetraWord(P1, P2));
+				PanelTetraWord tetra = new PanelTetraWord(P1, P2);
+				contentPane.add(tetra);
 				setContentPane(contentPane);
 				onSize();
 				setPanelState('g');
+				tetra.requestFocusInWindow();
 				break;
 				
 			//le menu de slection
@@ -139,6 +141,7 @@ public class Frame extends JFrame {
 		else{
 
 			((PanelBase)contentPane.getComponent(0)).update();
+			//onSize();
 			//setContentPane(contentPane);
 		}
 	}

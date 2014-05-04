@@ -34,6 +34,7 @@ public class PanelTetraWord extends PanelBase {
     
     Player P1, P2;
     
+    private boolean pause = false;
     
     //grille de 11*22
     //private Vector<Square> cases = null;
@@ -123,6 +124,7 @@ public class PanelTetraWord extends PanelBase {
 		
 		addMouseMotionListener(new MouseMotionListenerTetra());
 		addMouseListener(new MouseListenerTetra());
+		addKeyListener(new KeyListenerTetra());
 	}
 	
 	
@@ -194,5 +196,17 @@ public class PanelTetraWord extends PanelBase {
 	public Player getPlayer1() {
 		// TODO Auto-generated method stub
 		return P1;
+	}
+	
+	public void setPause(){
+		if(pause)
+			remove(0);
+		else{
+			PauseComponent pause = new PauseComponent();
+			pause.setBounds(1, 1, pause.getW(), pause.getH());
+			addImpl(pause, null, 0);
+		}
+			
+		pause = !pause;
 	}
 }

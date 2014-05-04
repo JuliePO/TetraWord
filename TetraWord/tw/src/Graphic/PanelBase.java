@@ -10,7 +10,7 @@ public abstract class PanelBase extends JPanel {
 	
 	protected int w, h;
 	
-	protected String mPath; //ONLY FOR DEVELOPMENT
+	protected String mPath = ""; //ONLY FOR DEVELOPMENT
 	
 	protected PanelBase(){
 	    
@@ -26,6 +26,10 @@ public abstract class PanelBase extends JPanel {
 	 
 	public char getState(){
 		return state;
+	}
+	
+	public void setState(char newS){
+		state=newS;
 	}
 	
 	abstract public void update();

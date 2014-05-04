@@ -8,7 +8,7 @@ public abstract class TetraComponent extends JPanel {
     
     protected int w, h;
     
-    protected String mPath; //ONLY FOR DEVELOPMENT
+    protected String mPath =""; //ONLY FOR DEVELOPMENT
     
     public TetraComponent(){
     

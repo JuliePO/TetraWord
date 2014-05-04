@@ -21,7 +21,7 @@ public class PanelCharacter extends PanelBase{
 	
 	 TexturePaint background;
 	 Player p1, p2;
-	 int select1 = 0, select2 = 1;
+	 int select1 = 2, select2 = 3;
 	 boolean set1 = false, set2 = false;
 	 SelecteurComponent selecteur;
 	 PresentationPlayerComponent j1;
@@ -168,6 +168,8 @@ public class PanelCharacter extends PanelBase{
 		 j1.update();
 		 j2.setSelect(select2);
 		 j2.update();
+		 
+		 repaint();
 		 
 
 		if(set1 && set2)

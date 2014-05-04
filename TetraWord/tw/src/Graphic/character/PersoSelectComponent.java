@@ -18,7 +18,8 @@ public class PersoSelectComponent extends TetraComponent {
 	private boolean isP1 = false, isP2 =false;
 	
 	protected void paintComponent(java.awt.Graphics g) {
-		
+
+		super.paintComponents(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
 		
