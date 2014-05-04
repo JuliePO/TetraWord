@@ -2,17 +2,23 @@ package Graphic.character;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.TexturePaint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import Graphic.PanelBase;
 import utility.Player;
@@ -84,6 +90,15 @@ public class PanelCharacter extends PanelBase{
 		
 	}
 	
+	private void space(){
+	
+		JLabel space = new JLabel(new ImageIcon(mPath+"texture/selection/lancer-partie.jpg"));
+		space.setBounds(0, h/2, 1024, 71);
+		space.addKeyListener(new KeyListenerSpace());
+		addImpl(space, null, 0);
+		space.requestFocusInWindow();
+	}
+	
 	public void selectP1(int move){
 		if(!set1){
 			select1 += move;
@@ -131,6 +146,10 @@ public class PanelCharacter extends PanelBase{
 			break;
 		}
 		
+		if(!set1 && set2){
+			space();
+		}
+		
 		set1=true;
 	}
 	
@@ -153,9 +172,10 @@ public class PanelCharacter extends PanelBase{
 			break;
 		}
 		
+		if(set1 && !set2){
+			space();
+		}
 		set2=true;
-		
-		System.out.println(p2.getAvatar());
 	}
 
 	@Override
@@ -169,25 +189,28 @@ public class PanelCharacter extends PanelBase{
 		 j2.setSelect(select2);
 		 j2.update();
 		 
-		 repaint();
-		 
-
-		if(set1 && set2)
-			state = 'g';
+		 repaint();			
 	}
 
 
 	public void cancel1() {
-		if(set1)
+		if(set1){
 			set1=false;
+			if(set2)
+				remove(0);
+		}
+		
 		else
 			state = 's';
 		
 	}
 	
 	public void cancel2() {
-		if(set2)
+		if(set2){
 			set2=false;
+			if(set1)
+				remove(0);
+		}
 		else
 			state = 's';
 		
