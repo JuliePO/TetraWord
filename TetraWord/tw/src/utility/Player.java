@@ -15,6 +15,7 @@ public class Player
     private int score = 0;
     private String name;
     private String avatar;
+    private BonusCollection bonus = new BonusCollection(3);
 
     /**
      * Constructor for objects of class Player
@@ -78,5 +79,9 @@ public class Player
     
     public boolean isSquareAt(int x, int y){
     	return board.isSquareAt(x, y);
-    }    
+    } 
+    
+    public BonusCollection getBonus(){
+    	return bonus;
+    }
 }

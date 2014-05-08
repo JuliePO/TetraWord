@@ -37,15 +37,7 @@ public class FieldComponent extends TetraComponent {
     private int ySize = 22;
     private Player p;
     private HashMap<String, TexturePaint> paints = new HashMap<String, TexturePaint>(7);
-    
-    private JComponent[][] panelHolder = new JComponent[ySize][xSize];
-    
-    /*private class emptyComponent extends JComponent{
-        @Override
-        public void paintComponent(Graphics g) {
-            super.paintComponents(g)    ;
-        }
-    }*/
+      
     
     private void loadImage(){
         
@@ -54,7 +46,7 @@ public class FieldComponent extends TetraComponent {
         try {
             for(int i= 0; i < paths.length; ++i ){
               BufferedImage texture = ImageIO.read(new File(mPath+"texture/game/"+paths[i]+".jpg"));
-              texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
+          //    texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
               paints.put(paths[i], new TexturePaint(texture, new Rectangle(0, 0, 25, 25)));
             }
        } catch (IOException ex) {
