@@ -31,7 +31,6 @@ public class PanelAccueil extends PanelBase {
 	public void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponents(g);
-				
 		Graphics2D g2 = (Graphics2D)g;
 		
 		g2.setPaint(accueilP);
@@ -105,6 +104,7 @@ public class PanelAccueil extends PanelBase {
 
 	@Override
 	public void update() {
+		repaint();
 		// TODO Auto-generated method stub
 		
 	}

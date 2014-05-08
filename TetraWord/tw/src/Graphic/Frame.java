@@ -83,7 +83,7 @@ public class Frame extends JFrame {
 	
 	public void update(){
 		
-		repaint();
+		//repaint();
 		
 		char tmpState = ((PanelBase)contentPane.getComponent(0)).getState();
 		if(getPanelState() != tmpState){
@@ -94,7 +94,7 @@ public class Frame extends JFrame {
 				contentPane.removeAll();
 				PanelTetraWord tetra = new PanelTetraWord(P1, P2);
 				contentPane.add(tetra);
-				setContentPane(contentPane);
+				//setContentPane(contentPane);
 				onSize();
 				setPanelState('g');
 				tetra.requestFocusInWindow();
@@ -105,7 +105,7 @@ public class Frame extends JFrame {
 				contentPane.removeAll();
 				PanelCharacter chara = new PanelCharacter(P1, P2);
 				contentPane.add(chara);
-				setContentPane(contentPane);
+				//setContentPane(contentPane);
 				onSize();
 				setPanelState('c');
 				chara.requestFocusInWindow();
@@ -115,7 +115,7 @@ public class Frame extends JFrame {
 			case 'o':
 				contentPane.removeAll();
 				contentPane.add(new PanelOption());
-				setContentPane(contentPane);
+				//setContentPane(contentPane);
 				onSize();
 				setPanelState('o');
 				break;
@@ -124,7 +124,7 @@ public class Frame extends JFrame {
 			case 's':
 				contentPane.removeAll();
 				contentPane.add(new PanelAccueil());
-				setContentPane(contentPane);
+				//setContentPane(contentPane);
 				onSize();
 				setPanelState('s');
 				break;
@@ -232,44 +232,5 @@ public class Frame extends JFrame {
         
         tmp.dispose();
        
-    }
-    
-    public static void mainold(String[] args) {
-
-        Player p = new Player("georges", "ninja");
-        Player p2 = new Player("louis", "panda");
-        p.increaseScrore(8000);
-        p2.increaseScrore(452);
-
-        p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k'), null, "blue"));
-        p.getBoardTemp().addCase(new Square(2, 2, new Letter((short) 1, 'w'), null, "green"));
-        
-        Frame tmp = new Frame(p, p2);
-        
-        /*new Thread(new Runnable() {
-            
-            @Override
-            public void run() {
-                for(int i = 0; i < 200; ++i){
-                    p.increaseScrore(200);
-                    System.out.println(p.getScore());
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-                
-            }
-        }).start();*/
-        while(tmp.getPanelState() != 'e'){
-            tmp.update();
-            p.increaseScrore(1);
-            p2.increaseScrore(1);
-            //System.out.println(p.getScore());
-        }
-        
-        tmp.dispose();
     }
 }

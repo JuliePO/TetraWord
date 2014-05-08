@@ -85,19 +85,6 @@ public class PanelTetraWord extends PanelBase {
 		
 		setLayout(null);
 		
-		/*final ActionListener actionGame= new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				state = 's';
-			}
-		};
-		
-		JButton game = new JButton("Game");
-		game.addActionListener(actionGame);
-		//game.setSize(960, 656);
-		add(game);*/
-		
 		if(P1 != null){
 			FieldComponent fieldP1 = new FieldComponent(P1);
 			fieldP1.setBounds(110, 120, fieldP1.getW(), fieldP1.getH());
@@ -140,6 +127,7 @@ public class PanelTetraWord extends PanelBase {
 		for(Component tmp : getComponents()){
 			((TetraComponent)tmp).update();
 		}
+		repaint();
 	}
 	
 

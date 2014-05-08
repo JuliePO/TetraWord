@@ -75,13 +75,13 @@ public class FieldComponent extends TetraComponent {
         if(cases != null){
             for(Square square : cases){
                 g2.setPaint(paints.get(square.getColor()));
-                g2.fillRect(square.getX() * 25, square.getY() * 25, 25, 25);
+                g2.fillRect(square.getX() * 25, 525 - 25 * square.getY(), 25, 25);
                 
                 char[] tmp = new char[1];
                 tmp[0] = square.getChar();
                 g2.setFont(new Font("Serif", Font.BOLD, 20));
                 g2.setColor(Color.WHITE);
-                g2.drawChars(tmp, 0, 1, square.getX() * 25 + 5, square.getY() * 25 + 18);   
+                g2.drawChars(tmp, 0, 1, square.getX() * 25 + 5, 543 - 25 * square.getY());   
             }
         }
     }
