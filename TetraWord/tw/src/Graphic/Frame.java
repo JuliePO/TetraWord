@@ -1,20 +1,15 @@
 package Graphic;
 
-import java.awt.Component;
-import java.awt.event.MouseWheelListener;
-
 import javax.swing.BoxLayout;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Graphic.character.PanelCharacter;
+import Graphic.option.PanelOption;
 import Graphic.start.PanelAccueil;
 import Graphic.tetra.PanelTetraWord;
-import utility.Letter;
-
 import utility.*; // Evidemment temporaire
-import java.util.Scanner;
+
 
 public class Frame extends JFrame {
 
