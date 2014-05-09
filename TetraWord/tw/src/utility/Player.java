@@ -17,8 +17,9 @@ public class Player
     private String avatar;
 
     private Shape currentShape;
-
-    private BonusCollection bonus = new BonusCollection(3);
+    
+    private String[] listBonus;
+    private int nbBonus;
 
 
     /**
@@ -27,6 +28,8 @@ public class Player
     public Player()
     {
         board= new Board();
+        listBonus= new String[3];
+        nbBonus= 0;
     }
     
     public Player(String name)
@@ -54,46 +57,57 @@ public class Player
     }
     
     public Vector<Square> getCases(){
-    	return board.getCases();
+        return board.getCases();
     }
     
     public void increaseScore(int i){
-    	score +=i;
+        score +=i;
     }
     
     public int getScore(){
-    	return score;
+        return score;
     }
     
     public void resetScore(){
-    	score = 0;
+        score = 0;
     }
     
     public void setName(String newName){
-    	name = newName;
+        name = newName;
     }
     
     public String getName(){
-    	return name;
+        return name;
     }
     
     public void setAvatar(String newAvatar){
-    	avatar = newAvatar;
+        avatar = newAvatar;
     }
     
     public String getAvatar(){
-    	return avatar;
+        return avatar;
     }
 
     public Square getSquareAt(int x, int y){
-    	return board.getSquareAt(x, y);
+        return board.getSquareAt(x, y);
     }
     
     public boolean isSquareAt(int x, int y){
-    	return board.isSquareAt(x, y);
+        return board.isSquareAt(x, y);
     } 
     
-    public BonusCollection getBonus(){
-    	return bonus;
+    public void addBonus(String nB){
+        if(nbBonus == 3){
+            String tmp= listBonus[1];
+            listBonus[2]= tmp;
+            tmp= listBonus[0];
+            listBonus[1]= tmp;
+            listBonus[0]= tmp;
+        }
+        else{
+            listBonus[nbBonus]= nB;
+            ++nbBonus;
+        }
     }
+    
 }
