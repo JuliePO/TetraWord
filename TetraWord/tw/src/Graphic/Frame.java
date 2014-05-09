@@ -158,6 +158,13 @@ public class Frame extends JFrame {
         Board b= J1.getBoardTemp();
         boolean[] fd= b.getField();
 
+    	J1.getBonus().add("exchange");
+		J1.getBonus().add("lapin");
+		
+    	J2.getBonus().add("exchange");
+		J2.getBonus().add("lapin");
+		J2.getBonus().add("lapin");
+        
         if( args.length == 0 )
             dico= new Dictionary("../french.txt");
         else
