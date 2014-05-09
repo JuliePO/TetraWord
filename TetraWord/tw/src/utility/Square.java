@@ -68,13 +68,33 @@ public class Square
 
     boolean isBlocked(){
     
-        if( down != null )
-            return down.isBlocked();
+        /*if( down != null )
+            return down.isBlocked();*/
+            
+        Square tmp= isNeighbour(x, y-1);
+        
+        if( tmp != null )
+            return tmp.isBlocked();
 
         if( field.isBusy(x, y-1) )//OLD: if( isBusyTemp(this.x, this.y-1) )
             return true;
     
         return false;
+    }
+    
+    public Square isNeighbour(int x, int y){
+        
+        if( down != null && x == down.x && y == down.y )
+            return down;
+        if( left != null && x == left.x && y == left.y )
+            return left;
+        if( right != null && x == right.x && y == right.y )
+            return right;
+        if( up != null && x == up.x && y == up.y )
+            return up;
+            
+        return null;
+            
     }
     
     public void setNeighbour( Square up, Square left, Square right, Square down ){
@@ -156,6 +176,10 @@ public class Square
         System.out.println();        
         
     }
+    
+    public boolean isNew(){
+        return newBloc;
+    }
 
     public int getX(){
         return x;
@@ -163,6 +187,11 @@ public class Square
     
     public int getY(){
         return y;
+    }
+    
+    public void setPosition( int x, int y ){
+        this.x= x;
+        this.y= y;
     }
     
     public char getChar(){

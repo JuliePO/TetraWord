@@ -15,6 +15,7 @@ public class Player
     private int score = 0;
     private String name;
     private String avatar;
+    private Shape currentShape;
 
     /**
      * Constructor for objects of class Player
@@ -34,6 +35,14 @@ public class Player
     {
         this(name);
         this.avatar = avatar;        
+    }
+    
+    public void newShape(char shape, Dictionary dico){
+        currentShape= new Shape(shape, dico, board);
+    }
+    
+    public Shape getShape(){
+        return currentShape;
     }
     
     public Board getBoardTemp(){

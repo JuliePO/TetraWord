@@ -197,7 +197,7 @@ public class Frame extends JFrame {
                 // Calculate nextState ------------------------   
                 for( int i= 0; i < nb; ++i )  
                     if( b.elmtAt(i).getNextState() == '?' )
-                        b.elmtAt(i).becoming();    
+                        b.elmtAt(i).becoming(J1);    
                 // --------------------------------------------
                 
                 //Reset  
@@ -221,8 +221,8 @@ public class Frame extends JFrame {
                 
             }
             
-            J1.increaseScrore(1);
-            J2.increaseScrore(1);
+            J1.increaseScore(1);
+            J2.increaseScore(1);
            
             //System.out.println(p.getScore());
         }
@@ -235,8 +235,8 @@ public class Frame extends JFrame {
 
         Player p = new Player("georges", "ninja");
         Player p2 = new Player("louis", "panda");
-        p.increaseScrore(8000);
-        p2.increaseScrore(452);
+        //p.increaseScrore(8000);
+        //p2.increaseScrore(452);
 
         p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k'), null, "blue"));
         p.getBoardTemp().addCase(new Square(2, 2, new Letter((short) 1, 'w'), null, "green"));
@@ -262,8 +262,8 @@ public class Frame extends JFrame {
         }).start();*/
         while(tmp.getPanelState() != 'e'){
             tmp.update();
-            p.increaseScrore(1);
-            p2.increaseScrore(1);
+            //p.increaseScrore(1);
+            //p2.increaseScrore(1);
             //System.out.println(p.getScore());
         }
         

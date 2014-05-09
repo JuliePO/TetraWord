@@ -23,6 +23,10 @@ public class Board
         field= new boolean[200];
     }
     
+    public int size(){
+        return cases.size();
+    }
+    
     public Board(int width, int height)
     {
         cases= new Vector<Square>(0);
@@ -47,6 +51,12 @@ public class Board
      */
     public Square elmtAt( int index ){
         return cases.elementAt(index);
+    }
+    
+    public void supprAt( int index ){
+        Square sq= cases.elementAt(index);
+        freeAt( sq.getX(), sq.getY() );
+        cases.removeElementAt(index);
     }
     
     public boolean[] getField(){
@@ -90,6 +100,11 @@ public class Board
     void busyAt( int x, int y ){
         
         field[ x + y*10 ] = true;
+    }
+    
+    private void freeAt( int x, int y ){
+        
+        field[ x + y*10 ] = false;
     }
     
     public void freeAll(){
