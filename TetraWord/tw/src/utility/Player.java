@@ -15,7 +15,11 @@ public class Player
     private int score = 0;
     private String name;
     private String avatar;
+<<<<<<< HEAD
+    private Shape currentShape;
+=======
     private BonusCollection bonus = new BonusCollection(3);
+>>>>>>> origin/master
 
     /**
      * Constructor for objects of class Player
@@ -37,6 +41,14 @@ public class Player
         this.avatar = avatar;        
     }
     
+    public void newShape(char shape, Dictionary dico){
+        currentShape= new Shape(shape, dico, board);
+    }
+    
+    public Shape getShape(){
+        return currentShape;
+    }
+    
     public Board getBoardTemp(){
         return board;
     }
@@ -45,7 +57,7 @@ public class Player
     	return board.getCases();
     }
     
-    public void increaseScrore(int i){
+    public void increaseScore(int i){
     	score +=i;
     }
     
