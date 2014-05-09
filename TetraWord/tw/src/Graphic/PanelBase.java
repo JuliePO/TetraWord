@@ -10,10 +10,10 @@ public abstract class PanelBase extends JPanel {
 	
 	protected int w, h;
 	
-	protected String mPath = ""; //ONLY FOR DEVELOPMENT
+	protected String mPath; //ONLY FOR DEVELOPMENT
 	
 	protected PanelBase(){
-	    
+	    mPath= "";
 	    //mPath= "../";// A commenter sous Ecllipse
 		
 	    setFocusable(true);

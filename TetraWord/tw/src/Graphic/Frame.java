@@ -240,7 +240,7 @@ public class Frame extends JFrame {
         tmp.dispose();
        
     }
-<<<<<<< HEAD
+
     
     public static void mainold(String[] args) {
 
@@ -280,6 +280,5 @@ public class Frame extends JFrame {
         
         tmp.dispose();
     }
-=======
->>>>>>> origin/master
+
 }

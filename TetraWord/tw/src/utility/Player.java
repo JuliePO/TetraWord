@@ -15,11 +15,11 @@ public class Player
     private int score = 0;
     private String name;
     private String avatar;
-<<<<<<< HEAD
+
     private Shape currentShape;
-=======
+
     private BonusCollection bonus = new BonusCollection(3);
->>>>>>> origin/master
+
 
     /**
      * Constructor for objects of class Player

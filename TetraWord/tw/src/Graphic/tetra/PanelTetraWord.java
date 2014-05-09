@@ -148,7 +148,7 @@ public class PanelTetraWord extends PanelBase {
 		square.add(new Square(1, 22, new Letter((short)5, 'z'), null, "yellow"));
 		
 		final Player p = new Player("georges", "ninja");
-		p.increaseScrore(8000);
+		p.increaseScore(8000);
 		
 		final JFrame tmp = new JFrame("lol");
 		
@@ -168,7 +168,7 @@ public class PanelTetraWord extends PanelBase {
 			@Override
 			public void run() {
 				for(int i = 0; i < 200; ++i){
-					p.increaseScrore(200);
+					p.increaseScore(200);
 					tmp.removeAll();
 					tmp.setContentPane(new PanelTetraWord(p, null));
 					tmp.setSize(1000, 700);
