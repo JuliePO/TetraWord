@@ -160,7 +160,6 @@ public class Frame extends JFrame {
 
     	J1.getBonus().add("exchange");
 		J1.getBonus().add("lapin");
-		J1.getBonus().add("lapin");
 		
     	J2.getBonus().add("exchange");
 		J2.getBonus().add("lapin");

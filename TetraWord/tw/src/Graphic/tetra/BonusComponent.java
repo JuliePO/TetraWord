@@ -93,7 +93,7 @@ public class BonusComponent extends TetraComponent {
 		
 		tmp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BonusComponent bonus = new BonusComponent();
-		bonus.setBonus("exchange");		
+		bonus.setBonus(null);		
 		tmp.setContentPane(bonus);
 		tmp.pack();
 		tmp.setVisible(true);

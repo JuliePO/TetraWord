@@ -109,7 +109,7 @@ public class PanelTetraWord extends PanelBase {
 			scoreP2.setBounds(507, 648, scoreP2.getW(), scoreP2.getH());
 			add(scoreP2);
 			
-			BonusArrayComponent bonusArrayP2 = new BonusArrayComponent(P1);
+			BonusArrayComponent bonusArrayP2 = new BonusArrayComponent(P2);
 			bonusArrayP2.setBounds(945, 197, bonusArrayP2.getW(), bonusArrayP2.getH());
 			add(bonusArrayP2);
 		}

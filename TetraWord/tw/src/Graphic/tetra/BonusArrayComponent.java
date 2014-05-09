@@ -34,10 +34,11 @@ public class BonusArrayComponent extends TetraComponent {
 	public void update() {
 		
 		BonusCollection tmp = p.getBonus();
-		
 		for(int i = 0; i < 3; ++i){
-			bonusArray[i].setBonus(tmp.get(i));
-			bonusArray[i].repaint();
+			if(i < tmp.size()){
+				bonusArray[i].setBonus(tmp.get(i));
+				bonusArray[i].repaint();
+			}
 		}
 		repaint();
 	}
