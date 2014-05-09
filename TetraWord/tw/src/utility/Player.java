@@ -99,10 +99,10 @@ public class Player
     public void addBonus(String nB){
         if(nbBonus == 3){
             String tmp= listBonus[1];
-            listBonus[2]= tmp;
-            tmp= listBonus[0];
-            listBonus[1]= tmp;
             listBonus[0]= tmp;
+            tmp= listBonus[2];
+            listBonus[1]= tmp;
+            listBonus[2]= nB;
         }
         else{
             listBonus[nbBonus]= nB;
