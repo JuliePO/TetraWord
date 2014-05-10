@@ -16,8 +16,12 @@ public class Player
     private int score = 0;
     private String name;
     private String avatar;
-    private BonusCollection bonus = new BonusCollection(3);
     private HashMap<String, Character> inputs;
+
+    private Shape currentShape;
+    
+    private String[] listBonus;
+    private int nbBonus;
 
     /**
      * Constructor for objects of class Player
@@ -25,6 +29,7 @@ public class Player
     public Player(int number)
     {
         board= new Board();
+        
         inputs = new HashMap<>(8);
         switch(number){
         case 1:
@@ -52,6 +57,8 @@ public class Player
         default:break;
         }
         
+        listBonus= new String[3];
+        nbBonus= 0;
     }
     
     public Player(int number, String name)
@@ -66,52 +73,74 @@ public class Player
         this.avatar = avatar;        
     }
     
+    public void newShape(char shape, Dictionary dico){
+        currentShape= new Shape(shape, dico, board);
+    }
+    
+    public Shape getShape(){
+        return currentShape;
+    }
+    
     public Board getBoardTemp(){
         return board;
     }
     
     public Vector<Square> getCases(){
-    	return board.getCases();
+        return board.getCases();
     }
     
-    public void increaseScrore(int i){
-    	score +=i;
+    public void increaseScore(int i){
+        score +=i;
     }
     
     public int getScore(){
-    	return score;
+        return score;
     }
     
     public void resetScore(){
-    	score = 0;
+        score = 0;
     }
     
     public void setName(String newName){
-    	name = newName;
+        name = newName;
     }
     
     public String getName(){
-    	return name;
+        return name;
     }
     
     public void setAvatar(String newAvatar){
-    	avatar = newAvatar;
+        avatar = newAvatar;
     }
     
     public String getAvatar(){
-    	return avatar;
+        return avatar;
     }
 
     public Square getSquareAt(int x, int y){
-    	return board.getSquareAt(x, y);
+        return board.getSquareAt(x, y);
     }
     
     public boolean isSquareAt(int x, int y){
-    	return board.isSquareAt(x, y);
+        return board.isSquareAt(x, y);
     } 
     
-    public BonusCollection getBonus(){
-    	return bonus;
+    public void addBonus(String nB){
+        if(nbBonus == 3){
+            String tmp= listBonus[1];
+            listBonus[0]= tmp;
+            tmp= listBonus[2];
+            listBonus[1]= tmp;
+            listBonus[2]= nB;
+        }
+        else{
+            listBonus[nbBonus]= nB;
+            ++nbBonus;
+        }
+    }
+    
+    public String[] getBonus(){
+    	return listBonus;
     }
     
     public void setInput(String input, char key){

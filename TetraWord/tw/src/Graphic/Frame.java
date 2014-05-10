@@ -20,7 +20,7 @@ public class Frame extends JFrame {
 	
 	private char panelState = 'Z';
 	
-	Frame(Player P1, Player P2){		
+	public Frame(Player P1, Player P2){		
 		
 		this.P1 = P1;
 		this.P2 = P2;
@@ -153,12 +153,12 @@ public class Frame extends JFrame {
         Board b= J1.getBoardTemp();
         boolean[] fd= b.getField();
 
-    	J1.getBonus().add("exchange");
-		J1.getBonus().add("lapin");
+    	J1.addBonus("exchange");
+		J1.addBonus("lapin");
 		
-    	J2.getBonus().add("exchange");
-		J2.getBonus().add("lapin");
-		J2.getBonus().add("lapin");
+    	J2.addBonus("exchange");
+		J2.addBonus("lapin");
+		J2.addBonus("lapin");
         
         if( args.length == 0 )
             dico= new Dictionary("../french.txt");
@@ -202,7 +202,7 @@ public class Frame extends JFrame {
                 // Calculate nextState ------------------------   
                 for( int i= 0; i < nb; ++i )  
                     if( b.elmtAt(i).getNextState() == '?' )
-                        b.elmtAt(i).becoming();    
+                        b.elmtAt(i).becoming(J1);    
                 // --------------------------------------------
                 
                 //Reset  
@@ -226,8 +226,8 @@ public class Frame extends JFrame {
                 
             }
             
-            J1.increaseScrore(1);
-            J2.increaseScrore(1);
+            J1.increaseScore(1);
+            J2.increaseScore(1);
            
             //System.out.println(p.getScore());
         }
@@ -235,4 +235,45 @@ public class Frame extends JFrame {
         tmp.dispose();
        
     }
+
+    
+    public static void mainold(String[] args) {
+
+        Player p = new Player(1, "georges", "ninja");
+        Player p2 = new Player(2, "louis", "panda");
+        //p.increaseScrore(8000);
+        //p2.increaseScrore(452);
+
+        p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k'), null, "blue"));
+        p.getBoardTemp().addCase(new Square(2, 2, new Letter((short) 1, 'w'), null, "green"));
+        
+        Frame tmp = new Frame(p, p2);
+        
+        /*new Thread(new Runnable() {
+            
+            @Override
+            public void run() {
+                for(int i = 0; i < 200; ++i){
+                    p.increaseScrore(200);
+                    System.out.println(p.getScore());
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+                
+            }
+        }).start();*/
+        while(tmp.getPanelState() != 'e'){
+            tmp.update();
+            //p.increaseScrore(1);
+            //p2.increaseScrore(1);
+            //System.out.println(p.getScore());
+        }
+        
+        tmp.dispose();
+    }
+
 }
