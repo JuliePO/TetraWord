@@ -17,13 +17,15 @@ public class Frame extends JFrame {
 	private int width = 1024, height = 700;
 	JPanel contentPane = new JPanel();
 	Player P1, P2;
+	Configuration config;
 	
 	private char panelState = 'Z';
 	
-	public Frame(Player P1, Player P2){		
+	public Frame(Player P1, Player P2, Configuration config){		
 		
 		this.P1 = P1;
 		this.P2 = P2;
+		this.config = config;
 		
 		//1. Create the frame.
 		setTitle("TetraWord");
@@ -81,7 +83,7 @@ public class Frame extends JFrame {
 		//repaint();
 		
 		char tmpState = ((PanelBase)contentPane.getComponent(0)).getState();
-		if(getPanelState() != tmpState){
+		if(panelState != tmpState){
 			switch (tmpState) {
 			
 			//le jeu
@@ -109,7 +111,7 @@ public class Frame extends JFrame {
 			//option
 			case 'o':
 				contentPane.removeAll();
-				contentPane.add(new PanelOption(P1, P2));
+				contentPane.add(new PanelOption(P1, P2, config));
 				//setContentPane(contentPane);
 				onSize();
 				setPanelState('o');
@@ -188,7 +190,7 @@ public class Frame extends JFrame {
             
         squares= null;
         
-        Frame tmp = new Frame(J1, J2);
+        Frame tmp = new Frame(J1, J2, new Configuration());
         
         int ko= 0;
         
@@ -247,7 +249,7 @@ public class Frame extends JFrame {
         p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k'), null, "blue"));
         p.getBoardTemp().addCase(new Square(2, 2, new Letter((short) 1, 'w'), null, "green"));
         
-        Frame tmp = new Frame(p, p2);
+        Frame tmp = new Frame(p, p2, new Configuration());
         
         /*new Thread(new Runnable() {
             

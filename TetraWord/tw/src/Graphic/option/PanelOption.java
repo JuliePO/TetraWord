@@ -11,29 +11,41 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import utility.Configuration;
 import utility.Player;
 import Graphic.PanelBase;
+import Graphic.character.PanelCharacter;
 import Graphic.option.option.OptionUnderPanel;
+import Graphic.start.PanelAccueil;
+import Graphic.tetra.PanelTetraWord;
 
 public class PanelOption extends PanelBase {
 	
 	private char optionState = 'o';
 	private OptionUnderPanel option;
+	private Player p1;
+	private Player p2;
+	private Configuration config;
+	
 	/*private ShapeUnderPanel shape;
 	private LetterUnderPanel letter;
 	private CreateUnderPanel create;*/
 	
 	TexturePaint background;
 	
-	public PanelOption(Player p1, Player p2) {
+	public PanelOption(Player p1, Player p2, Configuration config) {
 		state = 'o';
 		
 		w= 1024;
 		h=700;
 		
+		this.p1=p1;
+		this.p2=p2;
+		this.config=config;
+		
 		loadImages();
 		
-		option = new OptionUnderPanel(p1, p2);
+		option = new OptionUnderPanel(p1, p2, config);
 		add(option);
 	}
 	
@@ -61,7 +73,48 @@ public class PanelOption extends PanelBase {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		
+		char tmpState = ((PanelBase)getComponent(0)).getState();
+		if(optionState != tmpState){
+			switch (tmpState) {
+			
+			//option de base
+			case 'o':
+				removeAll();
+				OptionUnderPanel option = new OptionUnderPanel(p1, p2, config);
+				add(option);
+				optionState = 'o';
+				break;
+				
+			//creation de shape
+			case 'c':
+				System.out.println("create shape");
+				break;
+				
+			//configuration des shapes
+			case 's':
+				System.out.println("config shape");
+				break;
+				
+			//configuration des lettres
+			case 'l':
+				System.out.println("config letter");
+				break;
+				
+			//exit
+			case 'r':
+				state = 's';
+				break;
+
+			default:
+				break;
+			}
+		}
+		else{
+
+			((PanelBase)getComponent(0)).update();
+			repaint();
+		}
 		
 	}
 	
@@ -72,7 +125,7 @@ public class PanelOption extends PanelBase {
 		JFrame tmp = new JFrame();
 		
 		tmp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		PanelOption bonus = new PanelOption(p1, p2);
+		PanelOption bonus = new PanelOption(p1, p2, new Configuration());
 			
 		tmp.setContentPane(bonus);
 		tmp.pack();
