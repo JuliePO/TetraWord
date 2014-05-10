@@ -1,6 +1,7 @@
 package Graphic.option;
 
 import javax.swing.*; 
+import javax.swing.text.Document;
 
 import java.awt.*; 
 import java.awt.event.ActionEvent;
@@ -29,7 +30,11 @@ public class TextFieldTetra extends JPanel implements ActionListener{
 	public String getText(){
 		return tf.getText();
 	}
-
+	
+	public Document getDocument(){
+		return tf.getDocument();
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		upTxt = true;

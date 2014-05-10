@@ -24,7 +24,7 @@ import Graphic.option.TextFieldTetra;
 
 public class LetterComponent extends TetraComponent implements ActionListener{
 	private char letter;
-	private JTextField text;
+	private TextFieldTetra text;
 	public boolean upTxt;
 	
 	public LetterComponent(char letter, int frequence) {
@@ -36,11 +36,8 @@ public class LetterComponent extends TetraComponent implements ActionListener{
 		
 		setLayout(null);
 		
-		text = new JTextField(2);
-		text.setText(""+frequence);
-		text.setFont( new Font("DOSIS-BOLD", Font.BOLD, 30));
-		text.setForeground(Color.BLACK);
-		text.setBounds(60, 0, 50, 42);
+		text = new TextFieldTetra(50, 30, ""+frequence, new Font("DOSIS-REGULAR", Font.TRUETYPE_FONT, 22), Color.BLACK);
+		text.setBounds(60, 0, 56, 42);
 		add(text);
 		
 		PlainDocument doc = (PlainDocument) text.getDocument();
