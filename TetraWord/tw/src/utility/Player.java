@@ -1,5 +1,6 @@
 package utility;
 
+import java.util.HashMap;
 import java.util.Vector;
 
 
@@ -16,24 +17,52 @@ public class Player
     private String name;
     private String avatar;
     private BonusCollection bonus = new BonusCollection(3);
+    private HashMap<String, Character> inputs;
 
     /**
      * Constructor for objects of class Player
      */
-    public Player()
+    public Player(int number)
     {
         board= new Board();
+        inputs = new HashMap<>(8);
+        switch(number){
+        case 1:
+        	inputs.put("up", new Character('z'));
+        	inputs.put("down", new Character('s'));
+        	inputs.put("left", new Character('q'));
+        	inputs.put("right", new Character('d'));
+        	inputs.put("a", new Character('a'));
+        	inputs.put("b", new Character('e'));
+        	inputs.put("l", new Character('r'));
+        	inputs.put("r", new Character('f'));
+        	break;
+        	
+        case 2:
+        	inputs.put("up", new Character('8'));
+        	inputs.put("down", new Character('5'));
+        	inputs.put("left", new Character('4'));
+        	inputs.put("right", new Character('6'));
+        	inputs.put("a", new Character('7'));
+        	inputs.put("b", new Character('9'));
+        	inputs.put("l", new Character('-'));
+        	inputs.put("r", new Character('+'));
+        	break;
+        	
+        default:break;
+        }
+        
     }
     
-    public Player(String name)
+    public Player(int number, String name)
     {
-        this();
+        this(number);
         this.name = name;        
     }
     
-    public Player(String name, String avatar)
+    public Player(int number, String name, String avatar)
     {
-        this(name);
+        this(number, name);
         this.avatar = avatar;        
     }
     
@@ -83,5 +112,13 @@ public class Player
     
     public BonusCollection getBonus(){
     	return bonus;
+    }
+    
+    public void setInput(String input, char key){
+    	inputs.put(input, new Character(key));
+    }
+    
+    public char getInput(String input){
+    	return inputs.get(input).charValue();
     }
 }

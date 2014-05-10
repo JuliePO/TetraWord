@@ -49,7 +49,7 @@ public class BonusArrayComponent extends TetraComponent {
 	
 	public static void main(String[] args) {
 		
-		Player p = new Player();
+		Player p = new Player(1);
 		p.getBonus().add("exchange");
 		p.getBonus().add("lapin");
 		p.getBonus().add("lapin");

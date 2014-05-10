@@ -186,7 +186,7 @@ public class Square
         int nb= 8;
         Square[] squares= new Square[nb];
         
-        Player J1= new Player();
+        Player J1= new Player(1);
         Board b= J1.getBoardTemp();
         boolean[] fd= b.getField();
         Dictionary dico= new Dictionary("../../french.txt");

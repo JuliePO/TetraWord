@@ -147,7 +147,7 @@ public class PanelTetraWord extends PanelBase {
 		square.add(new Square(11, 1, new Letter((short)5, 'a'), null, "blue"));
 		square.add(new Square(1, 22, new Letter((short)5, 'z'), null, "yellow"));
 		
-		final Player p = new Player("georges", "ninja");
+		final Player p = new Player(1, "georges", "ninja");
 		p.increaseScrore(8000);
 		
 		final JFrame tmp = new JFrame("lol");

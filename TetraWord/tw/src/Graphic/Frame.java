@@ -109,7 +109,7 @@ public class Frame extends JFrame {
 			//option
 			case 'o':
 				contentPane.removeAll();
-				contentPane.add(new PanelOption());
+				contentPane.add(new PanelOption(P1, P2));
 				//setContentPane(contentPane);
 				onSize();
 				setPanelState('o');
@@ -148,8 +148,8 @@ public class Frame extends JFrame {
         Square[] squares= new Square[nb];
         
         Dictionary dico;        
-        Player J1= new Player("georges", "ninja");
-        Player J2 = new Player("louis", "panda");
+        Player J1= new Player(1, "georges", "ninja");
+        Player J2 = new Player(2, "louis", "panda");
         Board b= J1.getBoardTemp();
         boolean[] fd= b.getField();
 

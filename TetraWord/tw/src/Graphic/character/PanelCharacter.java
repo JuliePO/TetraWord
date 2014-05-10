@@ -220,7 +220,7 @@ public class PanelCharacter extends PanelBase{
 		JFrame tmp = new JFrame();
 		
 		tmp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		PanelCharacter prout = new PanelCharacter(new Player("georges"), new Player("louis"));
+		PanelCharacter prout = new PanelCharacter(new Player(1, "georges"), new Player(2, "louis"));
 		prout.update();
 		tmp.setContentPane(prout);
 		tmp.pack();
