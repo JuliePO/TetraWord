@@ -15,7 +15,7 @@ import javax.swing.border.Border;
 
 import utility.Player;
 import Graphic.TetraComponent;
-import Graphic.TextFieldTetra;
+import Graphic.option.TextFieldTetra;
 
 public class NameComponent extends TetraComponent{
 	
@@ -33,7 +33,7 @@ public class NameComponent extends TetraComponent{
 		
 		JLabel presentation = new JLabel(playerNumber+":");
 		presentation.setFont(new Font("DOSIS-REGULAR", Font.TRUETYPE_FONT, 25));
-		presentation.setForeground(Color.BLACK);
+		presentation.setForeground(Color.WHITE);
 		presentation.setBounds(0, 0, 91, 41);
 		add(presentation);
 		

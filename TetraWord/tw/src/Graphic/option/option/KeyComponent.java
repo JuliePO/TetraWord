@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 
 import utility.Player;
 import Graphic.TetraComponent;
-import Graphic.TextFieldTetra;
+import Graphic.option.TextFieldTetra;
 
 public class KeyComponent extends TetraComponent {
 	

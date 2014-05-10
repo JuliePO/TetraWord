@@ -1,7 +1,6 @@
 package Graphic.option.option;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -9,17 +8,14 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import utility.Configuration;
 import utility.Player;
 import Graphic.ButtonTetra;
 import Graphic.PanelBase;
 import Graphic.option.TetraComboBox;
-import Graphic.tetra.BonusComponent;
 
 public class OptionUnderPanel extends PanelBase {
 	
@@ -65,7 +61,7 @@ public class OptionUnderPanel extends PanelBase {
 		
 		JLabel joypad = new JLabel("Configure joypad :");
 		joypad.setFont(new Font("DOSIS-REGULAR", Font.TRUETYPE_FONT, 25));
-		joypad.setForeground(Color.BLACK);
+		joypad.setForeground(Color.WHITE);
 		joypad.setBounds(70, 327, 175, 42);
 		add(joypad);
 		
@@ -79,7 +75,7 @@ public class OptionUnderPanel extends PanelBase {
 		
 		String path = mPath + "texture/options/buttons/";
 		
-		ButtonTetra letter = new ButtonTetra(path + "letters.png", path +"letters_hover.png");
+		/*ButtonTetra letter = new ButtonTetra(path + "letters.png", path +"letters_hover.png");
 		letter.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -87,7 +83,7 @@ public class OptionUnderPanel extends PanelBase {
 			}
 		});
 		letter.setBounds(71, 610, letter.getWidthTexture(), letter.getHeightTexture());
-		add(letter);
+		add(letter);*/
 		
 		ButtonTetra shapes = new ButtonTetra(path + "shapes.png", path +"shapes_hover.png");
 		shapes.addActionListener(new ActionListener() {			

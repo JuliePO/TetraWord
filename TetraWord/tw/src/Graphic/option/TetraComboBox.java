@@ -21,7 +21,7 @@ public class TetraComboBox<E> extends JLabel {
 
 		JLabel titre = new JLabel(name+" :");
 		titre.setFont(new Font("DOSIS-REGULAR", Font.TRUETYPE_FONT, 25));
-		titre.setForeground(Color.BLACK);
+		titre.setForeground(Color.WHITE);
 		titre.setBounds(0, 0, lenghtTitre, 41);
 		add(titre);
 		

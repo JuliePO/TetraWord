@@ -23,7 +23,7 @@ public class JoypadComponent extends TetraComponent {
 		
 		JLabel name = new JLabel(numP);
 		name.setFont(new Font("DOSIS-REGULAR", Font.TRUETYPE_FONT, 25));
-		name.setForeground(Color.BLACK);
+		name.setForeground(Color.WHITE);
 		name.setBounds(38, 0, 90, 42);
 		add(name);
 

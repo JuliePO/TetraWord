@@ -1,4 +1,4 @@
-package Graphic;
+package Graphic.option;
 
 import java.awt.*;
 import javax.swing.*;
