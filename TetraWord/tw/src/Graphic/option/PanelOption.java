@@ -15,6 +15,7 @@ import utility.Configuration;
 import utility.Player;
 import Graphic.PanelBase;
 import Graphic.character.PanelCharacter;
+import Graphic.option.letters.LetterUnderPanel;
 import Graphic.option.option.OptionUnderPanel;
 import Graphic.start.PanelAccueil;
 import Graphic.tetra.PanelTetraWord;
@@ -22,14 +23,12 @@ import Graphic.tetra.PanelTetraWord;
 public class PanelOption extends PanelBase {
 	
 	private char optionState = 'o';
-	private OptionUnderPanel option;
 	private Player p1;
 	private Player p2;
 	private Configuration config;
-	
-	/*private ShapeUnderPanel shape;
-	private LetterUnderPanel letter;
-	private CreateUnderPanel create;*/
+
+	//private ShapeUnderPanel shape;
+	//private CreateUnderPanel create;*/
 	
 	TexturePaint background;
 	
@@ -45,7 +44,8 @@ public class PanelOption extends PanelBase {
 		
 		loadImages();
 		
-		option = new OptionUnderPanel(p1, p2, config);
+		OptionUnderPanel option = new OptionUnderPanel(p1, p2, config);
+		
 		add(option);
 	}
 	
@@ -76,6 +76,7 @@ public class PanelOption extends PanelBase {
 		
 		char tmpState = ((PanelBase)getComponent(0)).getState();
 		if(optionState != tmpState){
+			
 			switch (tmpState) {
 			
 			//option de base
@@ -98,7 +99,10 @@ public class PanelOption extends PanelBase {
 				
 			//configuration des lettres
 			case 'l':
-				System.out.println("config letter");
+				removeAll();
+				LetterUnderPanel letter = new LetterUnderPanel(config);
+				add(letter);
+				optionState = 'l';
 				break;
 				
 			//exit
@@ -109,6 +113,7 @@ public class PanelOption extends PanelBase {
 			default:
 				break;
 			}
+			validate();
 		}
 		else{
 

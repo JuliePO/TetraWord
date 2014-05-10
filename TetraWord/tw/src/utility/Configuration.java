@@ -9,11 +9,13 @@ public class Configuration {
     private int speedGame;
     private int rateBonus;
     private int dicoLang;
+    private Dictionary dico;
     
     public Configuration() {
 		speedGame = 0;
 		rateBonus = 0;
 		dicoLang = 0;
+        dico= new Dictionary("../"+getLang()+".txt");
 	}
     
     public void setSpeedGame(int i){
@@ -26,6 +28,8 @@ public class Configuration {
     
     public void setLang(int i){
     	dicoLang = i;
+    	
+    	dico = new Dictionary("../"+getLang()+".txt");
     }
     
     public int getSpeedGame(){
@@ -40,4 +44,16 @@ public class Configuration {
     	
     	return lang[dicoLang];
     }
+
+	public Dictionary getDico() {
+		return dico;
+	}
+	
+	public void setCharFrequence(char letter, int frequence){
+		dico.setCharFrequence(letter, frequence);
+	}
+	
+	public int getCharFrequence(char letter){
+		return dico.getCharFrenquence(letter);
+	}
 }

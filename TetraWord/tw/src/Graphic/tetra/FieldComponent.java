@@ -123,8 +123,8 @@ public class FieldComponent extends TetraComponent {
         Player p = new Player(1, "georges", "ninja");
         p.increaseScore(8000);
 
-        p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k'), null, "blue"));
-        p.getBoardTemp().addCase(new Square(0, 0, new Letter((short) 1, 'w'), null, "green"));
+        p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k', 0), null, "blue"));
+        p.getBoardTemp().addCase(new Square(0, 0, new Letter((short) 1, 'w', 0), null, "green"));
         
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -144,8 +144,8 @@ public class PanelTetraWord extends PanelBase {
 		
 
 		Vector<Square> square = new Vector<Square>();
-		square.add(new Square(11, 1, new Letter((short)5, 'a'), null, "blue"));
-		square.add(new Square(1, 22, new Letter((short)5, 'z'), null, "yellow"));
+		square.add(new Square(11, 1, new Letter((short)5, 'a', 0), null, "blue"));
+		square.add(new Square(1, 22, new Letter((short)5, 'z', 0), null, "yellow"));
 		
 		final Player p = new Player(1, "georges", "ninja");
 		p.increaseScore(8000);

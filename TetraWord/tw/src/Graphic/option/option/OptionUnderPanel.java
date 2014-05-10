@@ -75,7 +75,7 @@ public class OptionUnderPanel extends PanelBase {
 		
 		String path = mPath + "texture/options/buttons/";
 		
-		/*ButtonTetra letter = new ButtonTetra(path + "letters.png", path +"letters_hover.png");
+		ButtonTetra letter = new ButtonTetra(path + "letters.png", path +"letters_hover.png");
 		letter.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -83,7 +83,7 @@ public class OptionUnderPanel extends PanelBase {
 			}
 		});
 		letter.setBounds(71, 610, letter.getWidthTexture(), letter.getHeightTexture());
-		add(letter);*/
+		add(letter);
 		
 		ButtonTetra shapes = new ButtonTetra(path + "shapes.png", path +"shapes_hover.png");
 		shapes.addActionListener(new ActionListener() {			
@@ -138,7 +138,6 @@ public class OptionUnderPanel extends PanelBase {
 			dico.select = false;
 		}
 		
-		repaint();
 	}
 	
 	public static void main(String[] args) {
