@@ -58,9 +58,11 @@ public class ButtonTetra extends JButton {
 		addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mouseEntered(java.awt.event.MouseEvent evt) {
 		    	paint= new TexturePaint(hover, new Rectangle(0, 0, w, h));
+		    	getParent().repaint();
 		    }
 		    public void mouseExited(java.awt.event.MouseEvent evt) {
 		    	paint= new TexturePaint(texture, new Rectangle(0, 0, w, h));
+		    	getParent().repaint();
 		    }
 		});
 	}

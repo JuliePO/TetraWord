@@ -39,7 +39,6 @@ public class BonusArrayComponent extends TetraComponent {
 				bonusArray[i].repaint();
 			}
 		}
-		repaint();
 	}
 	
 	@Override

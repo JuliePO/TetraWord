@@ -103,20 +103,6 @@ public class FieldComponent extends TetraComponent {
 
     @Override
     public void update() {
-        
-        /*removeAll();
-        Vector<Square> cases = p.getCases();
-        
-        if(cases != null){
-            for(Square square : cases){
-                CubeComponent tmp = new CubeComponent("texture/game/"+square.getColor() + ".jpg", "texture/game/"+square.getColor() + ".jpg", square.getChar());
-                tmp.setEnabled(false);
-                tmp.setBounds(square.getX() * 25, square.getY() * 25, tmp.getWidthTexture(), tmp.getHeightTexture());
-                add(tmp);
-            }
-        }*/
-        repaint();
-        
     }
     
     public static void main(String[] args) {

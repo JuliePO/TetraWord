@@ -81,7 +81,6 @@ public class BonusComponent extends TetraComponent {
 	
 	@Override
 	public void update() {
-		repaint();
 	}
 	
 	public void setBonus(String nBonus){

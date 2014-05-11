@@ -107,7 +107,6 @@ public class PresentationPlayerComponent extends TetraComponent {
 		persoBot.update();
 		persoName.select(select);
 		persoName.update();
-		repaint();
 	}
 	
 	public void setSelect(int i){

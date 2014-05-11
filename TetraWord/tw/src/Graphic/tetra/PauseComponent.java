@@ -114,8 +114,6 @@ public class PauseComponent extends TetraComponent {
 	
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		repaint();
 	}
 	
 	public static void main(String[] args) {

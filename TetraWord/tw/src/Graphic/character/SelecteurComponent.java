@@ -56,9 +56,7 @@ public class SelecteurComponent extends SelecteurExtends {
 				((PersoSelectComponent) getComponent(i)).setP2(true);
 			else
 				((PersoSelectComponent) getComponent(i)).setP2(false);
-		}
-		
-		repaint();
+		}	
 	}
 	
 	public static void main(String[] args) {

@@ -49,7 +49,6 @@ public class PresentationComponent extends SelecteurExtends {
 				((PersoSelectComponent) getComponent(i)).setP2(false);
 		}
 		
-		repaint();
 	}
 	
 	public static void main(String[] args) {

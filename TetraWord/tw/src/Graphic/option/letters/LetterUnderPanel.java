@@ -90,10 +90,7 @@ public class LetterUnderPanel extends PanelBase {
 	
 	@Override
 	public void update() {
-		System.out.println("letter");
-		
 		((TetraComponent)getComponent(0)).update();
-		
 	}
 	
 	public static void main(String[] args) {

@@ -34,6 +34,5 @@ public class ScoreComponent extends TetraComponent {
 
 	@Override
 	public void update() {
-		repaint();		
 	}
 }
