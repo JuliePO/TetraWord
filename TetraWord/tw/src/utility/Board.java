@@ -12,6 +12,8 @@ public class Board
     
     private boolean[] field;
     private Vector<Square> cases;
+    private int width;
+    private int height;
     //Les limites du terrain ?
 
     /**
@@ -19,8 +21,7 @@ public class Board
      */
     public Board()
     {
-        cases= new Vector<Square>(0);
-        field= new boolean[200];
+        this( 10, 20 );// 22 apparement
     }
     
     public int size(){
@@ -29,6 +30,8 @@ public class Board
     
     public Board(int width, int height)
     {
+        this.width= width;
+        this.height= height;
         cases= new Vector<Square>(0);
         field= new boolean[width * height];
     }
@@ -53,6 +56,19 @@ public class Board
         return cases.elementAt(index);
     }
     
+    public boolean outside( Square s ){//Case?
+        return outside(s.getX(), s.getY() );
+    }
+    
+    public boolean outside( int x, int y ){
+        if( x >= width || x < 0 )
+            return true;
+        if( y >= height || y < 0 )
+            return true;    
+        
+        return false;
+    }
+    
     public void supprAt( int index ){
         Square sq= cases.elementAt(index);
         freeAt( sq.getX(), sq.getY() );
@@ -63,25 +79,33 @@ public class Board
         return field;
     }
     
+    public int getWidth(){
+        return width;
+    }
+    
+    public int getHeight(){
+        return height;
+    }
+    
     public Vector<Square> getCases(){
-    	return cases;
+        return cases;
     }
     
     public Square getSquareAt(int x, int y){
-    	for(Square square : cases){
-    		if( square.getX() == x && square.getY() == y)
-    			return square;
-    	}
-    	return null;
+        for(Square square : cases){
+            if( square.getX() == x && square.getY() == y)
+                return square;
+        }
+        return null;
     }
     
-	public boolean isSquareAt(int x, int y) {
-		for(Square square : cases){
-    		if( square.getX() == x && square.getY() == y)
-    			return true;
-    	}
-    	return false;
-	}
+    public boolean isSquareAt(int x, int y) {
+        for(Square square : cases){
+            if( square.getX() == x && square.getY() == y)
+                return true;
+        }
+        return false;
+    }
     
     /**
      * Return the state of the given coordinates 
@@ -102,7 +126,7 @@ public class Board
         field[ x + y*10 ] = true;
     }
     
-    private void freeAt( int x, int y ){
+    public void freeAt( int x, int y ){
         
         field[ x + y*10 ] = false;
     }

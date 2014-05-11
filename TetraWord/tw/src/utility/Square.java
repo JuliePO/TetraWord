@@ -9,22 +9,22 @@ import java.awt.Color;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Square
+public class Square extends Case
 {
-    private int x;
-    private int y;
+    //private int x;
+    //private int y;
     
     Square up;
     Square left;
     Square right;
     Square down;
     
-    char nextState;
+    //char nextState;
     Letter letter;
-    String color;
+    //String color;
     
     //boolean[] fieldTemp;
-    private Board field;
+    //private Board field;
     boolean newBloc;
     
 
@@ -33,12 +33,13 @@ public class Square
      */
     public Square(int pX, int pY, Letter pL, Board f, String color)
     {
-        nextState= '?';
-        x = pX;
-        y = pY;
+        super( pX, pY, f, color ); 
+        //nextState= '?';
+        //x = pX;
+        //y = pY;
         letter= pL;
-        field= f;
-        this.color = color;
+        //field= f;
+        //this.color = color;
         
         newBloc= true;
         setBusy();
@@ -47,6 +48,13 @@ public class Square
     public void setBusy(){
         if(field != null)
             field.busyAt( x , y );
+        else
+            System.out.println("Error : field null");
+    }
+    
+    public void unBusy(){
+        if(field != null)
+            field.freeAt( x , y );
         else
             System.out.println("Error : field null");
     }
@@ -60,16 +68,13 @@ public class Square
     }*/
     
     public void fall(){
-        if( 0 == y ) //field.bornes 
+        if( 0 == y )
             System.err.println("Error: Overfall");
         else
-            --this.y;
+            setY( y-1 );
     }
 
-    boolean isBlocked(){
-    
-        /*if( down != null )
-            return down.isBlocked();*/
+    private boolean isBlocked(){
             
         Square tmp= isNeighbour(x, y-1);
         
@@ -103,12 +108,24 @@ public class Square
         this.right= right;
         this.down= down;
     }
-
+    
+    public boolean isRightBusy(){
+        if( field.isBusy( x+1, y ) && isNeighbour(x+1,y) == null )
+            return true;
+        return false;
+    }
+    
+    public boolean isLeftBusy(){
+        if( field.isBusy( x-1, y ) && null == isNeighbour(x-1,y) )
+            return true;
+        return false;
+    }
 
     int stopThemAll(){
         
         int pts= 0;
         this.nextState = 's';
+        setBusy();
         
         if( newBloc ) // Seuls les nouveaux bloc rapportent des pts
             //System.out.println ("  >> SCORE + 5 << ");
@@ -181,24 +198,49 @@ public class Square
         return newBloc;
     }
 
-    public int getX(){
+    /*public int getX(){
         return x;
     }
     
     public int getY(){
         return y;
+    }*/
+    
+    public void setX(int pX){
+        unBusy();
+        this.x= pX;
+        setBusy();
+    }
+    
+    public void setY(int pY){
+        unBusy();
+        this.y= pY;
+        setBusy();
+    }
+    
+    public void translateX( int tx ){
+        
+        if( x+tx < 0 ){ //a verifier : utiliser plutot fd
+            x = 0; 
+            return;
+        }
+        if( x+tx > field.getWidth()-1 ){
+            x = field.getWidth()-1;
+            return;
+        }
+        setX( x+tx );
     }
     
     public void setPosition( int x, int y ){
-        this.x= x;
-        this.y= y;
+        setX(x);
+        setY(y);
     }
     
     public char getChar(){
         return letter.getChar();
     }
     
-    public String getColor(){
+    /*public String getColor(){
         return color;
     }
     
@@ -209,9 +251,9 @@ public class Square
     public void setNextState(char n){
         //if( f s r )
             nextState= n;
-        /*else
-            nextState= '?';*/
-    }
+        else
+            nextState= '?';
+    }*/
     
     public static void main(String[] args){ 
         

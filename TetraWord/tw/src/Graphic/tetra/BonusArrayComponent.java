@@ -4,7 +4,6 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
-import utility.BonusCollection;
 import utility.Player;
 import Graphic.TetraComponent;
 
@@ -33,10 +32,10 @@ public class BonusArrayComponent extends TetraComponent {
 	@Override
 	public void update() {
 		
-		BonusCollection tmp = p.getBonus();
+		//BonusCollection tmp = p.getBonus();
 		for(int i = 0; i < 3; ++i){
-			if(i < tmp.size()){
-				bonusArray[i].setBonus(tmp.get(i));
+			if(i < p.getNbBonus()){
+				bonusArray[i].setBonus(p.getBonus(i));
 				bonusArray[i].repaint();
 			}
 		}
@@ -50,9 +49,9 @@ public class BonusArrayComponent extends TetraComponent {
 	public static void main(String[] args) {
 		
 		Player p = new Player();
-		p.getBonus().add("exchange");
+		/*p.getBonus().add("exchange");
 		p.getBonus().add("lapin");
-		p.getBonus().add("lapin");
+		p.getBonus().add("lapin");*/
 		
 		JFrame tmp = new JFrame();
 		
