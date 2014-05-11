@@ -32,14 +32,14 @@ public class BonusArrayComponent extends TetraComponent {
 	@Override
 	public void update() {
 		
-		//BonusCollection tmp = p.getBonus();
+
+		String[] tmp = p.getBonus();
 		for(int i = 0; i < 3; ++i){
-			if(i < p.getNbBonus()){
-				bonusArray[i].setBonus(p.getBonus(i));
+			if(tmp[i] != null){
+				bonusArray[i].setBonus(tmp[i]);
 				bonusArray[i].repaint();
 			}
 		}
-		repaint();
 	}
 	
 	@Override
@@ -48,10 +48,11 @@ public class BonusArrayComponent extends TetraComponent {
 	
 	public static void main(String[] args) {
 		
-		Player p = new Player();
-		/*p.getBonus().add("exchange");
-		p.getBonus().add("lapin");
-		p.getBonus().add("lapin");*/
+
+		Player p = new Player(1);
+		p.addBonus("exchange");
+		p.addBonus("lapin");
+		p.addBonus("lapin");
 		
 		JFrame tmp = new JFrame();
 		

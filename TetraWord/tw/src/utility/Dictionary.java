@@ -22,7 +22,8 @@ public class Dictionary
      * Constructor for objects of class File
      */
     public Dictionary(String path)
-    {
+    {	
+    	generateAlphabet();
         generateLetters();
         
         try{
@@ -53,42 +54,58 @@ public class Dictionary
         System.err.println( "Caution: " + ignored + " words ignored (special character)" );
     }
     
-    public void generateLetters(){
+    private int getSommeFrequence(){
+    	int tmp = 0;
+    	for(int i = 0; i < 26 ; ++i)
+    		tmp += alphabet[i].getFrequence();
+    	return tmp;
+    }
+    
+    private void generateAlphabet(){
+    	 alphabet= new Letter[27];
+         
+         alphabet[0]= new Letter( (short) 1, 'a' , 9);
+         alphabet[1]= new Letter( (short) 3, 'b' , 2);
+         alphabet[2]= new Letter( (short) 3, 'c' , 2 );
+         alphabet[3]= new Letter( (short) 1, 'd' , 3);
+         alphabet[4]= new Letter( (short) 1, 'e' , 15);
+         alphabet[5]= new Letter( (short) 4, 'f' , 2);
+         alphabet[6]= new Letter( (short) 1, 'g' , 2);
+         alphabet[7]= new Letter( (short) 4, 'h' , 2);
+         alphabet[8]= new Letter( (short) 1, 'i' , 8);
+         alphabet[9]= new Letter( (short) 8, 'j' , 1);
+         alphabet[10]= new Letter( (short) 10, 'k', 1);
+         alphabet[11]= new Letter( (short) 1, 'l' , 5);
+         alphabet[12]= new Letter( (short) 1, 'm' , 3);
+         alphabet[13]= new Letter( (short) 1, 'n' , 6);
+         alphabet[14]= new Letter( (short) 1, 'o' , 6);
+         alphabet[15]= new Letter( (short) 3, 'p' , 2);
+         alphabet[16]= new Letter( (short) 8, 'q' , 1);
+         alphabet[17]= new Letter( (short) 1, 'r' , 6);
+         alphabet[18]= new Letter( (short) 1, 's' , 6);
+         alphabet[19]= new Letter( (short) 1, 't' , 6);
+         alphabet[20]= new Letter( (short) 1, 'u' , 6);
+         alphabet[21]= new Letter( (short) 4, 'v' , 2);
+         alphabet[22]= new Letter( (short) 10, 'w' , 1);
+         alphabet[23]= new Letter( (short) 10, 'x' , 1);
+         alphabet[24]= new Letter( (short) 10, 'y' , 1);
+         alphabet[25]= new Letter( (short) 10, 'z' , 1);
+         alphabet[26]= new Letter( (short) 0, '\0' , 0);
+    }
+    
+    private void generateLetters(){
         
         int it= -1;
         
-        alphabet= new Letter[27];
+        int sommeFrequence = getSommeFrequence();
         
-        alphabet[0]= new Letter( (short) 1, 'a' );
-        alphabet[1]= new Letter( (short) 3, 'b' );
-        alphabet[2]= new Letter( (short) 3, 'c' );
-        alphabet[3]= new Letter( (short) 1, 'd' );
-        alphabet[4]= new Letter( (short) 1, 'e' );
-        alphabet[5]= new Letter( (short) 4, 'f' );
-        alphabet[6]= new Letter( (short) 1, 'g' );
-        alphabet[7]= new Letter( (short) 4, 'h' );
-        alphabet[8]= new Letter( (short) 1, 'i' );
-        alphabet[9]= new Letter( (short) 8, 'j' );
-        alphabet[10]= new Letter( (short) 10, 'k' );
-        alphabet[11]= new Letter( (short) 1, 'l' );
-        alphabet[12]= new Letter( (short) 1, 'm' );
-        alphabet[13]= new Letter( (short) 1, 'n' );
-        alphabet[14]= new Letter( (short) 1, 'o' );
-        alphabet[15]= new Letter( (short) 3, 'p' );
-        alphabet[16]= new Letter( (short) 8, 'q' );
-        alphabet[17]= new Letter( (short) 1, 'r' );
-        alphabet[18]= new Letter( (short) 1, 's' );
-        alphabet[19]= new Letter( (short) 1, 't' );
-        alphabet[20]= new Letter( (short) 1, 'u' );
-        alphabet[21]= new Letter( (short) 4, 'v' );
-        alphabet[22]= new Letter( (short) 10, 'w' );
-        alphabet[23]= new Letter( (short) 10, 'x' );
-        alphabet[24]= new Letter( (short) 10, 'y' );
-        alphabet[25]= new Letter( (short) 10, 'z' );
-        alphabet[26]= new Letter( (short) 0, '\0' );
+        letters= new Letter[sommeFrequence];
         
-        letters= new Letter[100];
-        
+        for(int i = 0; i < 26; ++i){
+        	for(int y = 0; y < alphabet[i].getFrequence(); ++y)
+        		letters[++it] = alphabet[i];
+        }
+        /*
         for(int ic= 0; ic < 15; ++ic)
             letters[++it]= alphabet[4];
         for(int ic= 0; ic < 9; ++ic)
@@ -135,12 +152,22 @@ public class Dictionary
         letters[++it]= alphabet[23];
         letters[++it]= alphabet[24];
         letters[++it]= alphabet[25];
-         
+         */
+    }
+    
+    
+    public void setCharFrequence(char letter, int nFrequence){
+    	alphabet[letter - 'a'].setFrequence(nFrequence);
+    	generateLetters();
+    }
+    
+    public int getCharFrenquence(char letter){
+    	return alphabet[letter -'a'].getFrequence();
     }
   
     public Letter pickLetter(){
   
-        int r = (int) (Math.random() * 100);
+        int r = (int) (Math.random() * getSommeFrequence());
                 /* Decommenter pour voir les lettres random
         if( r%5 == 0 )
             System.out.println( Character.toUpperCase(letters[r].getChar()) + " " );

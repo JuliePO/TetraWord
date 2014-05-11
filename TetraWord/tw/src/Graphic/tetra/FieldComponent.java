@@ -103,28 +103,14 @@ public class FieldComponent extends TetraComponent {
 
     @Override
     public void update() {
-        
-        /*removeAll();
-        Vector<Square> cases = p.getCases();
-        
-        if(cases != null){
-            for(Square square : cases){
-                CubeComponent tmp = new CubeComponent("texture/game/"+square.getColor() + ".jpg", "texture/game/"+square.getColor() + ".jpg", square.getChar());
-                tmp.setEnabled(false);
-                tmp.setBounds(square.getX() * 25, square.getY() * 25, tmp.getWidthTexture(), tmp.getHeightTexture());
-                add(tmp);
-            }
-        }*/
-        repaint();
-        
     }
     
     public static void main(String[] args) {
-        Player p = new Player("georges", "ninja");
+        Player p = new Player(1, "georges", "ninja");
         p.increaseScore(8000);
 
-        p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k'), null, "blue"));
-        p.getBoardTemp().addCase(new Square(0, 0, new Letter((short) 1, 'w'), null, "green"));
+        p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k', 0), null, "blue"));
+        p.getBoardTemp().addCase(new Square(0, 0, new Letter((short) 1, 'w', 0), null, "green"));
         
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

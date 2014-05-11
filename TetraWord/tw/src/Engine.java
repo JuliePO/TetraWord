@@ -10,6 +10,7 @@ public class Engine
     // instance variables - replace the example below with your own
     private Dictionary dicFile;
     
+    
     /*private Start start = new Start();
     private Game game = new Game();
     private Option option = new Option();
@@ -48,25 +49,26 @@ public class Engine
         System.out.println( beforeTime );
         
         // I N I T --------------------------
+        Configuration config = new Configuration();
         int nb= 8;
         Square[] squares= new Square[nb];
         Dictionary dico;        
-        Player J1= new Player("georges", "ninja");
-        Player J2 = new Player("louis", "panda");
+        Player J1= new Player(1, "georges", "ninja");
+        Player J2 = new Player(2, "louis", "panda");
         Board b= J1.getBoardTemp();
         boolean[] fd= b.getField();
 
         if( args.length == 0 )
-            dico= new Dictionary("../french.txt");
+            dico= new Dictionary("../"+config.getLang()+".txt");
         else
-            dico= new Dictionary("../../french.txt");
+            dico= new Dictionary("../../"+config.getLang()+".txt");
             
         //Shape shape= new Shape('T', dico, b);
         J1.newShape( 'T', dico );
             
         squares= null;
         
-        Frame tmp = new Frame(J1, J2);
+        Frame tmp = new Frame(J1, J2, config);
         
         int tps= 0;
         

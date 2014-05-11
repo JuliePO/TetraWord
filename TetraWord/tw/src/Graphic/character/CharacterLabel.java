@@ -58,7 +58,7 @@ public class CharacterLabel extends TetraComponent {
 	
 	@Override
 	public void update() {
-		repaint();
+		//repaint();
 
 	}
 

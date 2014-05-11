@@ -1,20 +1,15 @@
 package Graphic;
 
-import java.awt.Component;
-import java.awt.event.MouseWheelListener;
-
 import javax.swing.BoxLayout;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Graphic.character.PanelCharacter;
+import Graphic.option.PanelOption;
 import Graphic.start.PanelAccueil;
 import Graphic.tetra.PanelTetraWord;
-import utility.Letter;
-
 import utility.*; // Evidemment temporaire
-import java.util.Scanner;
+
 
 public class Frame extends JFrame {
 
@@ -22,13 +17,15 @@ public class Frame extends JFrame {
 	private int width = 1024, height = 700;
 	JPanel contentPane = new JPanel();
 	Player P1, P2;
+	Configuration config;
 	
 	private char panelState = 'Z';
 	
-	public Frame(Player P1, Player P2){		
+	public Frame(Player P1, Player P2, Configuration config){		
 		
 		this.P1 = P1;
 		this.P2 = P2;
+		this.config = config;
 		
 		//1. Create the frame.
 		setTitle("TetraWord");
@@ -86,7 +83,7 @@ public class Frame extends JFrame {
 		//repaint();
 		
 		char tmpState = ((PanelBase)contentPane.getComponent(0)).getState();
-		if(getPanelState() != tmpState){
+		if(panelState != tmpState){
 			switch (tmpState) {
 			
 			//le jeu
@@ -114,7 +111,7 @@ public class Frame extends JFrame {
 			//option
 			case 'o':
 				contentPane.removeAll();
-				contentPane.add(new PanelOption());
+				contentPane.add(new PanelOption(P1, P2, config));
 				//setContentPane(contentPane);
 				onSize();
 				setPanelState('o');
@@ -152,23 +149,20 @@ public class Frame extends JFrame {
         int nb= 8;
         Square[] squares= new Square[nb];
         
-        Dictionary dico;        
-        Player J1= new Player("georges", "ninja");
-        Player J2 = new Player("louis", "panda");
+        Configuration config = new Configuration();
+        Dictionary dico = config.getDico();        
+        Player J1= new Player(1, "georges", "ninja");
+        Player J2 = new Player(2, "louis", "panda");
         Board b= J1.getBoardTemp();
         boolean[] fd= b.getField();
 
-    	/*J1.getBonus().add("exchange");
-		J1.getBonus().add("lapin");
+
+    	J1.addBonus("exchange");
+		J1.addBonus("lapin");
 		
-    	J2.getBonus().add("exchange");
-		J2.getBonus().add("lapin");
-		J2.getBonus().add("lapin");*/
-        
-        if( args.length == 0 )
-            dico= new Dictionary("../french.txt");
-        else
-            dico= new Dictionary("../../french.txt");
+    	J2.addBonus("exchange");
+		J2.addBonus("lapin");
+		J2.addBonus("lapin");
 
         //Creation des blocs
         squares[0] = new Square( 2, 19, dico.pickLetter(), b , "blue");
@@ -193,7 +187,7 @@ public class Frame extends JFrame {
             
         squares= null;
         
-        Frame tmp = new Frame(J1, J2);
+        Frame tmp = new Frame(J1, J2, config);
         
         int ko= 0;
         
@@ -244,15 +238,15 @@ public class Frame extends JFrame {
     
     public static void mainold(String[] args) {
 
-        Player p = new Player("georges", "ninja");
-        Player p2 = new Player("louis", "panda");
+        Player p = new Player(1, "georges", "ninja");
+        Player p2 = new Player(2, "louis", "panda");
         //p.increaseScrore(8000);
         //p2.increaseScrore(452);
 
-        p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k'), null, "blue"));
-        p.getBoardTemp().addCase(new Square(2, 2, new Letter((short) 1, 'w'), null, "green"));
+        p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k', 1), null, "blue"));
+        p.getBoardTemp().addCase(new Square(2, 2, new Letter((short) 1, 'w', 1), null, "green"));
         
-        Frame tmp = new Frame(p, p2);
+        Frame tmp = new Frame(p, p2, new Configuration());
         
         /*new Thread(new Runnable() {
             

@@ -10,14 +10,16 @@ public class Letter implements Comparable
 {
     private short value;
     private char character;
+    private int frequence;
 
     /**
      * Constructor for objects of class Letter
      */
-    public Letter(short v, char c)
+    public Letter(short v, char c, int f)
     {
         value= v;
         character= c;
+        frequence = f;
     }
     
     public boolean endChar(){
@@ -33,6 +35,14 @@ public class Letter implements Comparable
     
     public short getValue(){
         return value;
+    }
+    
+    public int getFrequence(){
+    	return frequence;
+    }
+    
+    public void setFrequence(int f){
+    	frequence = f;
     }
     
     @Override

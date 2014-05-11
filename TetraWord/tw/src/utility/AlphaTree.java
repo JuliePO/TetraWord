@@ -34,12 +34,12 @@ public class AlphaTree //Arbre ternaire lexicographique
     //ONLY FOR DEVELOPMENT
     public AlphaTree( boolean t ){
         
-        Letter a= new Letter((short)0, 'a');
-        Letter z= new Letter((short)0, 'z');
-        Letter r= new Letter((short)0, 'r');
-        Letter o= new Letter((short)0, 'o');
-        Letter m= new Letter((short)0, 'm');
-        Letter end= new Letter((short)0, '\0');
+        Letter a= new Letter((short)0, 'a', 9);
+        Letter z= new Letter((short)0, 'z', 1);
+        Letter r= new Letter((short)0, 'r', 1);
+        Letter o= new Letter((short)0, 'o', 5);
+        Letter m= new Letter((short)0, 'm', 5);
+        Letter end= new Letter((short)0, '\0', 0);
         
         Letter[] tab= new Letter[3];
         tab[0] = a;
@@ -135,7 +135,7 @@ public class AlphaTree //Arbre ternaire lexicographique
         for(int i=0; i < chars.length; ++i)
             letters[i]= alphabet[chars[i]-'a'];
             
-        letters[chars.length] = new Letter( (short) 0, '\0' );
+        letters[chars.length] = new Letter( (short) 0, '\0' , 0);
         
         return search( letters );
     }
