@@ -63,9 +63,9 @@ public class FieldComponent extends TetraComponent {
         Graphics2D g2 = (Graphics2D)g;
         
         //affichage des cubes
-        Vector<Square> cases = p.getCases();
-        if(cases != null){
-            for(Square square : cases){
+       
+        if(p.getCases() != null){
+            for(Square square : p.getCases()){
                 g2.setPaint(paints.get(square.getColor()));
                 g2.fillRect(square.getX() * 25, 525 - 25 * square.getY(), 25, 25);
                 

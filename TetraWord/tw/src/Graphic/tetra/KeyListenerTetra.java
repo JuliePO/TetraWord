@@ -23,8 +23,20 @@ public class KeyListenerTetra implements KeyListener {
 		
 		if(tmp == ' ')
 			((PanelTetraWord)arg0.getComponent()).setPause();
+
 		else if(tmp == P1.getInput("up"))
-			System.out.println("lol");
+			P1.getShape().rotate();
+		/*else if(tmp == P1.getInput("left"))
+			P1.getShape().goLeft();
+		else if(tmp == P1.getInput("right"))
+			P1.getShape().goRight();
+
+		else if(tmp == P2.getInput("up"))
+			P2.getShape().rotate();
+		else if(tmp == P2.getInput("left"))
+			P2.getShape().goLeft();
+		else if(tmp == P2.getInput("right"))
+			P2.getShape().goRight();*/
 	}
 
 	@Override
