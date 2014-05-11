@@ -56,12 +56,14 @@ public class Shape
     
     private void shapeT(String col){
         //4 - 19
+        int midX= 4;
+        int maxY= 19;
         
         //Creation des blocs
-        blocs[0] = new Square( 4, 19, dico.pickLetter(), bd , col);
-        blocs[1] = new Square( 3, 19, dico.pickLetter(), bd , col);
-        blocs[2] = new Square( 4, 18, dico.pickLetter(), bd , col);
-        blocs[3] = new Square( 5, 19, dico.pickLetter(), bd , col);
+        blocs[0] = new Square( midX, maxY, dico.pickLetter(), bd , col);
+        blocs[1] = new Square( midX-1, maxY, dico.pickLetter(), bd , col);
+        blocs[2] = new Square( midX, maxY-1, dico.pickLetter(), bd , col);
+        blocs[3] = new Square( midX+1, maxY, dico.pickLetter(), bd , col);
         
         //Mise en relation avec les blocs adjacents
         blocs[0].setNeighbour( null, blocs[0], blocs[3], blocs[2] );
@@ -99,6 +101,28 @@ public class Shape
         }
             
 
+    }
+    
+    public void goRight(){
+        
+        for( int i= 0; i < minos; ++i )
+            if( bd.outside(blocs[i]) || blocs[i].isRightBusy() )
+                return;    
+
+        for( int i= 0; i < minos; ++i )
+            blocs[i].translateX(1);
+        
+    }
+    
+    public void goLeft(){
+        
+        for( int i= 0; i < minos; ++i )
+            if( bd.outside(blocs[i]) || blocs[i].isLeftBusy() )
+                return;    
+
+        for( int i= 0; i < minos; ++i )
+            blocs[i].translateX(-1);
+        
     }
 
 }

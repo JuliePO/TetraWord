@@ -32,6 +32,7 @@ public class BonusArrayComponent extends TetraComponent {
 	@Override
 	public void update() {
 		
+
 		String[] tmp = p.getBonus();
 		for(int i = 0; i < 3; ++i){
 			if(tmp[i] != null){
@@ -47,6 +48,7 @@ public class BonusArrayComponent extends TetraComponent {
 	
 	public static void main(String[] args) {
 		
+
 		Player p = new Player(1);
 		p.addBonus("exchange");
 		p.addBonus("lapin");

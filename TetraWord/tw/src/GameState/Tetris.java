@@ -36,16 +36,15 @@ public class Tetris implements GameState {
                     b.elmtAt(i).becoming(j); 
             // --------------------------------------------
             //Reset  
-            b.freeAll();
+           // b.freeAll();
             //UPDATE------------------------  
                 for( int i= 0; i < b.size(); ++i ){
   
                     switch( b.elmtAt(i).getNextState() ){
-                        case 's':   b.elmtAt(i).setBusy(); 
+                        case 's':  // b.elmtAt(i).setBusy(); 
                                 break;
                     
                     case 'f':   b.elmtAt(i).fall();
-                                b.elmtAt(i).setBusy();
                                 break;
                                 
                     default : System.err.println( "Error : nextState of a Square is " +  b.elmtAt(i).getNextState() );

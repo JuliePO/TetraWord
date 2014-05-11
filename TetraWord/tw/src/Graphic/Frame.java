@@ -156,6 +156,7 @@ public class Frame extends JFrame {
         Board b= J1.getBoardTemp();
         boolean[] fd= b.getField();
 
+
     	J1.addBonus("exchange");
 		J1.addBonus("lapin");
 		

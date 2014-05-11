@@ -167,6 +167,12 @@ public class Engine
             
             if( tps == 185 )
                 J1.getShape().rotate();
+                
+            if( tps== 100 ){
+                J1.getShape().goRight();
+                //J1.getShape().goRight();
+                //J1.getShape().goRight();
+            }
             
             if ( tps%(45-speed) == 0  ){
                 
@@ -176,16 +182,15 @@ public class Engine
                         b.elmtAt(i).becoming(J1); 
                 // --------------------------------------------
                 //Reset  
-                b.freeAll();
+                //b.freeAll();
                 //UPDATE------------------------  
                 for( int i= 0; i < b.size(); ++i ){
   
                     switch( b.elmtAt(i).getNextState() ){
-                        case 's':   b.elmtAt(i).setBusy(); 
+                        case 's':   //b.elmtAt(i).setBusy(); 
                                     break;
                         
                         case 'f':   b.elmtAt(i).fall();
-                                    b.elmtAt(i).setBusy();
                                     break;
                                     
                         default : System.err.println( "Error : nextState of a Square is " +  b.elmtAt(i).getNextState() );
@@ -202,6 +207,9 @@ public class Engine
             
             
             // ** DYNAMIC FREE & ALLOC
+            
+            //if( tps == 200 + (int) (Math.random() * 100) )
+            
             
             if( J1.getShape().isArrived() )
                 J1.newShape( 'T', config.getDico() );

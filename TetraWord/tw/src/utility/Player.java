@@ -125,6 +125,14 @@ public class Player
         return board.isSquareAt(x, y);
     } 
     
+    public int getNbBonus(){
+        return nbBonus;
+    }
+    
+    public String getBonus(int i){
+        return listBonus[i];
+    }
+    
     public void addBonus(String nB){
         if(nbBonus == 3){
             String tmp= listBonus[1];
