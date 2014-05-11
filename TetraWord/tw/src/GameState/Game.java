@@ -1,40 +1,27 @@
 package GameState;
 
+import utility.Configuration;
+import utility.Player;
 
-public class Game implements GameState{
+
+public class Game {
 	
 	private GameState currentState;
+	private Configuration config;
+	Player j;
 	/*
 	char state = 't';	// t : tetris, w : wordle, a : anagramme, m : menu
 	char stateBack = 'g';
 	*/
 	
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-		currentState = new Tetris();
-		
+	public Game(Player j, Configuration config) {
+		this.config = config;
+		this.j=j;
+		currentState = new Tetris(j, config);
 	}
 
-	@Override
-	public void update() {
+	public void update(int tps) {
 		
-		currentState.update();
-		
-		// TODO Auto-generated method stub
-		
+		currentState = currentState.update(tps);
 	}
-
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void input() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

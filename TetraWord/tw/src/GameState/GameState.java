@@ -2,8 +2,7 @@ package GameState;
 
 
 public interface GameState {
-	public void init();
-	public void update();
+	public GameState update(int tps);
 	public void draw();
 	public void input();	
 }
