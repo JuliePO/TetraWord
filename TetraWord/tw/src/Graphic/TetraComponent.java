@@ -2,9 +2,10 @@ package Graphic;
 
 import java.awt.Dimension;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public abstract class TetraComponent extends JPanel {
+public abstract class TetraComponent extends JLabel {
     
     protected int w, h;
     

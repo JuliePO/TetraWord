@@ -92,7 +92,7 @@ public class Shape
     
     public void rotate(){
         
-        //Génération de vecteurs relatifs
+        //Generation de vecteurs relatifs
         //blocs[0] for (les autres)
         int xref= blocs[0].getX();
         int yref= blocs[0].getY();
