@@ -54,11 +54,24 @@ public class Shape
         return !blocs[0].isNew();
     }
     
+    public void printBlocs(){
+    	
+    	String vs= "BLOC :";
+    	
+    	for( int i= 0; i < minos; ++i )
+    		vs += "(" + blocs[i].getX() + ", " + blocs[i].getY() + ")";  
+    		
+    	System.out.println(vs + "***********************************");
+    }
+    
     private void shapeT(String col){
         //4 - 19
-        int midX= 4;
-        int maxY= 19;
+        //int midX= bd.getWidth()/2;
+        //int maxY= bd.getHeight() -1;
         
+    	int midX= 4;
+    	int maxY= 19;
+    	
         //Creation des blocs
         blocs[0] = new Square( midX, maxY, dico.pickLetter(), bd , col);
         blocs[1] = new Square( midX-1, maxY, dico.pickLetter(), bd , col);
@@ -66,10 +79,10 @@ public class Shape
         blocs[3] = new Square( midX+1, maxY, dico.pickLetter(), bd , col);
         
         //Mise en relation avec les blocs adjacents
-        blocs[0].setNeighbour( null, blocs[0], blocs[3], blocs[2] );
+        blocs[0].setNeighbour( null, blocs[1], blocs[3], blocs[2] );
         blocs[1].setNeighbour( null, null, blocs[0], null ); 
-        blocs[2].setNeighbour( blocs[1], null, null, null );
-        blocs[3].setNeighbour( null, blocs[1], null, null );
+        blocs[2].setNeighbour( blocs[0], null, null, null );
+        blocs[3].setNeighbour( null, blocs[0], null, null );
         
         //Ajout au plateau
         for(int i= 0; i < minos; ++i )
@@ -89,17 +102,19 @@ public class Shape
         int[] vectx= new int[minos-1];
         int[] vecty= new int[minos-1];
         
+        for( int i= 0; i < minos-1; ++i )
+        	if( bd.outside(blocs[i+1].getY() - yref + xref, yref - blocs[i+1].getX() + xref ) )
+        		return;
+
+        
         for( int i= 0; i < minos-1; ++i ){
+        	
             vectx[i]= blocs[i+1].getX() - xref;  
             vecty[i]= blocs[i+1].getY() - yref;
-            
-            /*System.out.println( vectx[i] + " " + vecty[i] );
-            System.out.println( vecty[i] + " " + vectx[i]*-1 );
-            System.out.println(  );*/
-            
+
             blocs[i+1].setPosition(  xref + vecty[i], yref - vectx[i] );
-        }
-            
+
+        } 
 
     }
     

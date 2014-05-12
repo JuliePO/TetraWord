@@ -21,7 +21,7 @@ public class Board
      */
     public Board()
     {
-        this( 10, 20 );// 22 apparement
+        this( 10, 20 );
     }
     
     public int size(){
@@ -127,7 +127,9 @@ public class Board
     }
     
     public void freeAt( int x, int y ){
-        
+    	
+        if( y > 19 )
+        	System.out.println( "y = " + y);
         field[ x + y*10 ] = false;
     }
     

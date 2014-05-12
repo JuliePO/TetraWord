@@ -81,8 +81,9 @@ public class Square extends Case
         if( tmp != null )
             return tmp.isBlocked();
 
-        if( field.isBusy(x, y-1) )//OLD: if( isBusyTemp(this.x, this.y-1) )
+        if( field.isBusy(x, y-1) )
             return true;
+        
     
         return false;
     }
