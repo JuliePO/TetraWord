@@ -44,7 +44,7 @@ public class PanelAccueil extends PanelBase {
 
         } catch (IOException ex) {
 
-        	System.out.println("Error 404: 'texture/start/background-start.jpg' not Found !");
+        	System.out.println("Error 404:  " + mPath + "texture/start/background-start.jpg");
         }
 		
 		h = accueil.getHeight();

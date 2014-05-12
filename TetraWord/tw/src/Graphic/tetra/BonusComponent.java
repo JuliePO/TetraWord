@@ -44,6 +44,10 @@ public class BonusComponent extends TetraComponent {
 		for(int i= 0; i < listefichiers.length; i++){ 
 			try {
 	            BufferedImage image = ImageIO.read(new File(mPath+path + "bonus/"+ listefichiers[i]));
+	            if( image == null ){
+	            	System.out.println(mPath+path + "bonus/"+ listefichiers[i]);
+	            	return;
+	            }
 	    		this.bonus[i] = new TexturePaint(image, new Rectangle(left, top, image.getWidth(), image.getHeight()));
 	    		index.put(listefichiers[i].substring(0, listefichiers[i].length() - 4), i);
 	        } catch (IOException ex) {

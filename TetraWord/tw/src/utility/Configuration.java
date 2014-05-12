@@ -1,5 +1,7 @@
 package utility;
 
+import java.io.File;
+
 import java.util.HashMap;
 
 public class Configuration {
@@ -15,7 +17,13 @@ public class Configuration {
 		speedGame = 0;
 		rateBonus = 0;
 		dicoLang = 0;
-        dico= new Dictionary("../"+getLang()+".txt");
+        dico= new Dictionary("../../"+getLang()+".txt");
+        
+        File directoryToScan = new File("./"); 
+    	System.out.println(directoryToScan.listFiles()[1]);
+    	
+    	
+    	
 	}
     
     public void setSpeedGame(int i){

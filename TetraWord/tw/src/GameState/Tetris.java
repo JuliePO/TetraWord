@@ -11,6 +11,7 @@ public class Tetris implements GameState {
 	private int speed;
 	Board b;
 	boolean[] fd;
+	int t=0;
 
 	public Tetris(Player j, Configuration config) {
 		this.j=j;
@@ -24,18 +25,18 @@ public class Tetris implements GameState {
 	
 	@Override
 	public GameState update(int tps) {
-                   
-        if( tps == 185 ){
-            j.getShape().rotate();
-        }
-        
-        if ( tps%(45-speed - config.getSpeedGame()) == 0  ){
-            
+
+                  
+ 
+        /*if ( tps%(45-speed - config.getSpeedGame()) == 0  ){*/
+		
             // Calculate nextState ------------------------   
             for( int i= 0; i < b.size(); ++i )
                 if( b.elmtAt(i).getNextState() == '?' )
                     b.elmtAt(i).becoming(j); 
             // --------------------------------------------
+            
+            
             //Reset  
            // b.freeAll();
             //UPDATE------------------------  
@@ -50,18 +51,33 @@ public class Tetris implements GameState {
                                 
                     default : System.err.println( "Error : nextState of a Square is " +  b.elmtAt(i).getNextState() );
                                 
-                }
+	                }
+	                
+	                b.elmtAt(i).setNextState('?');
+	            }               
                 
-                b.elmtAt(i).setNextState('?');
-            }
-        }
+                
+                /*if( t == 7 )
+                    j.getShape().rotate();
+                
+                if( t == 10 ){
+                    j.getShape().rotate();
+                    j.getShape().printBlocs();
+                }*/
+                
+        //}
         // ** DYNAMIC FREE
         
         
         // ** DYNAMIC FREE & ALLOC
         
-        if( j.getShape().isArrived() )
+        if( j.getShape().isArrived() ){
             j.newShape( 'T', config.getDico() );
+            
+        }
+        
+        //++t;
+        //System.out.println( t );
         
         return this;
 	}

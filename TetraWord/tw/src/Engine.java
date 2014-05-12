@@ -1,19 +1,26 @@
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
 import utility.*; //Sale
 import GameState.*; //Sale
 import Graphic.*; //Sale
 
 
-
-
-public class Engine
+public class Engine extends JPanel implements ActionListener
 {
     // instance variables - replace the example below with your own
-    
+    private Timer time;
 
     private GameState currentState;
     
     private Player p1;
     private Player p2;
+    
+    private Frame fr;
     
     int nbP; 
     
@@ -25,8 +32,28 @@ public class Engine
     
     Engine(Player p1, Player p2, Configuration config){
 
+    	time= new Timer(5, this);
+    	
     	game1 = new Game(p1, config);
     	game2 = new Game(p2, config);
+    	
+    	fr = new Frame(p1, p2, config);
+
+    	time.start();
+    }
+    
+    @Override //JPanel
+	public void paintComponent(Graphics g){
+    	super.paintComponent(g);
+    }
+    
+    @Override //ActionListener
+	public void actionPerformed(ActionEvent arg0) {
+    	
+    	//System.out.println("ActionPerformed");
+    	if(fr.getPanelState() == 'g')
+    		update(0);
+    	fr.update();
     }
     
     public void update(int tps){
@@ -35,11 +62,11 @@ public class Engine
     }
     
     public static void main(String[] args) {
-// * DECLARATIONS
-
+    	// * DECLARATIONS
+ 
         long beforeTime= 0, deltaTime, fps = 60;
         beforeTime = System.currentTimeMillis();
-        System.out.println( beforeTime );
+        //System.out.println( beforeTime );
         
         // I N I T --------------------------
         Configuration config = new Configuration();
@@ -51,20 +78,25 @@ public class Engine
         
         Engine engine = new Engine(J1, J2, config);
 
-        Frame tmp = new Frame(J1, J2, config);
+        //Frame tmp = new Frame(J1, J2, config);
+        //Frame tmp= null;
+        
+        //while(tmp.getPanelState() != 'e'){ tmp.update(); }
+        /*
+        
         
         int tps= 0;
         
         // ** LOOP
         while(tmp.getPanelState() != 'e'){
             
-            beforeTime= System.currentTimeMillis();
+            //beforeTime= System.currentTimeMillis();
             ++tps;
             
             if( tps%100 == 0 ){
                 /*System.out.println( "Erase case" );
                 b.supprAt(3);
-                --nb;*/
+                --nb;
             }
             if( tps > 900 )
                 tps = 0;
@@ -81,14 +113,18 @@ public class Engine
 	           engine.update(tps);
             }
             
-            deltaTime = System.currentTimeMillis() - beforeTime;
+            //deltaTime = System.currentTimeMillis() - beforeTime;
             //System.out.println("D: " + deltaTime);
-            try
+            /*try
             {
                 if( deltaTime < fps ){
                     //System.out.print(">> ");
                     //System.out.println(fps - deltaTime);
+<<<<<<< HEAD
                    Thread.sleep(fps - deltaTime);
+=======
+                    //Thread.sleep(fps - deltaTime);
+>>>>>>> origin/master
                     
                 }
             }
@@ -104,7 +140,7 @@ public class Engine
         }        
         
         tmp.dispose();
-        System.exit(0);
+        System.exit(0);*/
        
     }
     

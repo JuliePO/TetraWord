@@ -38,7 +38,7 @@ public class Frame extends JFrame {
 		//3. Create components and put them in the frame.
 	    contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 	
-		JPanel menu = new JPanel();
+		//JPanel menu = new JPanel();
 
 		contentPane.add(new PanelAccueil());
 	

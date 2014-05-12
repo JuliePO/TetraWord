@@ -129,7 +129,9 @@ public class Board
     }
     
     public void freeAt( int x, int y ){
-        
+    	
+        if( y > 19 )
+        	System.out.println( "y = " + y);
         field[ x + y*10 ] = false;
     }
     
