@@ -9,6 +9,8 @@ import Graphic.option.PanelOption;
 import Graphic.start.PanelAccueil;
 import Graphic.tetra.PanelTetraWord;
 import utility.*; // Evidemment temporaire
+import utility.Bonus.BonusScore;
+import utility.Bonus.MalusScore;
 
 
 public class Frame extends JFrame {
@@ -153,16 +155,16 @@ public class Frame extends JFrame {
         Dictionary dico = config.getDico();        
         Player J1= new Player(1, "georges", "ninja");
         Player J2 = new Player(2, "louis", "panda");
-        Board b= J1.getBoardTemp();
+        Board b= J1.getBoard();
         boolean[] fd= b.getField();
 
 
-    	J1.addBonus("exchange");
-		J1.addBonus("lapin");
+    	J1.addBonus(new BonusScore(J1, J2));
+		J1.addBonus(new BonusScore(J1, J2));
 		
-    	J2.addBonus("exchange");
-		J2.addBonus("lapin");
-		J2.addBonus("lapin");
+    	J2.addBonus(new MalusScore(J2, J1));
+		J2.addBonus(new MalusScore(J2, J1));
+		J2.addBonus(new MalusScore(J2, J1));
 
         //Creation des blocs
         squares[0] = new Square( 2, 19, dico.pickLetter(), b , "blue");
@@ -243,8 +245,8 @@ public class Frame extends JFrame {
         //p.increaseScrore(8000);
         //p2.increaseScrore(452);
 
-        p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k', 1), null, "blue"));
-        p.getBoardTemp().addCase(new Square(2, 2, new Letter((short) 1, 'w', 1), null, "green"));
+        p.getBoard().addCase(new Square(10, 21, new Letter((short) 1, 'k', 1), null, "blue"));
+        p.getBoard().addCase(new Square(2, 2, new Letter((short) 1, 'w', 1), null, "green"));
         
         Frame tmp = new Frame(p, p2, new Configuration());
         

@@ -124,5 +124,13 @@ public class Shape
             blocs[i].translateX(-1);
         
     }
+    
+    public Square[] getSquares(){
+    	return blocs;
+    }
+    
+    public int getMinos(){
+    	return minos;
+    }
 
 }

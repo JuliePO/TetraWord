@@ -137,7 +137,6 @@ public class OptionUnderPanel extends PanelBase {
 			config.setLang(dico.getSelectItem());
 			dico.select = false;
 		}
-		
 	}
 	
 	public static void main(String[] args) {

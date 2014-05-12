@@ -30,6 +30,8 @@ public class KeyListenerTetra implements KeyListener {
 			P1.getShape().goLeft();
 		else if(tmp == P1.getInput("right"))
 			P1.getShape().goRight();
+		else if(tmp == P1.getInput("b"))
+			P1.useBonus();
 
 		else if(tmp == P2.getInput("up"))
 			P2.getShape().rotate();
@@ -37,6 +39,8 @@ public class KeyListenerTetra implements KeyListener {
 			P2.getShape().goLeft();
 		else if(tmp == P2.getInput("right"))
 			P2.getShape().goRight();
+		else if(tmp == P2.getInput("b"))
+			P2.useBonus();
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class Tetris implements GameState {
 		this.config=config;
 		speed=30;
 		
-		 b= j.getBoardTemp();
+		 b= j.getBoard();
 		 fd= b.getField();	      
 		 j.newShape( 'T', config.getDico() );
 	}
@@ -25,8 +25,9 @@ public class Tetris implements GameState {
 	@Override
 	public GameState update(int tps) {
                    
-        if( tps == 185 )
+        if( tps == 185 ){
             j.getShape().rotate();
+        }
         
         if ( tps%(45-speed - config.getSpeedGame()) == 0  ){
             

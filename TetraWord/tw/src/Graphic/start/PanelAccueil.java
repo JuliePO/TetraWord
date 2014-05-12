@@ -104,5 +104,6 @@ public class PanelAccueil extends PanelBase {
 
 	@Override
 	public void update() {		
+		//repaint();
 	}
 }

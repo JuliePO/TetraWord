@@ -36,7 +36,7 @@ public class PanelCharacter extends PanelBase{
 	@Override 
 	public void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
-		super.paintComponents(g);
+		//super.paintComponents(g);
 				
 		Graphics2D g2 = (Graphics2D)g;
 		

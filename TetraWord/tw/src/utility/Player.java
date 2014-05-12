@@ -3,6 +3,8 @@ package utility;
 import java.util.HashMap;
 import java.util.Vector;
 
+import utility.Bonus.BonusTetra;
+
 
 /**
  * Write a description of class Player here.
@@ -20,7 +22,9 @@ public class Player
 
     private Shape currentShape;
     
-    private String[] listBonus;
+    private BonusTetra[] listBonus;
+    private BonusTetra activeBonus;
+    
     private int nbBonus;
 
     /**
@@ -57,7 +61,7 @@ public class Player
         default:break;
         }
         
-        listBonus= new String[3];
+        listBonus= new BonusTetra[3];
         nbBonus= 0;
     }
     
@@ -81,8 +85,12 @@ public class Player
         return currentShape;
     }
     
-    public Board getBoardTemp(){
+    public Board getBoard(){
         return board;
+    }
+    
+    public void setBoard(Board board){
+    	this.board=board;
     }
     
     public Vector<Square> getCases(){
@@ -95,6 +103,10 @@ public class Player
     
     public int getScore(){
         return score;
+    }
+    
+    public void setScore(int score){
+    	this.score=score;
     }
     
     public void resetScore(){
@@ -129,13 +141,17 @@ public class Player
         return nbBonus;
     }
     
-    public String getBonus(int i){
+    public void setNbBonus(int nbBonus){
+    	this.nbBonus = nbBonus;
+    }
+    
+    public BonusTetra getBonus(int i){
         return listBonus[i];
     }
     
-    public void addBonus(String nB){
+    public void addBonus(BonusTetra nB){
         if(nbBonus == 3){
-            String tmp= listBonus[1];
+        	BonusTetra tmp= listBonus[1];
             listBonus[0]= tmp;
             tmp= listBonus[2];
             listBonus[1]= tmp;
@@ -147,8 +163,12 @@ public class Player
         }
     }
     
-    public String[] getBonus(){
+    public BonusTetra[] getBonus(){
     	return listBonus;
+    }
+    
+    public void setBonus(BonusTetra[] bonus){
+    	this.listBonus = bonus;
     }
     
     public void setInput(String input, char key){
@@ -158,4 +178,30 @@ public class Player
     public char getInput(String input){
     	return inputs.get(input).charValue();
     }
+    
+    public void setShape(Shape newShape){
+    	currentShape = newShape;
+    }
+
+	public void useBonus() {
+		if(listBonus[0] != null){
+			
+			listBonus[0].apply();
+			
+			listBonus[0] = listBonus[1];
+			listBonus[1] = listBonus[2];
+		}
+	}
+	
+	public void update(){
+		if(activeBonus != null){
+			if(activeBonus.getTtl() == 0){
+				activeBonus.remove();
+				activeBonus = null;
+			}
+			else
+				activeBonus.update();
+		}
+	}
+    
 }

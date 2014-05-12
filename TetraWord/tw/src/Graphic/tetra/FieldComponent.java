@@ -67,13 +67,21 @@ public class FieldComponent extends TetraComponent {
         if(p.getCases() != null){
             for(Square square : p.getCases()){
                 g2.setPaint(paints.get(square.getColor()));
-                g2.fillRect(square.getX() * 25, 525 - 25 * square.getY(), 25, 25);
+                
+                if(p.getBoard().invert)
+                	g2.fillRect(square.getX() * 25, 25 * square.getY(), 25, 25);
+                else
+                	g2.fillRect(square.getX() * 25, 525 - 25 * square.getY(), 25, 25);
                 
                 char[] tmp = new char[1];
                 tmp[0] = square.getChar();
                 g2.setFont(new Font("Serif", Font.BOLD, 20));
                 g2.setColor(Color.WHITE);
-                g2.drawChars(tmp, 0, 1, square.getX() * 25 + 5, 543 - 25 * square.getY());   
+                
+                if(p.getBoard().invert)
+                	g2.drawChars(tmp, 0, 1, square.getX() * 25 + 5, 18 + 25 * square.getY());
+                else
+                	g2.drawChars(tmp, 0, 1, square.getX() * 25 + 5, 543 - 25 * square.getY());   
             }
         }
     }
@@ -109,8 +117,8 @@ public class FieldComponent extends TetraComponent {
         Player p = new Player(1, "georges", "ninja");
         p.increaseScore(8000);
 
-        p.getBoardTemp().addCase(new Square(10, 21, new Letter((short) 1, 'k', 0), null, "blue"));
-        p.getBoardTemp().addCase(new Square(0, 0, new Letter((short) 1, 'w', 0), null, "green"));
+        p.getBoard().addCase(new Square(10, 21, new Letter((short) 1, 'k', 0), null, "blue"));
+        p.getBoard().addCase(new Square(0, 0, new Letter((short) 1, 'w', 0), null, "green"));
         
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

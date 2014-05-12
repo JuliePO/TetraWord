@@ -261,7 +261,7 @@ public class Square extends Case
         Square[] squares= new Square[nb];
         
         Player J1= new Player(1);
-        Board b= J1.getBoardTemp();
+        Board b= J1.getBoard();
         boolean[] fd= b.getField();
         Dictionary dico= new Dictionary("../../french.txt");
         
@@ -294,7 +294,7 @@ public class Square extends Case
         printFieldTemp(fd, 40);
         
         for( int i= 0; i < nb; ++i ) 
-            System.out.println( J1.getBoardTemp().elmtAt(i).toString() );
+            System.out.println( J1.getBoard().elmtAt(i).toString() );
         
         // Calculate nextState ------------------------   
         for( int i= 0; i < nb; ++i )  
