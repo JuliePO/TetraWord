@@ -87,7 +87,7 @@ public class PanelTetraWord extends PanelBase {
 		
 		if(P1 != null){
 			FieldComponent fieldP1 = new FieldComponent(P1);
-			fieldP1.setBounds(110, 120, fieldP1.getW(), fieldP1.getH());
+			fieldP1.setBounds(109, 129, fieldP1.getW(), fieldP1.getH());
 			add(fieldP1);
 			
 			ScoreComponent scoreP1 = new ScoreComponent(P1);
@@ -102,7 +102,7 @@ public class PanelTetraWord extends PanelBase {
 		
 		if(P2 != null){
 			FieldComponent fieldP2 = new FieldComponent(P2);
-			fieldP2.setBounds(640, 120, fieldP2.getW(), fieldP2.getH());
+			fieldP2.setBounds(644, 129, fieldP2.getW(), fieldP2.getH());
 			add(fieldP2);
 			
 			ScoreComponent scoreP2 = new ScoreComponent(P2);
@@ -144,45 +144,28 @@ public class PanelTetraWord extends PanelBase {
 		
 
 		Vector<Square> square = new Vector<Square>();
-		square.add(new Square(11, 1, new Letter((short)5, 'a', 0), null, "blue"));
-		square.add(new Square(1, 22, new Letter((short)5, 'z', 0), null, "yellow"));
+		square.add(new Square(9, 1, new Letter((short)5, 'a', 0), null, "blue"));
+		square.add(new Square(1, 19, new Letter((short)5, 'z', 0), null, "yellow"));
 		
 		final Player p = new Player(1, "georges", "ninja");
+		p.getBoard().addCase(new Square(9, 1, new Letter((short)5, 'a', 0), null, "blue"));
+		p.getBoard().addCase(new Square(1, 19, new Letter((short)5, 'a', 0), null, "yellow"));
 		p.increaseScore(8000);
 		
 		final JFrame tmp = new JFrame("lol");
 		
 		tmp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 /*/!\*/		
-		tmp.setContentPane(new PanelTetraWord(p, null));
+		tmp.setContentPane(new PanelTetraWord(null, p));
 	
 		//4. Size the frame.
-		tmp.setSize(1000, 700);
+		tmp.pack();
 		//setSize(200, 200);
 	
 		//5. Show it.
 		tmp.setVisible(true);
 		
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				for(int i = 0; i < 200; ++i){
-					p.increaseScore(200);
-					tmp.removeAll();
-					tmp.setContentPane(new PanelTetraWord(p, null));
-					tmp.setSize(1000, 700);
-					tmp.repaint();
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				
-			}
-		}).start();
+		
 	}
 
 	public Player getPlayer2() {

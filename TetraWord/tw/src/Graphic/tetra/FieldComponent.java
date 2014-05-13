@@ -1,32 +1,21 @@
 package Graphic.tetra;
 
-import java.awt.Button;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.TexturePaint;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Vector;
 
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.xml.bind.Marshaller.Listener;
 
 import Graphic.TetraComponent;
-import utility.Board;
 import utility.Letter;
 import utility.Player;
 import utility.Square;
@@ -43,16 +32,17 @@ public class FieldComponent extends TetraComponent {
     private void loadImage(){
         
        String[] paths= {"blue", "green", "orange", "pink", "purple", "red", "yellow"};
-              
-        try {
-            for(int i= 0; i < paths.length; ++i ){
-              BufferedImage texture = ImageIO.read(new File(mPath+"texture/game/"+paths[i]+".jpg"));
-          //    texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
-              paints.put(paths[i], new TexturePaint(texture, new Rectangle(insetW, insetH, texture.getWidth(), texture.getHeight())));
-            }
-       } catch (IOException ex) {
-           System.out.println("Error 404: color missing !" );
-       }        
+       
+
+       for(int i= 0; i < paths.length; ++i ){   
+	        try {
+	          BufferedImage texture = ImageIO.read(new File(mPath+"texture/game/"+paths[i]+".jpg"));
+	      //    texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
+	          paints.put(paths[i], new TexturePaint(texture, new Rectangle(insetW, insetH, texture.getWidth(), texture.getHeight())));      
+	       } catch (IOException ex) {
+	           System.out.println("Error 404: color missing !" + paths[i]);
+	       }   
+       }
         
     }
     
@@ -71,27 +61,28 @@ public class FieldComponent extends TetraComponent {
                 g2.setPaint(tmp);
                 
                 if(p.getBoard().invert)
-                	g2.fillRect(square.getX() * tmp.getImage().getWidth() + insetW, tmp.getImage().getHeight() * square.getY() + insetH, tmp.getImage().getWidth(), tmp.getImage().getHeight());
+                	g2.fillRect(square.getX() * tmp.getImage().getWidth(), tmp.getImage().getHeight() * square.getY(), tmp.getImage().getWidth(), tmp.getImage().getHeight());
                 else
-                	g2.fillRect(square.getX() * tmp.getImage().getWidth() + insetW, 532 - tmp.getImage().getHeight() * square.getY() + insetH , tmp.getImage().getWidth(), tmp.getImage().getHeight());
+                	g2.fillRect(square.getX() * tmp.getImage().getWidth(), 513 - tmp.getImage().getHeight() * square.getY(), tmp.getImage().getWidth(), tmp.getImage().getHeight());
                 
                 char[] chartmp = new char[1];
                 chartmp[0] = square.getChar();
-                g2.setFont(new Font("Serif", Font.BOLD, 20));
+        		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setFont(new Font("DOSIS-REGULAR", Font.BOLD, 20));
                 g2.setColor(Color.WHITE);
                 
                 if(p.getBoard().invert)
-                	g2.drawChars(chartmp, 0, 1, square.getX() * 25 + 5, 18 + 25 * square.getY());
+                	g2.drawChars(chartmp, 0, 1, square.getX() * tmp.getImage().getWidth() + 7, tmp.getImage().getHeight() * square.getY() + 20);
                 else
-                	g2.drawChars(chartmp, 0, 1, square.getX() * 25 + 5, 543 - 25 * square.getY());   
+                	g2.drawChars(chartmp, 0, 1, square.getX() * tmp.getImage().getWidth() + 7, 513 - tmp.getImage().getHeight() * square.getY() + 20);   
             }
         }
     }
     
     FieldComponent(Player player){
         
-        this.w = 275;
-        this.h = 550;
+        this.w = 270;
+        this.h = 540;
         this.p = player;
         
         loadImage();
@@ -105,7 +96,7 @@ public class FieldComponent extends TetraComponent {
         Player p = new Player(1, "georges", "ninja");
         p.increaseScore(8000);
 
-        p.getBoard().addCase(new Square(10, 21, new Letter((short) 1, 'k', 0), null, "blue"));
+        p.getBoard().addCase(new Square(9, 19, new Letter((short) 1, 'k', 0), null, "blue"));
         p.getBoard().addCase(new Square(0, 0, new Letter((short) 1, 'w', 0), null, "green"));
         
         JFrame frame = new JFrame("test");
