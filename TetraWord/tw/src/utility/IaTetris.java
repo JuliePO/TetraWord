@@ -50,7 +50,7 @@ public class IaTetris {
 		
 		Board b = new Board(11, 22);
 		
-		Shape shape = new Shape('T', new Dictionary("../franch"), b);
+		Shape shape = new Shape('T', new Dictionary("../franch", null), b);
 		
 		//on remplit l'arbre
 		for(int i = 0; i < 4; ++i){

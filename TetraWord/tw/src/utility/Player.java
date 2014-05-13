@@ -1,6 +1,7 @@
 package utility;
 
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Vector;
 
 import utility.Bonus.BonusTetra;
@@ -26,6 +27,8 @@ public class Player
     private BonusTetra activeBonus;
     
     private int nbBonus;
+    
+    private Random alea;
 
     /**
      * Constructor for objects of class Player
@@ -63,6 +66,7 @@ public class Player
         
         listBonus= new BonusTetra[3];
         nbBonus= 0;
+        
     }
     
     public Player(int number, String name)
@@ -71,14 +75,15 @@ public class Player
         this.name = name;        
     }
     
-    public Player(int number, String name, String avatar)
+    public Player(int number, String name, String avatar, Random r)
     {
         this(number, name);
-        this.avatar = avatar;        
+        this.avatar = avatar; 
+        alea = r;
     }
     
-    public void newShape(char shape, Dictionary dico){
-        currentShape= new Shape(shape, dico, board);
+    public void newShape(Dictionary dico){
+        currentShape= new Shape(alea.nextInt(6), dico, board);
     }
     
     public Shape getShape(){

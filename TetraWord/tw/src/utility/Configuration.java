@@ -1,8 +1,8 @@
 package utility;
 
 import java.io.File;
-
 import java.util.HashMap;
+import java.util.Random;
 
 public class Configuration {
 	
@@ -17,7 +17,7 @@ public class Configuration {
 		speedGame = 0;
 		rateBonus = 0;
 		dicoLang = 0;
-        dico= new Dictionary("../"+getLang()+".txt");
+        dico= new Dictionary("../"+getLang()+".txt", new Random());
         
         File directoryToScan = new File("./"); 
     	System.out.println(directoryToScan.listFiles()[1]);
@@ -36,7 +36,7 @@ public class Configuration {
     public void setLang(int i){
     	dicoLang = i;
     	
-    	dico = new Dictionary("../"+getLang()+".txt");
+    	dico = new Dictionary("../"+getLang()+".txt", new Random());
     }
     
     public int getSpeedGame(){

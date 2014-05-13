@@ -1,6 +1,8 @@
 package GameState;
 
-import utility.Board;
+import java.util.Random;
+
+import utility.Chrono;
 import utility.Configuration;
 import utility.Player;
 
@@ -11,16 +13,17 @@ public class Tetris extends GameState {
 	boolean[] fd;
 	int t=0;
 	boolean generate;
+	private Chrono ch;
 
 	public Tetris(Player j, Configuration config) {
 		super( j, config );
 		speed=30;
 		
-
-
+		
 		b= j.getBoard();
-		fd= b.getField();	      
-		j.newShape( 'T', config.getDico() );
+		fd= b.getField();
+		ch = new Chrono(4);
+		j.newShape( config.getDico() );
 	}
 	
 	public boolean isOver(){
@@ -78,7 +81,8 @@ public class Tetris extends GameState {
         // ** DYNAMIC FREE & ALLOC
                 
         if( generate ){
-        	j.newShape( 'I', config.getDico() );
+        	j.newShape( config.getDico() );
+        	ch.reset();
         	generate = false;
         }
         
@@ -94,7 +98,9 @@ public class Tetris extends GameState {
             	return new Anagramme( j, config, b.hasLines() );
             }
             
-            generate = true;
+            ch.decr();
+            if( ch.isFinished() )
+            	generate = true;
         }
         
         

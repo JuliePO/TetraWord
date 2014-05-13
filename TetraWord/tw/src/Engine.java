@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -71,13 +72,14 @@ public class Engine extends JPanel implements ActionListener
  
         long beforeTime= 0, deltaTime, fps = 60;
         beforeTime = System.currentTimeMillis();
+        Random alea = new Random();
         //System.out.println( beforeTime );
         
         // I N I T --------------------------
         Configuration config = new Configuration();
               
-        Player J1= new Player(1, "georges", "ninja");
-        Player J2 = new Player(2, "louis", "panda");
+        Player J1= new Player(1, "georges", "ninja", alea);
+        Player J2 = new Player(2, "louis", "panda", alea);
         
        // Tetris tetris = new Tetris(J1, config);
         
@@ -165,8 +167,8 @@ public class Engine extends JPanel implements ActionListener
         int nb= 8;
         Square[] squares= new Square[nb];
         //Dictionary dico;        
-        Player J1= new Player(1, "georges", "ninja");
-        Player J2 = new Player(2, "louis", "panda");
+        Player J1= new Player(1, "georges", "ninja", null);
+        Player J2 = new Player(2, "louis", "panda", null);
         Board b= J1.getBoard();
         boolean[] fd= b.getField();
 
@@ -177,7 +179,7 @@ public class Engine extends JPanel implements ActionListener
           */  
         //Shape shape= new Shape('T', dico, b);
         // J1.newShape( 'T', dico );
-         J1.newShape( 'T', config.getDico() );
+         J1.newShape( config.getDico() );
             
         squares= null;
         
@@ -253,7 +255,7 @@ public class Engine extends JPanel implements ActionListener
             
             
             if( J1.getShape().isArrived() )
-                J1.newShape( 'T', config.getDico() );
+                J1.newShape( config.getDico() );
             
             
             deltaTime = System.currentTimeMillis() - beforeTime;

@@ -249,6 +249,16 @@ public class Square extends Case
         return letter.getChar();
     }
     
+    public static void switchLetters( Square sq1, Square sq2 ){
+    	
+    	if(sq1 == null || sq2 == null)
+    		return;
+    	
+    	Letter tmp= sq1.letter;	
+    	sq1.letter = sq2.letter;
+    	sq2.letter= tmp;
+    }
+    
     /*public String getColor(){
         return color;
     }
@@ -272,7 +282,7 @@ public class Square extends Case
         Player J1= new Player(1);
         Board b= J1.getBoard();
         boolean[] fd= b.getField();
-        Dictionary dico= new Dictionary("../../french.txt");
+        Dictionary dico= new Dictionary("../../french.txt", null);
         
         
         //printFieldTemp(fd, 40);

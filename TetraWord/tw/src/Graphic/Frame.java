@@ -153,8 +153,8 @@ public class Frame extends JFrame {
         
         Configuration config = new Configuration();
         Dictionary dico = config.getDico();        
-        Player J1= new Player(1, "georges", "ninja");
-        Player J2 = new Player(2, "louis", "panda");
+        Player J1= new Player(1, "georges", "ninja", null);
+        Player J2 = new Player(2, "louis", "panda", null);
         Board b= J1.getBoard();
         boolean[] fd= b.getField();
 
@@ -237,44 +237,5 @@ public class Frame extends JFrame {
        
     }
 
-    
-    public static void mainold(String[] args) {
-
-        Player p = new Player(1, "georges", "ninja");
-        Player p2 = new Player(2, "louis", "panda");
-        //p.increaseScrore(8000);
-        //p2.increaseScrore(452);
-
-        p.getBoard().addCase(new Square(10, 21, new Letter((short) 1, 'k', 1), null, "blue"));
-        p.getBoard().addCase(new Square(2, 2, new Letter((short) 1, 'w', 1), null, "green"));
-        
-        Frame tmp = new Frame(p, p2, new Configuration());
-        
-        /*new Thread(new Runnable() {
-            
-            @Override
-            public void run() {
-                for(int i = 0; i < 200; ++i){
-                    p.increaseScrore(200);
-                    System.out.println(p.getScore());
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-                
-            }
-        }).start();*/
-        while(tmp.getPanelState() != 'e'){
-            tmp.update();
-            //p.increaseScrore(1);
-            //p2.increaseScrore(1);
-            //System.out.println(p.getScore());
-        }
-        
-        tmp.dispose();
-    }
 
 }

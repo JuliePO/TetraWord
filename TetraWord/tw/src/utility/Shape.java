@@ -14,10 +14,47 @@ public class Shape
     private Square[] blocs;
     private Dictionary dico;
     private Board bd;
+    private boolean cube;
 
     /**
      * Constructor for objects of class Shape
      */
+    public Shape(int shp, Dictionary d, Board b)
+    {
+        minos= 4;
+        blocs= new Square[minos];
+        dico= d;
+        bd= b;
+        
+        switch( shp ){
+            case 0:
+            	shapeI("yellow");
+                break;
+            case 1:
+            	shapeO("blue");
+            	cube = true;
+                break;
+            case 2:
+                shapeT("purple");
+                break;
+            case 3:
+            	shapeL("green");
+                break;
+            case 4:
+            	shapeJ("red");
+                break;
+            case 5:
+            	shapeZ("orange");
+                break;
+            case 6:
+            	shapeS("pink");
+                break;
+            default: 
+                System.err.println( "Unknown shape !" );
+        }
+    }
+    
+    //OBSOLETE
     public Shape(char shp, Dictionary d, Board b)
     {
         minos= 4;
@@ -30,22 +67,22 @@ public class Shape
             	shapeI("yellow");
                 break;
             case 'O':
-            	//shapeO("blue");
+            	shapeO("blue");
                 break;
             case 'T':
                 shapeT("purple");
                 break;
             case 'L':
-            	//shapeL("green");
+            	shapeL("green");
                 break;
             case 'J':
-            	//shapeJ("red");
+            	shapeJ("red");
                 break;
             case 'Z':
-            	//shapeZ("orange");
+            	shapeZ("orange");
                 break;
             case 'S':
-            	//shapeS("pink");
+            	shapeS("pink");
                 break;
             default: 
                 System.err.println( "Unknown shape !" );
@@ -102,6 +139,104 @@ public class Shape
     	System.out.println(vs + "***********************************");
     }
     
+    private void shapeS(String col){
+        
+    	int midX= 4;
+    	int maxY= 19;
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter(), bd , col);
+        blocs[1] = new Square( midX+1, maxY, dico.pickLetter(), bd , col);
+        blocs[2] = new Square( midX, maxY-1, dico.pickLetter(), bd , col);
+        blocs[3] = new Square( midX-1, maxY-1, dico.pickLetter(), bd , col);
+        
+        blocs[0].setNeighbour( null, null, blocs[1], blocs[2] );
+        blocs[1].setNeighbour( null, blocs[0], null, null );
+        blocs[2].setNeighbour( blocs[0], blocs[3], null, null );
+        blocs[3].setNeighbour( null, null, blocs[2], null );
+        
+        for(int i= 0; i < minos; ++i )
+            bd.addCase( blocs[i] );
+    }
+    
+    private void shapeZ(String col){
+        
+    	int midX= 4;
+    	int maxY= 19;
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter(), bd , col);
+        blocs[1] = new Square( midX-1, maxY, dico.pickLetter(), bd , col);
+        blocs[2] = new Square( midX, maxY-1, dico.pickLetter(), bd , col);
+        blocs[3] = new Square( midX+1, maxY-1, dico.pickLetter(), bd , col);
+        
+        blocs[0].setNeighbour( null, blocs[1], null, blocs[2] );
+        blocs[1].setNeighbour( null, null, blocs[0], null );
+        blocs[2].setNeighbour( blocs[0], null, blocs[3], null );
+        blocs[3].setNeighbour( null, blocs[2], null, null );
+        
+        for(int i= 0; i < minos; ++i )
+            bd.addCase( blocs[i] );
+    }
+    
+    private void shapeJ(String col){
+        
+    	int midX= 4;
+    	int maxY= 19;
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter(), bd , col);
+        blocs[1] = new Square( midX+1, maxY, dico.pickLetter(), bd , col);
+        blocs[2] = new Square( midX-1, maxY, dico.pickLetter(), bd , col);
+        blocs[3] = new Square( midX+1, maxY-1, dico.pickLetter(), bd , col);
+        
+        
+        blocs[0].setNeighbour( null, blocs[2], blocs[1], null );
+        blocs[1].setNeighbour( null, blocs[0], null, blocs[3] );
+        blocs[2].setNeighbour( null, null, blocs[0], null );
+        blocs[3].setNeighbour( blocs[1], null, null, null );
+        
+        for(int i= 0; i < minos; ++i )
+            bd.addCase( blocs[i] );
+    }
+    
+    private void shapeL(String col){
+        
+    	int midX= 4;
+    	int maxY= 19;
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter(), bd , col);
+        blocs[1] = new Square( midX+1, maxY, dico.pickLetter(), bd , col);
+        blocs[2] = new Square( midX-1, maxY, dico.pickLetter(), bd , col);
+        blocs[3] = new Square( midX-1, maxY-1, dico.pickLetter(), bd , col);
+        
+        
+        blocs[0].setNeighbour( null, blocs[2], blocs[1], null );
+        blocs[1].setNeighbour( null, blocs[0], null, null );
+        blocs[2].setNeighbour( null, null, blocs[0], blocs[3] );
+        blocs[3].setNeighbour( blocs[2], null, null, null );
+        
+        for(int i= 0; i < minos; ++i )
+            bd.addCase( blocs[i] );
+    }
+    
+    private void shapeO(String col){
+        
+    	int midX= 4;
+    	int maxY= 19;
+    	
+        blocs[0] = new Square( midX, maxY-1, dico.pickLetter(), bd , col);
+        blocs[1] = new Square( midX+1, maxY-1, dico.pickLetter(), bd , col);
+        blocs[2] = new Square( midX+1, maxY, dico.pickLetter(), bd , col);
+        blocs[3] = new Square( midX, maxY, dico.pickLetter(), bd , col);
+        
+        
+        blocs[0].setNeighbour( null, null, blocs[1], null );
+        blocs[1].setNeighbour( blocs[2], blocs[0], null, null );
+        blocs[2].setNeighbour( null, blocs[3], null, blocs[1] );
+        blocs[3].setNeighbour( null, null, blocs[2], blocs[0] );
+        
+        for(int i= 0; i < minos; ++i )
+            bd.addCase( blocs[i] );
+    }
+    
     private void shapeI(String col){
         
     	int midX= 4;
@@ -118,10 +253,8 @@ public class Shape
         blocs[2].setNeighbour( blocs[0], null, null, blocs[3] );
         blocs[3].setNeighbour( null, blocs[2], null, null );
         
-        //Ajout au plateau
         for(int i= 0; i < minos; ++i )
             bd.addCase( blocs[i] );
-        
     }
     
     private void shapeT(String col){
@@ -150,6 +283,16 @@ public class Shape
         
     }
     
+    public boolean inShape(int x, int y) {
+    	
+    	for( int i= 0; i < minos-1; ++i )
+    		if( blocs[i].getX() == x && blocs[i].getY() == y )
+    			return true;
+    	
+    	return false;
+        
+    }
+    
     public void rotate( Case[] blocs ){
     	
     	//Génération de vecteurs relatifs
@@ -159,9 +302,13 @@ public class Shape
         int[] vectx= new int[minos-1];
         int[] vecty= new int[minos-1];
         
-        for( int i= 0; i < minos-1; ++i )
-        	if( bd.outside(blocs[i+1].getY() - yref + xref, yref - blocs[i+1].getX() + xref ) )
+        for( int i= 0; i < minos-1; ++i ){
+        	int nX= blocs[i+1].getY() - yref + xref;
+        	int nY= yref - blocs[i+1].getX() + xref;
+        	
+        	if( bd.outside( nX, nY ) || ( bd.isBusy(nX, nY) && !inShape(nX,nY) ) )
         		return;
+        }
 
         
         for( int i= 0; i < minos-1; ++i ){
@@ -181,34 +328,14 @@ public class Shape
     }
     
     public void rotate(){
-        
-
-    	rotate( blocs );
-    	/*
-
-        //Generation de vecteurs relatifs
-        //blocs[0] for (les autres)
-        int xref= blocs[0].getX();
-        int yref= blocs[0].getY();
-        
-        //Square pivot = blocs[0];
-        
-        int[] vectx= new int[minos-1];
-        int[] vecty= new int[minos-1];
-        
-        for( int i= 0; i < minos-1; ++i )
-        	if( bd.outside(blocs[i+1].getY() - yref + xref, yref - blocs[i+1].getX() + xref ) )
-        		return;
-
-        
-        for( int i= 0; i < minos-1; ++i ){
-        	
-            vectx[i]= blocs[i+1].getX() - xref;  
-            vecty[i]= blocs[i+1].getY() - yref;
-
-            blocs[i+1].setPosition(  xref + vecty[i], yref - vectx[i] );
-
-        } */
+    	
+    	if( cube ){
+    		Square.switchLetters(blocs[0], blocs[1]);
+    		Square.switchLetters(blocs[2], blocs[3]);
+    		Square.switchLetters(blocs[1], blocs[3]);
+    	}
+    	else
+    		rotate( blocs );
     }
     
     public void goRight(){

@@ -2,6 +2,7 @@ package utility;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Random;
 import java.util.Scanner;
 import java.text.Normalizer;
 
@@ -17,12 +18,14 @@ public class Dictionary
     private Letter letters[];
     private Letter alphabet[];
     private AlphaTree tree;
+    private Random alea;
     
     /**
      * Constructor for objects of class File
      */
-    public Dictionary(String path)
+    public Dictionary(String path, Random r)
     {	
+    	alea= r;
     	generateAlphabet();
         generateLetters();
         
@@ -166,8 +169,6 @@ public class Dictionary
     }
   
     public Letter pickLetter(){
-  
-        int r = (int) (Math.random() * getSommeFrequence());
         
                 /* Decommenter pour voir les lettres random
         if( r%5 == 0 )
@@ -176,7 +177,8 @@ public class Dictionary
             System.out.print( Character.toUpperCase(letters[r].getChar()) + " " );
                 */
             
-        return letters[r];
+    	System.out.println("SomFreq" +this.getSommeFrequence());
+        return letters[alea.nextInt(getSommeFrequence())];
     }
     
     public int findWith( String s ){
@@ -227,9 +229,9 @@ public class Dictionary
         System.out.print( "loading..." );    
         
         if( args.length != 0 ) 
-            dico= new Dictionary("../../french.txt");
+            dico= new Dictionary("../../french.txt", null);
         else
-            dico= new Dictionary("../french.txt");
+            dico= new Dictionary("../french.txt", null);
         
         System.out.println( "DONE !" );
         

@@ -236,9 +236,9 @@ public class AlphaTree //Arbre ternaire lexicographique
     
     public static void main(String[] args){
         
-        Dictionary dic= new Dictionary( "../../french.txt" );
+        //Dictionary dic= new Dictionary( "../../french.txt" );
         
-        AlphaTree aT= new AlphaTree( dic.getAlphabet() );
+        AlphaTree aT= new AlphaTree( null );
         System.out.println( "go" );
         //aT.add( tab );
         aT.add( "hello" );
