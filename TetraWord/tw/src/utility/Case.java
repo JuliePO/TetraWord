@@ -23,14 +23,22 @@ public class Case
     /**
      * Constructor for objects of class Square
      */
+    public Case( int pX, int pY ){
+    	x = pX;
+    	y = pY;
+    }
     public Case(int pX, int pY, Board f, String color)
     {
+    	this(pX, pY);
         nextState= '?';
-        x = pX;
-        y = pY;
         field= f;
         this.color = color;
     }    
+    
+    public void setPosition( int x, int y ){
+        this.x = x;
+        this.y = y;
+    }
 
     public int getX(){
         return x;
@@ -42,6 +50,11 @@ public class Case
     
     public String getColor(){
         return color;
+    }
+    
+    public void changeColor( String color ){
+    	//verif
+    	this.color= color; 
     }
     
     public char getNextState(){

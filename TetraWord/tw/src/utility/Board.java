@@ -26,16 +26,76 @@ public class Board
         invert = false;
     }
     
-    public int size(){
-        return cases.size();
-    }
-    
     public Board(int width, int height)
     {
         this.width= width;
         this.height= height;
         cases= new Vector<Square>(0);
         field= new boolean[width * height];
+    }
+    
+    public Vector<Integer> hasLines(){
+    	
+    	Vector<Integer> vect= new Vector<Integer>();
+    	
+    	
+    	for(int i= 0; i < height; ++i ){
+    		int k= 0;
+    		for( int j= 0; j < width; ++j ){
+    			if( !this.isBusy(j, i) )
+    				break;
+    			++k;
+    		}
+    		
+    		if( k == width )
+    			vect.add(i);
+    	}
+    			
+    	return vect;
+    }
+    
+    //OBSOLETE
+    public void colorLines( Vector<Integer> v, String col ){
+    	
+    	for(int i= 0; i < v.size(); ++i)
+	    	for(int j= 0; j < width; ++j)
+	    		if( getSquareAt( j, v.elementAt(i) ) != null)
+	    			getSquareAt( j, v.elementAt(i) ).changeColor(col);
+    }
+    
+    public void selectLines( Vector<Integer> v ){
+    	
+    	for(int i= 0; i < v.size(); ++i)
+	    	for(int j= 0; j < width; ++j)
+	    		if( getSquareAt( j, v.elementAt(i) ) != null)
+	    			getSquareAt( j, v.elementAt(i) ).setState('s');
+    }
+    
+	public int hasLine(){
+	    	
+    	for(int i= 0; i < height; ++i ){
+    		for( int j= 0; j < width; ++j ){
+    			if( !this.isBusy(i, j) )
+    				break;
+    		}
+    		return i;
+    	}
+    			
+    	return -1;
+	}
+    
+    public boolean[] copyField(){
+    	
+    	boolean[] vf= new boolean[width * height];
+    	
+    	for(int i= 0; i < width * height; ++i)
+    		vf[i] = field[i];
+    	
+    	return vf;
+    }
+    
+    public int size(){
+        return cases.size();
     }
     
     /**
@@ -57,6 +117,7 @@ public class Board
     public Square elmtAt( int index ){
         return cases.elementAt(index);
     }
+    
     
     public boolean outside( Square s ){//Case?
         return outside(s.getX(), s.getY() );

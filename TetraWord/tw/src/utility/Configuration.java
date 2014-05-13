@@ -21,8 +21,7 @@ public class Configuration {
         
         File directoryToScan = new File("./"); 
     	System.out.println(directoryToScan.listFiles()[1]);
-    	
-    	
+  
     	
 	}
     

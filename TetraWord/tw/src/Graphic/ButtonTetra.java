@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class ButtonTetra extends JButton {
@@ -21,18 +22,24 @@ public class ButtonTetra extends JButton {
 	private int w; 
 	private int h;
 	
+	ImageIcon img;
+	ImageIcon imgTxt;
+	ImageIcon imgHover;
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		
-		Graphics2D g2 = (Graphics2D)g;
+		/*Graphics2D g2 = (Graphics2D)g;
 		
 		g2.setPaint(paint);
-		g2.fillRect(0, 0, w, h);
+		g2.fillRect(0, 0, w, h);*/
+		
+		img.paintIcon(this, g, 0, 0);
 	}
 	
 	private void loadImage(String path1, String path2){
-		try {
+		/*try {
 	           texture = ImageIO.read(new File(path1));
 	           hover = ImageIO.read(new File(path2));
        } catch (IOException ex) {
@@ -40,10 +47,17 @@ public class ButtonTetra extends JButton {
        }
 		
 		w = texture.getWidth();
-		h = texture.getHeight();
+		h = texture.getHeight();*/
+		w= img.getIconWidth();
+		h= img.getIconHeight();
 	}
 	
 	public ButtonTetra(String path1, String path2){
+		
+		imgTxt = new ImageIcon(path1);
+		imgHover = new ImageIcon(path2);
+		img= imgTxt;
+		
 		loadImage(path1, path2);
 		loadButton(path1, path2);		
 	}
@@ -52,15 +66,18 @@ public class ButtonTetra extends JButton {
 	
 		setBorder(BorderFactory.createEmptyBorder());
 		
-		paint= new TexturePaint(texture, new Rectangle(0, 0, w, h));
+		//paint= new TexturePaint(texture, new Rectangle(0, 0, w, h));
+		
 		
 		addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	paint= new TexturePaint(hover, new Rectangle(0, 0, w, h));
+		    	//paint= new TexturePaint(hover, new Rectangle(0, 0, w, h));
+		    	img= imgHover;
 		    	getParent().repaint();
 		    }
 		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	paint= new TexturePaint(texture, new Rectangle(0, 0, w, h));
+		    	//paint= new TexturePaint(texture, new Rectangle(0, 0, w, h));
+		    	img= imgTxt;
 		    	getParent().repaint();
 		    }
 		});

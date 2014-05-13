@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,17 +25,19 @@ import Graphic.PanelBase;
 public class PanelAccueil extends PanelBase {
 	
 	 BufferedImage accueil;
-	 TexturePaint accueilP;
+	 //TexturePaint accueilP;
+	 ImageIcon img;
 	 
 	 	 
 	@Override
 	public void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponents(g);
-		Graphics2D g2 = (Graphics2D)g;
+		//Graphics2D g2 = (Graphics2D)g;
 		
-		g2.setPaint(accueilP);
-	    g2.fillRect(0, 0, w, h);
+		//g2.setPaint(accueilP);
+	    //g2.fillRect(0, 0, w, h);
+		img.paintIcon(this, g, 0, 0);
 	    
 	}
 	
@@ -50,7 +53,7 @@ public class PanelAccueil extends PanelBase {
 		h = accueil.getHeight();
 		w = accueil.getWidth();
 		
-		accueilP= new TexturePaint(accueil, new Rectangle(0, 0, w, h));
+		//accueilP= new TexturePaint(accueil, new Rectangle(0, 0, w, h));
 	}
 
 	public PanelAccueil() {
@@ -58,6 +61,9 @@ public class PanelAccueil extends PanelBase {
 		super();
 		
 		state = 's';
+		System.out.println(mPath + "texture/start/background-start.jpg");
+		img = new ImageIcon(mPath + "texture/start/background-start.jpg");
+		
 		loadImage();
 				
 		final ActionListener actionGame= new ActionListener() {

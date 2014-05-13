@@ -5,9 +5,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import utility.*; //Sale
-import GameState.*; //Sale
-import Graphic.*; //Sale
+import utility.Board;
+import utility.Configuration;
+import utility.Player;
+import utility.Square;
+import GameState.Game;
+import GameState.GameState;
+import Graphic.Frame;
+
 
 
 public class Engine extends JPanel implements ActionListener
@@ -32,7 +37,7 @@ public class Engine extends JPanel implements ActionListener
     
     Engine(Player p1, Player p2, Configuration config){
 
-    	time= new Timer(5, this);
+    	time= new Timer(17, this);
     	
     	game1 = new Game(p1, config);
     	game2 = new Game(p2, config);

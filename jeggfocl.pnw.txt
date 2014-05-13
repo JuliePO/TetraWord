@@ -1,0 +1,138 @@
+﻿Merge remote-tracking branch 'origin/master' into Maw3
+
+Conflicts:
+	.gitignore
+	TetraWord/tw/bin/Engine.class
+	TetraWord/tw/bin/GameState/Anagramme.class
+	TetraWord/tw/bin/GameState/GameState.class
+	TetraWord/tw/bin/GameState/Tetris.class
+	TetraWord/tw/bin/GameState/Wordle.class
+	TetraWord/tw/src/GameState/Tetris.java
+	TetraWord/tw/src/utility/Shape.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch Maw3
+# Your branch is ahead of 'origin/Maw3' by 2 commits.
+#   (use "git push" to publish your local commits)
+#
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#	modified:   .gitignore
+#	new file:   TetraWord/tw/MANIFEST.MF
+#	modified:   TetraWord/tw/bin/Engine.class
+#	modified:   TetraWord/tw/bin/GameState/GameState.class
+#	modified:   TetraWord/tw/bin/GameState/Tetris.class
+#	new file:   TetraWord/tw/bin/GameState/Wordle.class
+#	new file:   TetraWord/tw/build.xml
+#	new file:   TetraWord/tw/manifest
+#	modified:   TetraWord/tw/src/Engine.java
+#	modified:   TetraWord/tw/src/GameState/GameState.java
+#	modified:   TetraWord/tw/src/GameState/Tetris.java
+#	modified:   TetraWord/tw/src/Graphic/ButtonTetra.java
+#	modified:   TetraWord/tw/src/Graphic/Frame.java
+#	modified:   TetraWord/tw/src/Graphic/TetraComponent.java
+#	modified:   TetraWord/tw/src/Graphic/character/PanelCharacter.java
+#	modified:   TetraWord/tw/src/Graphic/option/option/OptionUnderPanel.java
+#	modified:   TetraWord/tw/src/Graphic/start/PanelAccueil.java
+#	modified:   TetraWord/tw/src/Graphic/tetra/BonusArrayComponent.java
+#	modified:   TetraWord/tw/src/Graphic/tetra/FieldComponent.java
+#	modified:   TetraWord/tw/src/Graphic/tetra/KeyListenerTetra.java
+#	modified:   TetraWord/tw/src/Graphic/tetra/PanelTetraWord.java
+#	modified:   TetraWord/tw/src/utility/AlphaTree.java
+#	modified:   TetraWord/tw/src/utility/Board.java
+#	new file:   TetraWord/tw/src/utility/Bonus/BonusScore.java
+#	new file:   TetraWord/tw/src/utility/Bonus/BonusTetra.java
+#	new file:   TetraWord/tw/src/utility/Bonus/ExchangePlateau.java
+#	new file:   TetraWord/tw/src/utility/Bonus/MalusScore.java
+#	new file:   TetraWord/tw/src/utility/Bonus/ReturnMalus.java
+#	new file:   TetraWord/tw/src/utility/IaTetris.java
+#	modified:   TetraWord/tw/src/utility/Player.java
+#	modified:   TetraWord/tw/src/utility/Shape.java
+#	modified:   TetraWord/tw/src/utility/Square.java
+#	modified:   TetraWord/tw/texture/game/blue.jpg
+#	modified:   TetraWord/tw/texture/game/bonus/bombe.jpg
+#	modified:   TetraWord/tw/texture/game/bonus/bonus.jpg
+#	modified:   TetraWord/tw/texture/game/bonus/exchange.jpg
+#	modified:   TetraWord/tw/texture/game/bonus/lapin.jpg
+#	modified:   TetraWord/tw/texture/game/bonus/malus.jpg
+#	modified:   TetraWord/tw/texture/game/bonus/return.jpg
+#	modified:   TetraWord/tw/texture/game/bonus/tempete.jpg
+#	modified:   TetraWord/tw/texture/game/bonus/time.jpg
+#	modified:   TetraWord/tw/texture/game/bonus/tortue.jpg
+#	modified:   TetraWord/tw/texture/game/bonus/tremblement.jpg
+#	modified:   TetraWord/tw/texture/game/bonus/worddle.jpg
+#	deleted:    TetraWord/tw/texture/game/field/blue field.png
+#	modified:   TetraWord/tw/texture/game/field/blue.png
+#	deleted:    TetraWord/tw/texture/game/field/green field.jpg
+#	deleted:    TetraWord/tw/texture/game/field/green.png
+#	modified:   TetraWord/tw/texture/game/green.jpg
+#	modified:   TetraWord/tw/texture/game/orange.jpg
+#	modified:   TetraWord/tw/texture/game/pink.jpg
+#	modified:   TetraWord/tw/texture/game/purple.jpg
+#	modified:   TetraWord/tw/texture/game/red.jpg
+#	modified:   TetraWord/tw/texture/game/yellow.jpg
+#	new file:   design/cube/27-5x27-5/cube16.jpg
+#	new file:   design/cube/27-5x27-5/green.jpg
+#	new file:   design/cube/27-5x27-5/orange.jpg
+#	new file:   design/cube/27-5x27-5/pink.jpg
+#	new file:   design/cube/27-5x27-5/purple.jpg
+#	new file:   design/cube/27-5x27-5/red.jpg
+#	new file:   design/cube/27-5x27-5/yellow.jpg
+#	new file:   design/cube/28x28/cube16.jpg
+#	new file:   design/cube/28x28/dark_gray.jpg
+#	new file:   design/cube/28x28/gray.jpg
+#	new file:   design/cube/28x28/green.jpg
+#	new file:   design/cube/28x28/orange.jpg
+#	new file:   design/cube/28x28/pink.jpg
+#	new file:   design/cube/28x28/purple.jpg
+#	new file:   design/cube/28x28/red.jpg
+#	new file:   design/cube/28x28/yellow.jpg
+#	new file:   design/cube/bonus/27-5x27-5/bombe.jpg
+#	new file:   design/cube/bonus/27-5x27-5/bonus.jpg
+#	new file:   design/cube/bonus/27-5x27-5/exchange.jpg
+#	new file:   design/cube/bonus/27-5x27-5/lapin.jpg
+#	new file:   design/cube/bonus/27-5x27-5/malus.jpg
+#	new file:   design/cube/bonus/27-5x27-5/return.jpg
+#	new file:   design/cube/bonus/27-5x27-5/tempete.jpg
+#	new file:   design/cube/bonus/27-5x27-5/time.jpg
+#	new file:   design/cube/bonus/27-5x27-5/tortue.jpg
+#	new file:   design/cube/bonus/27-5x27-5/tremblement.jpg
+#	new file:   design/cube/bonus/27-5x27-5/worddle.jpg
+#	new file:   design/cube/bonus/28x28/bombe.jpg
+#	new file:   design/cube/bonus/28x28/bonus.jpg
+#	new file:   design/cube/bonus/28x28/exchange.jpg
+#	new file:   design/cube/bonus/28x28/lapin.jpg
+#	new file:   design/cube/bonus/28x28/malus.jpg
+#	new file:   design/cube/bonus/28x28/return.jpg
+#	new file:   design/cube/bonus/28x28/tempete.jpg
+#	new file:   design/cube/bonus/28x28/time.jpg
+#	new file:   design/cube/bonus/28x28/tortue.jpg
+#	new file:   design/cube/bonus/28x28/tremblement.jpg
+#	new file:   design/cube/bonus/28x28/worddle.jpg
+#	new file:   design/cube/dark_gray.jpg
+#	new file:   design/cube/gray.jpg
+#	new file:   design/elements field/field-grid1.png
+#	new file:   design/elements field/field-grid2.png
+#	new file:   design/elements field/field-grid3.png
+#	new file:   design/elements field/field.png
+#	new file:   design/fonts/dosis-bold-webfont.eot
+#	new file:   design/fonts/dosis-bold-webfont.svg
+#	new file:   design/fonts/dosis-bold-webfont.ttf
+#	new file:   design/fonts/dosis-bold-webfont.woff
+#	new file:   design/fonts/dosis-regular-webfont.eot
+#	new file:   design/fonts/dosis-regular-webfont.svg
+#	new file:   design/fonts/dosis-regular-webfont.ttf
+#	new file:   design/fonts/dosis-regular-webfont.woff
+#	new file:   itcheo03.qpb.txt
+#
+

@@ -2,24 +2,30 @@ package Graphic.tetra;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Vector;
 
 import GameState.Game;
-import Graphic.Frame;
 import utility.Player;
 
 public class MouseListenerTetra implements MouseListener {
 	
 	private Game g1;
 	private Game g2;
+	String an;
 
 	public MouseListenerTetra(Game g1, Game g2) {
 		this.g1 = g1;
 		this.g2 = g2;
+
+		String an= "";
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+		PanelTetraWord tetra = ((PanelTetraWord) e.getComponent());
+		
+		clickAnagramme(tetra, e.getX(), e.getY());
+		
 	}
 
 	@Override
@@ -36,11 +42,6 @@ public class MouseListenerTetra implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
-		PanelTetraWord tetra = ((PanelTetraWord) e.getComponent());
-		
-		clickAnagramme(tetra, e.getX(), e.getY());
-		
 	}
 	
 	private void clickAnagramme(PanelTetraWord tetra, int x, int y){
@@ -65,10 +66,22 @@ public class MouseListenerTetra implements MouseListener {
 			int xSquare = (x - insetsL)/25;
 			int ySquare = (((y - insetsT)/-25)) + 21;
 			
-			System.out.println(ySquare);
-			
-			if(p.isSquareAt(xSquare, ySquare))
-				System.out.println(p.getSquareAt(xSquare, ySquare).getChar());
+			//(square.getY() - 21) * -25
+			//System.out.println(ySquare);
+			if(p.isSquareAt(xSquare, ySquare)){
+				System.out.println( p.getSquareAt(xSquare, ySquare).getChar() );
+				an += p.getSquareAt(xSquare, ySquare).getChar();
+			}
+			else{
+				System.out.print(" Mot : " + an + "..." );
+				if( p.getShape().getDico().contains(an) )
+					System.out.println( "OK" );
+				else
+					System.out.println( "WRONG !" );
+				
+				System.out.print(">> Mots : ");
+				p.getShape().getDico().findWith(an);
+			}
 		}
 	}
 }

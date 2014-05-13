@@ -26,6 +26,7 @@ public class Square extends Case
     //boolean[] fieldTemp;
     //private Board field;
     boolean newBloc;
+    private char state; // 'n'ormal , 's'elected , 'c'licked 
     
 
     /**
@@ -42,6 +43,7 @@ public class Square extends Case
         //this.color = color;
         
         newBloc= true;
+        state= 'n';
         setBusy();
     }
     
@@ -101,6 +103,11 @@ public class Square extends Case
             
         return null;
             
+    }
+    
+    public void setState(char s){
+    	
+    	state= s;
     }
     
     public void setNeighbour( Square up, Square left, Square right, Square down ){
@@ -232,6 +239,7 @@ public class Square extends Case
         setX( x+tx );
     }
     
+    @Override //Case
     public void setPosition( int x, int y ){
         setX(x);
         setY(y);

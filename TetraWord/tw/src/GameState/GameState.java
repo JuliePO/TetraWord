@@ -1,8 +1,26 @@
 package GameState;
 
+import utility.Board;
+import utility.Configuration;
+import utility.Player;
 
-public interface GameState {
-	public GameState update(int tps);
-	public void draw();
-	public void input();	
+
+public abstract class GameState {
+	
+	protected Board b;
+	protected Player j;
+	protected Configuration config;
+	
+	public GameState(Player pl, Configuration cg){
+		j= pl;
+		b= j.getBoard();
+		config= cg;
+	}
+
+	
+	public GameState update(int tps){
+		return this;
+	}
+	
+		
 }
