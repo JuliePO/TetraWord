@@ -37,7 +37,6 @@ public class FieldComponent extends TetraComponent {
        for(int i= 0; i < paths.length; ++i ){   
 	        try {
 	          BufferedImage texture = ImageIO.read(new File(mPath+"texture/game/"+paths[i]+".jpg"));
-	      //    texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
 	          paints.put(paths[i], new TexturePaint(texture, new Rectangle(insetW, insetH, texture.getWidth(), texture.getHeight())));      
 	       } catch (IOException ex) {
 	           System.out.println("Error 404: color missing !" + paths[i]);

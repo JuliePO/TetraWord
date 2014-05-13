@@ -197,4 +197,14 @@ public class PanelTetraWord extends PanelBase {
 		
 		pause = !pause;
 	}
+
+	public Game getGame1() {
+		// TODO Auto-generated method stub
+		return G1;
+	}
+
+	public Game getGame2() {
+		// TODO Auto-generated method stub
+		return G2;
+	}
 }
