@@ -11,8 +11,8 @@ import java.awt.Color;
  */
 public class Case
 {
-    protected int x;
-    protected int y;
+    public int x;
+    public int y;
     
     protected char nextState;
     //Bonus effect
