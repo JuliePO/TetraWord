@@ -80,6 +80,13 @@ public class Frame extends JFrame {
 		return G2.getPlayer();
 	}
 	
+	public void restart(){
+		contentPane.removeAll();
+		contentPane.add(new PanelAccueil());
+		onSize();
+		setPanelState('s');
+	}
+	
 	public void update(){
 				
 		char tmpState = ((PanelBase)contentPane.getComponent(0)).getState();
