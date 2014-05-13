@@ -209,5 +209,13 @@ public class Player
 				activeBonus.update();
 		}
 	}
+
+	public void reset() {
+		
+		board= new Board();
+        listBonus= new BonusTetra[3];
+        nbBonus= 0;
+        score = 0;
+	}
     
 }

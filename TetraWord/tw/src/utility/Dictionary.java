@@ -108,54 +108,6 @@ public class Dictionary
         	for(int y = 0; y < alphabet[i].getFrequence(); ++y)
         		letters[++it] = alphabet[i];
         }
-        /*
-        for(int ic= 0; ic < 15; ++ic)
-            letters[++it]= alphabet[4];
-        for(int ic= 0; ic < 9; ++ic)
-            letters[++it]= alphabet[0];
-        for(int ic= 0; ic < 8; ++ic)
-            letters[++it]= alphabet[8];
-        for(int ic= 0; ic < 6; ++ic)
-            letters[++it]= alphabet[13];
-        for(int ic= 0; ic < 6; ++ic)
-            letters[++it]= alphabet[14];
-        for(int ic= 0; ic < 6; ++ic)
-            letters[++it]= alphabet[17];
-        for(int ic= 0; ic < 6; ++ic)
-            letters[++it]= alphabet[18];
-        for(int ic= 0; ic < 6; ++ic)
-            letters[++it]= alphabet[19];
-        for(int ic= 0; ic < 6; ++ic)
-            letters[++it]= alphabet[20];
-        for(int ic= 0; ic < 5; ++ic)
-            letters[++it]= alphabet[11];
-        for(int ic= 0; ic < 3; ++ic)
-            letters[++it]= alphabet[3];
-        for(int ic= 0; ic < 3; ++ic)
-            letters[++it]= alphabet[12];
-        for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= alphabet[6];   
-        for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= alphabet[1];
-        for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= alphabet[2];
-        for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= alphabet[15];
-        for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= alphabet[5];
-        for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= alphabet[7];
-        for(int ic= 0; ic < 2; ++ic)
-            letters[++it]= alphabet[21];    
-        
-        letters[++it]= alphabet[9];
-        letters[++it]= alphabet[16];
-        letters[++it]= alphabet[10];
-        letters[++it]= alphabet[22];
-        letters[++it]= alphabet[23];
-        letters[++it]= alphabet[24];
-        letters[++it]= alphabet[25];
-         */
     }
     
     
@@ -169,15 +121,8 @@ public class Dictionary
     }
   
     public Letter pickLetter(){
-        
-                /* Decommenter pour voir les lettres random
-        if( r%5 == 0 )
-            System.out.println( Character.toUpperCase(letters[r].getChar()) + " " );
-        else
-            System.out.print( Character.toUpperCase(letters[r].getChar()) + " " );
-                */
-            
-        return letters[alea.nextInt(getSommeFrequence()-1)];
+
+        return letters[alea.nextInt(getSommeFrequence())];
     }
     
     public int findWith( String s ){

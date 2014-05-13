@@ -55,8 +55,6 @@ public class Engine extends JPanel implements ActionListener
     
     @Override //ActionListener
 	public void actionPerformed(ActionEvent arg0) {
-    	
-    	//System.out.println("ActionPerformed");
     	if(fr.getPanelState() == 'g')
     		update(0);
 
@@ -69,8 +67,18 @@ public class Engine extends JPanel implements ActionListener
     }
     
     public void update(int tps){
-        game1.update(tps);
-        game2.update(tps);
+    	
+    	//Decomenter pour relancer le jeu en fin de partie
+    	if(/*game1.isEnd() || game2.isEnd()*/false){
+    		System.out.println("gameover");
+    		game1.restart();
+    		game2.restart();
+    		fr.restart();
+    	}
+    	else{
+	        game1.update(tps);
+	        game2.update(tps);
+	    }
     }
     
     public static void main(String[] args) {
@@ -80,7 +88,6 @@ public class Engine extends JPanel implements ActionListener
         beforeTime = System.currentTimeMillis();
 
         Random alea = new Random();
-        //System.out.println( beforeTime );
 
         
         // I N I T --------------------------
@@ -88,9 +95,7 @@ public class Engine extends JPanel implements ActionListener
               
         Player J1= new Player(1, "georges", "ninja", alea);
         Player J2 = new Player(2, "louis", "panda", alea);
-        
-       // Tetris tetris = new Tetris(J1, config);
-        
+                
         Engine engine = new Engine(J1, J2, config);
        
     }
