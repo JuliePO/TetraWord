@@ -10,6 +10,7 @@ public class Anagramme extends GameState {
 	
 	private Vector<Integer> fullLines;
 	private Vector<Square> currentWord;
+	private boolean finish;
 
 	public Anagramme( Player p, Configuration c, Vector<Integer> l){
 	
@@ -26,6 +27,8 @@ public class Anagramme extends GameState {
 	public GameState update(int tps) {
 		
 		//System.out.println("ANAGRAMME");	
+		if( finish )
+			return null;
 	
 		if( false ){
 			//supprimer la ligne
@@ -80,6 +83,8 @@ public class Anagramme extends GameState {
 			
 			System.out.print(">> Mots : ");
 			j.getShape().getDico().findWith(word);
+			b.supprLine(fullLines.elementAt(0));
+			finish= true;
 		}
 	}
 

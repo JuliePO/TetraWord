@@ -177,8 +177,7 @@ public class Dictionary
             System.out.print( Character.toUpperCase(letters[r].getChar()) + " " );
                 */
             
-    	System.out.println("SomFreq" +this.getSommeFrequence());
-        return letters[alea.nextInt(getSommeFrequence())];
+        return letters[alea.nextInt(getSommeFrequence()-1)];
     }
     
     public int findWith( String s ){
