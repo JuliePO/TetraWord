@@ -121,6 +121,7 @@ public class Dictionary
     }
   
     public Letter pickLetter(){
+
         return letters[alea.nextInt(getSommeFrequence())];
     }
     

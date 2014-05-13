@@ -61,48 +61,28 @@ public class Tetris extends GameState {
             // ** DYNAMIC FREE & ALLOC
                 
 
-        if( generate ){
-        	j.newShape( config.getDico() );
-        	ch.reset();
-        	generate = false;
-        }
-        
-        if( j.getShape().isArrived() ){
-        	
-        	if( isOver() ){
-        		end =true;
-        		return this;
-        	}
-            
-            if( !b.hasLines().isEmpty() ){
-            	
-            	System.out.println(b.hasLines());
-            	return new Anagramme( j, config, b.hasLines() );
-            }
-            
-            ch.decr();
-            if( ch.isFinished() )
-            	generate = true;
-        }
-        
-        
-        
-        //++t;
-        //System.out.println( t );
-
+	        if( generate ){
+	        	j.newShape( config.getDico() );
+	        	ch.reset();
+	        	generate = false;
+	        }
 	        
-
-        
 	        if( j.getShape().isArrived() ){
-	        	            
+	        	
+	        	//if( isOver() )
+	        		//System.exit(0);
+	        		//System.out.println("GAME OVER * GAME OVER * GAME OVER * GAME OVER *");
+	            
 	            if( !b.hasLines().isEmpty() ){
 	            	
 	            	System.out.println(b.hasLines());
 	            	return new Anagramme( j, config, b.hasLines() );
 	            }
 	            
-	            generate = true;
-	        }        
+	            ch.decr();
+	            if( ch.isFinished() )
+	            	generate = true;
+	        }    
 		}
 
         return this;

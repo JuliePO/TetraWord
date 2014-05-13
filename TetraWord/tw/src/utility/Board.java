@@ -138,6 +138,10 @@ public class Board
         cases.removeElementAt(index);
     }
     
+    public void suppr( Square c ){
+    	
+    }
+    
     public boolean[] getField(){
         return field;
     }
@@ -152,6 +156,32 @@ public class Board
     
     public Vector<Square> getCases(){
         return cases;
+    }
+    
+    private void fallLine( int line ){
+    	
+    	for(int i= 0; i < cases.size(); ++i){
+    		Square tmp = elmtAt(i);
+    		
+            if( tmp.getY() == line )
+                tmp.fall();
+    	}
+    	
+    }
+    
+    public void fallFromLine( int line ){
+    	
+    	for( int i= line; i < height; ++i )
+    		fallLine(i);
+    }
+    
+    public void supprLine( int line ){
+    	
+    	for(int i= 0; i < cases.size(); ++i)
+            if( elmtAt(i).getY() == line )
+                supprAt(i);
+    	
+    	fallFromLine(line+1);
     }
     
     public Square getSquareAt(int x, int y){
