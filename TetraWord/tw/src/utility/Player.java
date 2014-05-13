@@ -20,6 +20,7 @@ public class Player
     private String name;
     private String avatar;
     private HashMap<String, Character> inputs;
+    private Vector<Integer> fullLines;
 
     private Shape currentShape;
     
@@ -37,6 +38,7 @@ public class Player
     public Player(int number)
     {
         board= new Board();
+        setFullLines(new Vector<Integer>(0));
         
         inputs = new HashMap<>(8);
         switch(number){
@@ -216,6 +218,14 @@ public class Player
         listBonus= new BonusTetra[3];
         nbBonus= 0;
         score = 0;
+	}
+
+	public Vector<Integer> getLines() {
+		return fullLines;
+	}
+
+	public void setFullLines(Vector<Integer> fullLines) {
+		this.fullLines = fullLines;
 	}
     
 }

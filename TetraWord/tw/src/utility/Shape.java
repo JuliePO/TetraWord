@@ -90,34 +90,40 @@ public class Shape
     	Square[][] vc= new Square[4][minos];
     	
     	for(int i= 0; i < 4; ++i){	
-	    	for(int j= 0; j < minos; ++j)
+	    	for(int j= 0; j < minos; ++j){
+	    		int tx= blocs[j].getX();
+	    		int ty= blocs[j].getY();
+	    		
 	    		switch( shpNum ){
 		            case 0:
-		            	vc[i]= shapeI("green", blocs[j].getX(), blocs[j].getY() ); 
+		            	vc[i]= shapeI("green", tx, ty ); 
 		                break;
 		            case 1:
-		            	vc[i]= shapeO("green", blocs[j].getX(), blocs[j].getY() );
+		            	vc[i]= shapeO("green", tx, ty );
 		                break;
 		            case 2:
-		            	vc[i]= shapeT("green", blocs[j].getX(), blocs[j].getY() );
+		            	vc[i]= shapeT("green", tx, ty );
 		                break;
 		            case 3:
-		            	vc[i]= shapeL("green", blocs[j].getX(), blocs[j].getY() );
+		            	vc[i]= shapeL("green", tx, ty );
 		                break;
 		            case 4:
-		            	vc[i]= shapeJ("green", blocs[j].getX(), blocs[j].getY() );
+		            	vc[i]= shapeJ("green", tx, ty );
 		                break;
 		            case 5:
-		            	vc[i]= shapeZ("green", blocs[j].getX(), blocs[j].getY() );
+		            	vc[i]= shapeZ("green", tx, ty );
 		                break;
 		            case 6:
-		            	vc[i]= shapeS("green", blocs[j].getX(), blocs[j].getY() );
+		            	vc[i]= shapeS("green", tx, ty );
 		                break;
 		            default: 
 		                System.err.println( "Unknown shape !" );
 	    		}
+	    	}
 	    		
+	    	//System.out.println(vc[i][0].x +","+ vc[i][0].y +" "+vc[i][1].x +","+ vc[i][1].y +" "+vc[i][2].x +","+ vc[i][2].y +" "+vc[i][3].x +","+ vc[i][3].y);
 	    	rotate( vc[i] );
+	    	//System.out.println(vc[i][0].x +","+ vc[i][0].y +" "+vc[i][1].x +","+ vc[i][1].y +" "+vc[i][2].x +","+ vc[i][2].y +" "+vc[i][3].x +","+ vc[i][3].y);
     	}
     	return vc;
     }
@@ -387,6 +393,11 @@ public class Shape
     
     public int getMinos(){
     	return minos;
+    }
+    
+    public static void main(String[] args){
+    	
+    	
     }
 
 }

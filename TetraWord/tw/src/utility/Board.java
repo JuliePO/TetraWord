@@ -36,15 +36,17 @@ public class Board
     
     public Vector<Integer> hasLines(){
     	
-    	Vector<Integer> vect= new Vector<Integer>();
-    	
+    	Vector<Integer> vect= new Vector<Integer>();    	
     	
     	for(int i= 0; i < height; ++i ){
     		int k= 0;
     		for( int j= 0; j < width; ++j ){
     			if( !this.isBusy(j, i) )
     				break;
+    			
     			++k;
+    			
+    			System.out.print( " {" + j + ", " + i + "}"+k+"\t" );
     		}
     		
     		if( k == width )
@@ -63,15 +65,25 @@ public class Board
 	    			getSquareAt( j, v.elementAt(i) ).changeColor(col);
     }
     
-    public void selectLines( Vector<Integer> v ){
+    public void setLineTo( int line, char newState ){
     	
-    	for(int i= 0; i < v.size(); ++i)
-	    	for(int j= 0; j < width; ++j)
-	    		if( getSquareAt( j, v.elementAt(i) ) != null)
-	    			getSquareAt( j, v.elementAt(i) ).setState('s');
+    	for(int j= 0; j < width; ++j)
+    		if( getSquareAt( j, line ) != null)
+    			getSquareAt( j, line ).setState(newState);
     }
     
+    public void setLinesTo( Vector<Integer> v, char newState ){
+    	
+    	if( newState == 's' || newState == 'c' || newState == 'n' )
+	    	for(int i= 0; i < v.size(); ++i)
+	    		setLineTo(v.elementAt(i), newState );		    	
+    }
+    
+    
+    //DANGER
 	public int hasLine(){
+		
+		System.exit(0);
 	    	
     	for(int i= 0; i < height; ++i ){
     		for( int j= 0; j < width; ++j ){
@@ -178,8 +190,10 @@ public class Board
     public void supprLine( int line ){
     	
     	for(int i= 0; i < cases.size(); ++i)
-            if( elmtAt(i).getY() == line )
+            if( elmtAt(i).getY() == line ){
                 supprAt(i);
+                --i;
+            }
     	
     	fallFromLine(line+1);
     }
@@ -221,7 +235,7 @@ public class Board
     
     public void freeAt( int x, int y ){
     	
-        if( y > 19 )
+        if( y > height )
         	System.out.println( "y = " + y);
         field[ x + y*10 ] = false;
     }

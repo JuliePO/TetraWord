@@ -1,6 +1,7 @@
 package GameState;
 
 import java.util.Random;
+import java.util.Vector;
 
 import utility.Chrono;
 import utility.Configuration;
@@ -37,6 +38,7 @@ public class Tetris extends GameState {
 	public GameState update(int tps) {
 		
 		if(!j.pause){
+			
             // Calculate nextState ------------------------   
             for( int i= 0; i < b.size(); ++i )
                 if( b.elmtAt(i).getNextState() == '?' )
@@ -73,10 +75,12 @@ public class Tetris extends GameState {
 	        		//System.exit(0);
 	        		//System.out.println("GAME OVER * GAME OVER * GAME OVER * GAME OVER *");
 	            
-	            if( !b.hasLines().isEmpty() ){
+	        	Vector<Integer> lines= b.hasLines();
+	            if( !lines.isEmpty() ){
 	            	
-	            	System.out.println(b.hasLines());
-	            	return new Anagramme( j, config, b.hasLines() );
+	            	System.out.println("lignes pleines: " + lines);
+	            	j.setFullLines(lines);
+	            	return new Anagramme( j, config );
 	            }
 	            
 	            ch.decr();

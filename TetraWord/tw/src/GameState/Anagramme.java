@@ -8,17 +8,14 @@ import utility.Square;
 
 public class Anagramme extends GameState {
 	
-	private Vector<Integer> fullLines;
 	private Vector<Square> currentWord;
 	private boolean finish;
 
-	public Anagramme( Player p, Configuration c, Vector<Integer> l){
+	public Anagramme( Player p, Configuration c){
 	
 		super( p, c );
-		fullLines= l;
 		
-		//b.colorLines(fullLines, "red");
-		b.selectLines(fullLines);
+		b.setLinesTo(j.getLines(), 's');
 		
 		currentWord = new Vector<>();
 	}
@@ -29,14 +26,6 @@ public class Anagramme extends GameState {
 		//System.out.println("ANAGRAMME");	
 		if( finish )
 			return null;
-	
-		if( false ){
-			//supprimer la ligne
-			//deselectionner les lignes (fullLines)
-			
-			b.supprAt(0);
-			return null;
-		}
 		
 		return this;
 	}
@@ -69,6 +58,7 @@ public class Anagramme extends GameState {
 		if(j.getInput("b") == input){
 			
 			String word = "";
+			int currentLine= j.getLines().firstElement();
 			
 			for(Square it : currentWord){
 				word += it.getChar();
@@ -83,7 +73,10 @@ public class Anagramme extends GameState {
 			
 			System.out.print(">> Mots : ");
 			j.getShape().getDico().findWith(word);
-			b.supprLine(fullLines.elementAt(0));
+			b.setLineTo(currentLine, 'n');
+			b.supprLine(currentLine);
+			j.getLines().remove(0);
+			
 			finish= true;
 		}
 	}

@@ -122,7 +122,7 @@ public class Dictionary
   
     public Letter pickLetter(){
 
-        return letters[alea.nextInt(getSommeFrequence())];
+        return letters[alea.nextInt(getSommeFrequence()-1)];
     }
     
     public int findWith( String s ){
@@ -175,7 +175,7 @@ public class Dictionary
         if( args.length != 0 ) 
             dico= new Dictionary("../../french.txt", null);
         else
-            dico= new Dictionary("../french.txt", null);
+            dico= new Dictionary("../french.txt", new Random());
         
         System.out.println( "DONE !" );
         
@@ -188,9 +188,10 @@ public class Dictionary
         
         if( str.isEmpty() )
             return;
-        else
-            //nb = dico.findWith( str );
+        else{
+            nb = dico.findWith( str );
         	System.out.println( dico.contains(str) );
+        }
             
         System.out.println( "\n"+ nb + " words found(s) !" );    
        
