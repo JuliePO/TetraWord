@@ -60,7 +60,7 @@ public class AlphaTree //Arbre ternaire lexicographique
         
     }
 
-    //0 mot ajouté | 1 mot ignoré
+    //0 mot ajoute | 1 mot ignore
     public int add(String word){
         char[] chars= word.toCharArray();
         Letter[] letters= new Letter[chars.length+1];
@@ -76,7 +76,7 @@ public class AlphaTree //Arbre ternaire lexicographique
             letters[i]= alphabet[chars[i]-'a'];
         }
             
-        letters[chars.length] = alphabet[26]; //On rajoute un caractere d'arret à la fin
+        letters[chars.length] = alphabet[26]; //On rajoute un caractere d'arret a la fin
         
         return add( letters );
     }
@@ -155,7 +155,7 @@ public class AlphaTree //Arbre ternaire lexicographique
                         return fg.search( ls );
                     }
                 else
-                    if( L.equals(ls[0]) ){ //Si la 1ere lettre du mot à chercher = la 1ere lettre de l'arbre
+                    if( L.equals(ls[0]) ){ //Si la 1ere lettre du mot a chercher = la 1ere lettre de l'arbre
                         System.arraycopy(ls, 1, ls, 0, ls.length-1); //On continue la recherche dans le fils direct sans la 1ere lettre
                         if( f == null )
                             return -1;
@@ -204,14 +204,14 @@ public class AlphaTree //Arbre ternaire lexicographique
         int founds= 0;
         
         for( int i= 0; i < nextLets.length; ++i ){
-                /*   Décommenter pour voir le détail de la recherche
+                /*   Decommenter pour voir le detail de la recherche
             System.out.print( prefix );
             System.out.print( lets[i] + "\t" );
                 */
             char[] ls= new char[nextLets.length-1];
             int j= 0;
             int k= 0;
-            while( j < nextLets.length-1 ){ //On remplit les futures prochaines lettres sans celle juste après
+            while( j < nextLets.length-1 ){ //On remplit les futures prochaines lettres sans celle juste apres
                 
                     ls[j] = nextLets[k];
                     if( i != k )
@@ -226,7 +226,7 @@ public class AlphaTree //Arbre ternaire lexicographique
                     ++founds;
                 }
                 
-                findWith( prefix + nextLets[i], ls ); //On concatene la juste après avec le prefix deja existant
+                findWith( prefix + nextLets[i], ls ); //On concatene la juste apres avec le prefix deja existant
             }
         }
         

@@ -14,6 +14,7 @@ public class Board
     private Vector<Square> cases;
     private int width;
     private int height;
+    public boolean invert;
     //Les limites du terrain ?
 
     /**
@@ -21,7 +22,8 @@ public class Board
      */
     public Board()
     {
-        this( 10, 20 );
+        this( 10, 20 );// 22 apparement
+        invert = false;
     }
     
     public Board(int width, int height)

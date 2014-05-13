@@ -2,6 +2,7 @@
 *.ctxt
 *.bluej
 *.classpath
+<<<<<<< HEAD
 *.db
 *.lock
 *.version
@@ -12,3 +13,8 @@
 *.resources
 *.xmi
 *.xmi
+=======
+*.class
+*.class
+>>>>>>> origin/master
+*.class

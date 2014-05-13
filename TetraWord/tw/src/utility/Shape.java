@@ -182,8 +182,10 @@ public class Shape
     
     public void rotate(){
         
+
     	rotate( blocs );
     	/*
+
         //Generation de vecteurs relatifs
         //blocs[0] for (les autres)
         int xref= blocs[0].getX();
@@ -229,6 +231,14 @@ public class Shape
         for( int i= 0; i < minos; ++i )
             blocs[i].translateX(-1);
         
+    }
+    
+    public Square[] getSquares(){
+    	return blocs;
+    }
+    
+    public int getMinos(){
+    	return minos;
     }
 
 }

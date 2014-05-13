@@ -1,0 +1,39 @@
+﻿Merge remote-tracking branch 'origin/master' into Nicolas
+
+Conflicts:
+	TetraWord/tw/src/Engine.java
+	TetraWord/tw/src/GameState/Tetris.java
+	TetraWord/tw/src/utility/Board.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch Nicolas
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#	modified:   TetraWord/tw/bin/Engine.class
+#	modified:   TetraWord/tw/bin/GameState/Tetris.class
+#	modified:   TetraWord/tw/src/Engine.java
+#	modified:   TetraWord/tw/src/GameState/Tetris.java
+#	modified:   TetraWord/tw/src/Graphic/Frame.java
+#	new file:   TetraWord/tw/src/Graphic/Test.java
+#	modified:   TetraWord/tw/src/Graphic/start/PanelAccueil.java
+#	modified:   TetraWord/tw/src/Graphic/tetra/BonusComponent.java
+#	modified:   TetraWord/tw/src/utility/Board.java
+#	modified:   TetraWord/tw/src/utility/Configuration.java
+#	modified:   TetraWord/tw/src/utility/Shape.java
+#	modified:   TetraWord/tw/src/utility/Square.java
+#	modified:   TetraWord/tw/texture/options/buttons/letters.png
+#	modified:   TetraWord/tw/texture/options/buttons/letters_hover.png
+#	modified:   design/options/buttons/letters.png
+#	modified:   design/options/buttons/letters_hover.png
+#
+

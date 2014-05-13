@@ -125,7 +125,11 @@ public class Engine extends JPanel implements ActionListener
                 if( deltaTime < fps ){
                     //System.out.print(">> ");
                     //System.out.println(fps - deltaTime);
+<<<<<<< HEAD
+                   Thread.sleep(fps - deltaTime);
+=======
                     //Thread.sleep(fps - deltaTime);
+>>>>>>> origin/master
                     
                 }
             }
@@ -163,7 +167,7 @@ public class Engine extends JPanel implements ActionListener
         //Dictionary dico;        
         Player J1= new Player(1, "georges", "ninja");
         Player J2 = new Player(2, "louis", "panda");
-        Board b= J1.getBoardTemp();
+        Board b= J1.getBoard();
         boolean[] fd= b.getField();
 
        /* if( args.length == 0 )

@@ -29,7 +29,6 @@ public class ButtonTetra extends JButton {
 	@Override
 	public void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
-		super.paintComponents(g);
 		
 		/*Graphics2D g2 = (Graphics2D)g;
 		
@@ -90,13 +89,5 @@ public class ButtonTetra extends JButton {
 	
 	public int getWidthTexture(){
 		return w;
-	}
-	
-	public static void main(String[] args) {
-		ButtonTetra start = new ButtonTetra("texture/start/button-solo.png", "texture/start/hoover-button-solo.png");
-		//start.addActionListener(actionGame);
-		start.setBounds(322, 246, start.getWidthTexture(), start.getHeightTexture());
-		//add(start);
-		
 	}
 }

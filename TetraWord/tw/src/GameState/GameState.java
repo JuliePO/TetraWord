@@ -13,7 +13,7 @@ public abstract class GameState {
 	
 	public GameState(Player pl, Configuration cg){
 		j= pl;
-		b= j.getBoardTemp();
+		b= j.getBoard();
 		config= cg;
 	}
 

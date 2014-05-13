@@ -1,0 +1,51 @@
+<project default = "jar">
+
+	<property name="name" value="TetraWord" />
+	<property name="src.dir" value="src"/>
+	<property name="bin.dir" value="bin"/>
+	<property name="build.dir" value="build"/>
+	<property name="build.classes" value="${build.dir}/classes"/>
+	<property name="build.javadoc" value="${build.dir}/javadoc"/>
+	<property name="build.jar" value="${name}.jar"/>
+	<property name="tmp.dir" value="tmp"/>
+	<property name="application.manifest" value="MANIFEST.MF"/>
+	
+	<target name="clean">
+		<delete dir="${build.jar}"/>
+		<echo message="nettoyage termine"/>
+	</target>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="${bin.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${bin.dir}"/>
+		<echo message="compilation terminee"/>
+	</target>
+	
+	<target name="javadoc">
+		<mkdir dir="${build.javadocs}"/>
+		<javadoc useexternalfile="yes"
+			destdir="${build.javadocs}"
+			doctitle="Javadoc for ${name}" />
+	</target>
+	
+	<target name="jar"
+		depends="compile"
+		description="Create a jar file containing the classes">
+		<jar destfile="${build.jar}"
+	              basedir="${bin.dir}"
+	              excludes="**/*Test.class"
+	              manifest="${application.manifest}" />
+	
+	</target>
+	
+	<target name="source-dist"
+		description="Create a zip archive with the sources">
+		<zip destfile="${name}-src.zip">
+			<zipfileset dir="${src}" />
+			<zipfileset dir="." includes="README manifest LICENSE" />
+		</zip>
+		<checksum file="${name}-src.zip" algorithm="SHA-512" fileext="asc"/>
+		<echo message="Done!" />
+	</target>
+
+</project>

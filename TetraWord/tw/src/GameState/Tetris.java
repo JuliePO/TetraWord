@@ -16,6 +16,9 @@ public class Tetris extends GameState {
 		super( j, config );
 		speed=30;
 		
+
+
+		b= j.getBoard();
 		fd= b.getField();	      
 		j.newShape( 'T', config.getDico() );
 	}
@@ -29,6 +32,7 @@ public class Tetris extends GameState {
 	
 	@Override
 	public GameState update(int tps) {
+
  
         /*if ( tps%(45-speed - config.getSpeedGame()) == 0  ){*/
 		
