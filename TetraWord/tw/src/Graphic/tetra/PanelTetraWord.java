@@ -120,6 +120,7 @@ public class PanelTetraWord extends PanelBase {
 		
 		addMouseMotionListener(new MouseMotionListenerTetra());
 		addMouseListener(new MouseListenerTetra());
+		
 		addKeyListener(new KeyListenerTetra(P1, P2));
 	}
 	

@@ -2,3 +2,13 @@
 *.ctxt
 *.bluej
 *.classpath
+*.db
+*.lock
+*.version
+*.version
+*.index
+*.prefs
+*.tree
+*.resources
+*.xmi
+*.xmi

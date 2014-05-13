@@ -4,28 +4,31 @@ import utility.Board;
 import utility.Configuration;
 import utility.Player;
 
-public class Tetris implements GameState {
+public class Tetris extends GameState {
 	
-	private Player j;
-	private Configuration config;
+
 	private int speed;
-	Board b;
 	boolean[] fd;
 	int t=0;
+	boolean generate;
 
 	public Tetris(Player j, Configuration config) {
-		this.j=j;
-		this.config=config;
+		super( j, config );
 		speed=30;
 		
-		 b= j.getBoardTemp();
-		 fd= b.getField();	      
-		 j.newShape( 'T', config.getDico() );
+		fd= b.getField();	      
+		j.newShape( 'T', config.getDico() );
+	}
+	
+	public boolean isOver(){
+		
+		if( j.getShape().isTop() )
+			return true;
+		return false;
 	}
 	
 	@Override
 	public GameState update(int tps) {
-                  
  
         /*if ( tps%(45-speed - config.getSpeedGame()) == 0  ){*/
 		
@@ -69,28 +72,33 @@ public class Tetris implements GameState {
         
         
         // ** DYNAMIC FREE & ALLOC
+                
+        if( generate ){
+        	j.newShape( 'I', config.getDico() );
+        	generate = false;
+        }
         
         if( j.getShape().isArrived() ){
-            j.newShape( 'T', config.getDico() );
+        	
+        	//if( isOver() )
+        		//System.exit(0);
+        		//System.out.println("GAME OVER * GAME OVER * GAME OVER * GAME OVER *");
             
+            if( !b.hasLines().isEmpty() ){
+            	
+            	System.out.println(b.hasLines());
+            	return new Anagramme( j, config, b.hasLines() );
+            }
+            
+            generate = true;
         }
+        
+        
         
         //++t;
         //System.out.println( t );
         
         return this;
-	}
-
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void input() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

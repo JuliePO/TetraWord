@@ -168,6 +168,7 @@ public class Dictionary
     public Letter pickLetter(){
   
         int r = (int) (Math.random() * getSommeFrequence());
+        
                 /* Decommenter pour voir les lettres random
         if( r%5 == 0 )
             System.out.println( Character.toUpperCase(letters[r].getChar()) + " " );
@@ -213,6 +214,12 @@ public class Dictionary
         return null;
     }
     
+    public boolean contains( String ps ){
+    	if( tree.search(ps) == 1 )
+    		return true;
+    	return false;
+    }
+    
     public static void main(String[] args){
         
         int nb= 0;
@@ -236,7 +243,8 @@ public class Dictionary
         if( str.isEmpty() )
             return;
         else
-            nb = dico.findWith( str );
+            //nb = dico.findWith( str );
+        	System.out.println( dico.contains(str) );
             
         System.out.println( "\n"+ nb + " words found(s) !" );    
        

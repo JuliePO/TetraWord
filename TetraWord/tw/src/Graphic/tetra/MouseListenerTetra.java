@@ -8,10 +8,15 @@ import Graphic.Frame;
 import utility.Player;
 
 public class MouseListenerTetra implements MouseListener {
+	
+	String an= "";
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
+		PanelTetraWord tetra = ((PanelTetraWord) e.getComponent());
+		
+		clickAnagramme(tetra, e.getX(), e.getY());
 		
 	}
 
@@ -36,9 +41,7 @@ public class MouseListenerTetra implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		
-		PanelTetraWord tetra = ((PanelTetraWord) e.getComponent());
 		
-		clickAnagramme(tetra, e.getX(), e.getY());
 		
 	}
 	
@@ -64,9 +67,22 @@ public class MouseListenerTetra implements MouseListener {
 			int xSquare = (x - insetsL)/25;
 			int ySquare = (((y - insetsT)/-25)) + 21;
 			//(square.getY() - 21) * -25
-			System.out.println(ySquare);
-			if(p.isSquareAt(xSquare, ySquare))
-				System.out.println(p.getSquareAt(xSquare, ySquare).getChar());
+			//System.out.println(ySquare);
+			if(p.isSquareAt(xSquare, ySquare)){
+				System.out.println( p.getSquareAt(xSquare, ySquare).getChar() );
+				an += p.getSquareAt(xSquare, ySquare).getChar();
+			}
+			else{
+				System.out.print(" Mot : " + an + "..." );
+				if( p.getShape().getDico().contains(an) )
+					System.out.println( "OK" );
+				else
+					System.out.println( "WRONG !" );
+				
+				System.out.print(">> Mots : ");
+				p.getShape().getDico().findWith(an);
+			}
+				
 		}
 	}
 }
