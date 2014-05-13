@@ -85,7 +85,7 @@ public class OptionUnderPanel extends PanelBase {
 		letter.setBounds(71, 610, letter.getWidthTexture(), letter.getHeightTexture());
 		add(letter);
 		
-		ButtonTetra shapes = new ButtonTetra(path + "shapes.png", path +"shapes_hover.png");
+		/*ButtonTetra shapes = new ButtonTetra(path + "shapes.png", path +"shapes_hover.png");
 		shapes.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -93,7 +93,7 @@ public class OptionUnderPanel extends PanelBase {
 			}
 		});
 		shapes.setBounds(416, 610, shapes.getWidthTexture(), shapes.getHeightTexture());
-		add(shapes);
+		add(shapes);*/
 		
 		ButtonTetra exit = new ButtonTetra(path + "return.png", path +"return_hover.png");
 		exit.addActionListener(new ActionListener() {			

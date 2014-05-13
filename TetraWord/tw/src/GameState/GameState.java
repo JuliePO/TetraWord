@@ -11,10 +11,13 @@ public abstract class GameState {
 	protected Player j;
 	protected Configuration config;
 	
+	protected boolean end;
+	
 	public GameState(Player pl, Configuration cg){
 		j= pl;
 		b= j.getBoard();
 		config= cg;
+		end = false;
 	}
 
 	
@@ -25,5 +28,13 @@ public abstract class GameState {
 	public void input(char input){}
 	
 	public void input(int x, int y){}
+	
+	public boolean isEnd(){
+		return end;
+	}
+	
+	public void start(){
+		end =false;
+	}
 		
 }

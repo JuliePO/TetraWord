@@ -69,9 +69,10 @@ public class Tetris extends GameState {
         
         if( j.getShape().isArrived() ){
         	
-        	//if( isOver() )
-        		//System.exit(0);
-        		//System.out.println("GAME OVER * GAME OVER * GAME OVER * GAME OVER *");
+        	if( isOver() ){
+        		end =true;
+        		return this;
+        	}
             
             if( !b.hasLines().isEmpty() ){
             	

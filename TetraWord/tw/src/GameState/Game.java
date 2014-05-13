@@ -47,4 +47,14 @@ public class Game {
 	public GameState getState(){
 		return currentState;
 	}
+	
+	public boolean isEnd(){
+		return currentState.isEnd();
+	}
+	
+	public void restart(){
+		currentState.start();
+		j.reset();
+		currentState = new Tetris(j, config);
+	}
 }
