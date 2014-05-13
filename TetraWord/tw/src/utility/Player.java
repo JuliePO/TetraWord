@@ -27,8 +27,9 @@ public class Player
     private BonusTetra activeBonus;
     
     private int nbBonus;
-    
     private Random alea;
+	public boolean pause;
+
 
     /**
      * Constructor for objects of class Player

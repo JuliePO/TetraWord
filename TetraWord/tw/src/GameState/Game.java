@@ -25,6 +25,10 @@ public class Game {
 		currentState = tetris;
 		stack.add( tetris );
 	}
+	
+	public Player getPlayer(){
+		return j;
+	}
 
 	public void update(int tps) {
 		
@@ -38,5 +42,9 @@ public class Game {
 			stack.add(currentState);
 		else	
 			currentState= stack.lastElement().update(0);
+	}
+	
+	public GameState getState(){
+		return currentState;
 	}
 }

@@ -18,3 +18,8 @@
 *.class
 >>>>>>> origin/master
 *.class
+<<<<<<< HEAD
+*.class
+*.class
+=======
+>>>>>>> origin/master

@@ -22,5 +22,8 @@ public abstract class GameState {
 		return this;
 	}
 	
+	public void input(char input){}
+	
+	public void input(int x, int y){}
 		
 }

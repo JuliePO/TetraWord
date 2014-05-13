@@ -3,17 +3,18 @@ package Graphic.tetra;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import GameState.Game;
 import utility.Player;
 
 public class KeyListenerTetra implements KeyListener {
 	
-	private Player P1;
-	private Player P2;
+	private Game game1;
+	private Game game2;
 	
-	public KeyListenerTetra(Player P1 , Player P2){
+	public KeyListenerTetra(Game game1, Game game2){
 		super();
-		this.P1=P1;
-		this.P2=P2;
+		this.game1=game1;
+		this.game2=game2;
 	}
 
 	@Override
@@ -23,24 +24,10 @@ public class KeyListenerTetra implements KeyListener {
 		
 		if(tmp == ' ')
 			((PanelTetraWord)arg0.getComponent()).setPause();
-
-		else if(tmp == P1.getInput("up"))
-			P1.getShape().rotate();
-		else if(tmp == P1.getInput("left"))
-			P1.getShape().goLeft();
-		else if(tmp == P1.getInput("right"))
-			P1.getShape().goRight();
-		else if(tmp == P1.getInput("b"))
-			P1.useBonus();
-
-		else if(tmp == P2.getInput("up"))
-			P2.getShape().rotate();
-		else if(tmp == P2.getInput("left"))
-			P2.getShape().goLeft();
-		else if(tmp == P2.getInput("right"))
-			P2.getShape().goRight();
-		else if(tmp == P2.getInput("b"))
-			P2.useBonus();
+		else{
+			game1.getState().input(tmp);
+			game2.getState().input(tmp);
+		}
 	}
 
 	@Override

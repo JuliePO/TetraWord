@@ -35,51 +35,32 @@ public class Tetris extends GameState {
 	
 	@Override
 	public GameState update(int tps) {
-
- 
-        /*if ( tps%(45-speed - config.getSpeedGame()) == 0  ){*/
 		
+		if(!j.pause){
             // Calculate nextState ------------------------   
             for( int i= 0; i < b.size(); ++i )
                 if( b.elmtAt(i).getNextState() == '?' )
                     b.elmtAt(i).becoming(j); 
             // --------------------------------------------
             
-            
-            //Reset  
-           // b.freeAll();
             //UPDATE------------------------  
-                for( int i= 0; i < b.size(); ++i ){
-  
-                    switch( b.elmtAt(i).getNextState() ){
-                        case 's':  // b.elmtAt(i).setBusy(); 
-                                break;
-                    
-                    case 'f':   b.elmtAt(i).fall();
-                                break;
-                                
-                    default : System.err.println( "Error : nextState of a Square is " +  b.elmtAt(i).getNextState() );
-                                
-	                }
-	                
-	                b.elmtAt(i).setNextState('?');
-	            }               
+            for( int i= 0; i < b.size(); ++i ){
+                switch( b.elmtAt(i).getNextState() ){
+                    case 's':  // b.elmtAt(i).setBusy(); 
+                            break;
                 
+                case 'f':   b.elmtAt(i).fall();
+                            break;
+                            
+                default : System.err.println( "Error : nextState of a Square is " +  b.elmtAt(i).getNextState() );
+                            
+                }
                 
-                /*if( t == 7 )
-                    j.getShape().rotate();
+                b.elmtAt(i).setNextState('?');
+            }               
+            // ** DYNAMIC FREE & ALLOC
                 
-                if( t == 10 ){
-                    j.getShape().rotate();
-                    j.getShape().printBlocs();
-                }*/
-                
-        //}
-        // ** DYNAMIC FREE
-        
-        
-        // ** DYNAMIC FREE & ALLOC
-                
+
         if( generate ){
         	j.newShape( config.getDico() );
         	ch.reset();
@@ -107,8 +88,37 @@ public class Tetris extends GameState {
         
         //++t;
         //System.out.println( t );
+
+	        
+
         
+	        if( j.getShape().isArrived() ){
+	        	            
+	            if( !b.hasLines().isEmpty() ){
+	            	
+	            	System.out.println(b.hasLines());
+	            	return new Anagramme( j, config, b.hasLines() );
+	            }
+	            
+	            generate = true;
+	        }        
+		}
+
         return this;
 	}
-
+	
+	@Override
+	public void input(char input) {
+		super.input(input);
+		
+		if(input == j.getInput("up"))
+			j.getShape().rotate();
+		else if(input == j.getInput("left"))
+			j.getShape().goLeft();
+		else if(input == j.getInput("right"))
+			j.getShape().goRight();
+		else if(input == j.getInput("b"))
+			j.useBonus();
+	}
 }
+	
