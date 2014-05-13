@@ -33,8 +33,9 @@ import utility.Square;
 
 public class FieldComponent extends TetraComponent {
     
-    private int xSize = 11;
-    private int ySize = 22;
+	int insetH = 0;
+	int insetW = 0;
+	
     private Player p;
     private HashMap<String, TexturePaint> paints = new HashMap<String, TexturePaint>(7);
       
@@ -47,7 +48,7 @@ public class FieldComponent extends TetraComponent {
             for(int i= 0; i < paths.length; ++i ){
               BufferedImage texture = ImageIO.read(new File(mPath+"texture/game/"+paths[i]+".jpg"));
           //    texture.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
-              paints.put(paths[i], new TexturePaint(texture, new Rectangle(0, 0, 25, 25)));
+              paints.put(paths[i], new TexturePaint(texture, new Rectangle(insetW, insetH, texture.getWidth(), texture.getHeight())));
             }
        } catch (IOException ex) {
            System.out.println("Error 404: color missing !" );
@@ -66,22 +67,23 @@ public class FieldComponent extends TetraComponent {
        
         if(p.getCases() != null){
             for(Square square : p.getCases()){
-                g2.setPaint(paints.get(square.getColor()));
+            	TexturePaint tmp = paints.get(square.getColor());
+                g2.setPaint(tmp);
                 
                 if(p.getBoard().invert)
-                	g2.fillRect(square.getX() * 25, 25 * square.getY(), 25, 25);
+                	g2.fillRect(square.getX() * tmp.getImage().getWidth() + insetW, tmp.getImage().getHeight() * square.getY() + insetH, tmp.getImage().getWidth(), tmp.getImage().getHeight());
                 else
-                	g2.fillRect(square.getX() * 25, 525 - 25 * square.getY(), 25, 25);
+                	g2.fillRect(square.getX() * tmp.getImage().getWidth() + insetW, 532 - tmp.getImage().getHeight() * square.getY() + insetH , tmp.getImage().getWidth(), tmp.getImage().getHeight());
                 
-                char[] tmp = new char[1];
-                tmp[0] = square.getChar();
+                char[] chartmp = new char[1];
+                chartmp[0] = square.getChar();
                 g2.setFont(new Font("Serif", Font.BOLD, 20));
                 g2.setColor(Color.WHITE);
                 
                 if(p.getBoard().invert)
-                	g2.drawChars(tmp, 0, 1, square.getX() * 25 + 5, 18 + 25 * square.getY());
+                	g2.drawChars(chartmp, 0, 1, square.getX() * 25 + 5, 18 + 25 * square.getY());
                 else
-                	g2.drawChars(tmp, 0, 1, square.getX() * 25 + 5, 543 - 25 * square.getY());   
+                	g2.drawChars(chartmp, 0, 1, square.getX() * 25 + 5, 543 - 25 * square.getY());   
             }
         }
     }
@@ -93,20 +95,6 @@ public class FieldComponent extends TetraComponent {
         this.p = player;
         
         loadImage();
-        
-        /*this.setLayout(null);
-        
-        //update();
-        Vector<Square> cases = p.getCases();
-        
-        if(cases != null){
-            for(Square square : cases){
-                CubeComponent tmp = new CubeComponent("texture/game/"+square.getColor() + ".jpg", "texture/game/"+square.getColor() + ".jpg", square.getChar());
-                tmp.setEnabled(false);
-                tmp.setBounds(square.getX() * 25, square.getY() * 25, tmp.getWidthTexture(), tmp.getHeightTexture());
-                add(tmp);
-            }
-        }*/
     }
 
     @Override

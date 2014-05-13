@@ -2,3 +2,5 @@
 *.ctxt
 *.bluej
 *.classpath
+*.class
+*.class
