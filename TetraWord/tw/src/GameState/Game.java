@@ -19,6 +19,10 @@ public class Game {
 		this.j=j;
 		currentState = new Tetris(j, config);
 	}
+	
+	public Player getPlayer(){
+		return j;
+	}
 
 	public void update(int tps) {
 		

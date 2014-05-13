@@ -26,6 +26,7 @@ public class Player
     private BonusTetra activeBonus;
     
     private int nbBonus;
+	public boolean pause;
 
     /**
      * Constructor for objects of class Player

@@ -4,33 +4,34 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 
+import GameState.Game;
 import Graphic.Frame;
 import utility.Player;
 
 public class MouseListenerTetra implements MouseListener {
+	
+	private Game g1;
+	private Game g2;
+
+	public MouseListenerTetra(Game g1, Game g2) {
+		this.g1 = g1;
+		this.g2 = g2;
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mousePressed(MouseEvent e) {		
 	}
 
 	@Override
@@ -63,8 +64,9 @@ public class MouseListenerTetra implements MouseListener {
 		if(x > insetsL && x < insetsR && y > insetsT && y < insetsB){
 			int xSquare = (x - insetsL)/25;
 			int ySquare = (((y - insetsT)/-25)) + 21;
-			//(square.getY() - 21) * -25
+			
 			System.out.println(ySquare);
+			
 			if(p.isSquareAt(xSquare, ySquare))
 				System.out.println(p.getSquareAt(xSquare, ySquare).getChar());
 		}

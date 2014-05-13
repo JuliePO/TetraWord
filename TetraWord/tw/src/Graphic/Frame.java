@@ -4,6 +4,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import GameState.Game;
 import Graphic.character.PanelCharacter;
 import Graphic.option.PanelOption;
 import Graphic.start.PanelAccueil;
@@ -18,15 +19,15 @@ public class Frame extends JFrame {
 	
 	private int width = 1024, height = 700;
 	JPanel contentPane = new JPanel();
-	Player P1, P2;
+	Game G1, G2;
 	Configuration config;
 	
 	private char panelState = 'Z';
 	
-	public Frame(Player P1, Player P2, Configuration config){		
+	public Frame(Game G1, Game G2, Configuration config){		
 		
-		this.P1 = P1;
-		this.P2 = P2;
+		this.G1 = G1;
+		this.G2 = G2;
 		this.config = config;
 		
 		//1. Create the frame.
@@ -60,7 +61,6 @@ public class Frame extends JFrame {
 	}
 	
 	public void onSize(){
-		//setSize(width, height);
 		pack();
 	}
 	
@@ -73,17 +73,15 @@ public class Frame extends JFrame {
 	}
 	
 	public Player getPlayer1(){
-		return P1;
+		return G1.getPlayer();
 	}
 	
 	public Player getPlayer2(){
-		return P2;
+		return G2.getPlayer();
 	}
 	
 	public void update(){
-		
-		//repaint();
-		
+				
 		char tmpState = ((PanelBase)contentPane.getComponent(0)).getState();
 		if(panelState != tmpState){
 			switch (tmpState) {
@@ -91,9 +89,8 @@ public class Frame extends JFrame {
 			//le jeu
 			case 'g':
 				contentPane.removeAll();
-				PanelTetraWord tetra = new PanelTetraWord(P1, P2);
+				PanelTetraWord tetra = new PanelTetraWord(G1, G2);
 				contentPane.add(tetra);
-				//setContentPane(contentPane);
 				onSize();
 				setPanelState('g');
 				tetra.requestFocusInWindow();
@@ -102,9 +99,8 @@ public class Frame extends JFrame {
 			//le menu de slection
 			case 'c':
 				contentPane.removeAll();
-				PanelCharacter chara = new PanelCharacter(P1, P2);
+				PanelCharacter chara = new PanelCharacter(G1.getPlayer(), G2.getPlayer());
 				contentPane.add(chara);
-				//setContentPane(contentPane);
 				onSize();
 				setPanelState('c');
 				chara.requestFocusInWindow();
@@ -113,8 +109,7 @@ public class Frame extends JFrame {
 			//option
 			case 'o':
 				contentPane.removeAll();
-				contentPane.add(new PanelOption(P1, P2, config));
-				//setContentPane(contentPane);
+				contentPane.add(new PanelOption(G1.getPlayer(), G2.getPlayer(), config));
 				onSize();
 				setPanelState('o');
 				break;
@@ -123,7 +118,6 @@ public class Frame extends JFrame {
 			case 's':
 				contentPane.removeAll();
 				contentPane.add(new PanelAccueil());
-				//setContentPane(contentPane);
 				onSize();
 				setPanelState('s');
 				break;
@@ -140,8 +134,6 @@ public class Frame extends JFrame {
 		else{
 
 			((PanelBase)contentPane.getComponent(0)).update();
-			//onSize();
-			//setContentPane(contentPane);
 		}
 	}
 
@@ -188,7 +180,7 @@ public class Frame extends JFrame {
             b.addCase( squares[i] );
             
         squares= null;
-        
+       /* 
         Frame tmp = new Frame(J1, J2, config);
         
         int ko= 0;
@@ -234,47 +226,7 @@ public class Frame extends JFrame {
         }
         
         tmp.dispose();
-       
-    }
-
-    
-    public static void mainold(String[] args) {
-
-        Player p = new Player(1, "georges", "ninja");
-        Player p2 = new Player(2, "louis", "panda");
-        //p.increaseScrore(8000);
-        //p2.increaseScrore(452);
-
-        p.getBoard().addCase(new Square(10, 21, new Letter((short) 1, 'k', 1), null, "blue"));
-        p.getBoard().addCase(new Square(2, 2, new Letter((short) 1, 'w', 1), null, "green"));
-        
-        Frame tmp = new Frame(p, p2, new Configuration());
-        
-        /*new Thread(new Runnable() {
-            
-            @Override
-            public void run() {
-                for(int i = 0; i < 200; ++i){
-                    p.increaseScrore(200);
-                    System.out.println(p.getScore());
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-                
-            }
-        }).start();*/
-        while(tmp.getPanelState() != 'e'){
-            tmp.update();
-            //p.increaseScrore(1);
-            //p2.increaseScrore(1);
-            //System.out.println(p.getScore());
-        }
-        
-        tmp.dispose();
+       */
     }
 
 }

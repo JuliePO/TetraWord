@@ -1,26 +1,19 @@
 package Graphic.tetra;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.TexturePaint;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
+import GameState.Game;
 import Graphic.PanelBase;
 import Graphic.TetraComponent;
 import utility.Letter;
@@ -32,13 +25,11 @@ public class PanelTetraWord extends PanelBase {
     BufferedImage grillage, background;
     TexturePaint grillageP, backgroundP;
     
-    Player P1, P2;
+    Game G1, G2;
+    Player P1;
+    Player P2;
     
-    private boolean pause = false;
-    
-    //grille de 11*22
-    //private Vector<Square> cases = null;
-    
+    private boolean pause = false;    
     
 	@Override
 	public void paintComponent(Graphics g) {
@@ -72,14 +63,23 @@ public class PanelTetraWord extends PanelBase {
 	}
 	
 	//Le constructeur en premier c'est plus cool
-	public PanelTetraWord(Player player1, Player player2) {	
+	public PanelTetraWord(Game G1, Game G2) {	
 		
 		super();
 		
 		state = 'g';
 		
-		P1 = player1;
-		P2 = player2;
+		this.G1 = G1;
+		this.G2 = G2;
+		
+		if(G1 != null)
+			P1 = G1.getPlayer();
+		else
+			P1 = null;
+		if(G2 != null)
+			P2 = G2.getPlayer();
+		else
+			P2 = null;
 		
 		loadImage();		
 		
@@ -156,7 +156,7 @@ public class PanelTetraWord extends PanelBase {
 		
 		tmp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 /*/!\*/		
-		tmp.setContentPane(new PanelTetraWord(null, p));
+		//tmp.setContentPane(new PanelTetraWord(null, p));
 	
 		//4. Size the frame.
 		tmp.pack();
@@ -186,7 +186,14 @@ public class PanelTetraWord extends PanelBase {
 			pause.setBounds(1, 1, pause.getW(), pause.getH());
 			addImpl(pause, null, 0);
 		}
-			
+		
+		
+		
+		if(P1 != null)
+			P1.pause = !P1.pause;
+		if(P2 != null)
+			P2.pause = !P2.pause;
+		
 		pause = !pause;
 	}
 }
