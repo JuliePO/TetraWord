@@ -58,7 +58,13 @@ public class Engine extends JPanel implements ActionListener
     	//System.out.println("ActionPerformed");
     	if(fr.getPanelState() == 'g')
     		update(0);
+
     	fr.update();
+    	
+    	if(fr.getPanelState() == 'e'){
+    		fr.dispose();
+    		time.stop();
+    	}
     }
     
     public void update(int tps){

@@ -31,7 +31,7 @@ public class FieldComponent extends TetraComponent {
     
     private void loadImage(){
         
-       String[] paths= {"blue", "green", "orange", "pink", "purple", "red", "yellow"};
+       String[] paths= {"blue", "dark_gray", "gray", "green", "orange", "pink", "purple", "red", "yellow"};
        
 
        for(int i= 0; i < paths.length; ++i ){   
@@ -56,7 +56,23 @@ public class FieldComponent extends TetraComponent {
        
         if(p.getCases() != null){
             for(Square square : p.getCases()){
-            	TexturePaint tmp = paints.get(square.getColor());
+            	
+            	TexturePaint tmp;
+            	
+            	switch (square.getState()) {
+				case 'c':
+					tmp = paints.get("dark_gray");
+					break;
+					
+				case 's':
+					tmp = paints.get("gray");
+					break;
+
+				default:
+	            	tmp = paints.get(square.getColor());
+					break;
+				}
+            	
                 g2.setPaint(tmp);
                 
                 if(p.getBoard().invert)

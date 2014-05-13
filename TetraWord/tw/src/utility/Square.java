@@ -105,9 +105,12 @@ public class Square extends Case
             
     }
     
-    public void setState(char s){
-    	
+    public void setState(char s){    	
     	state= s;
+    }
+    
+    public int getState(){
+    	return state;
     }
     
     public void setNeighbour( Square up, Square left, Square right, Square down ){

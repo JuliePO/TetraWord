@@ -76,5 +76,19 @@ public class Tetris extends GameState {
 
         return this;
 	}
+	
+	@Override
+	public void input(char input) {
+		super.input(input);
+		
+		if(input == j.getInput("up"))
+			j.getShape().rotate();
+		else if(input == j.getInput("left"))
+			j.getShape().goLeft();
+		else if(input == j.getInput("right"))
+			j.getShape().goRight();
+		else if(input == j.getInput("b"))
+			j.useBonus();
+	}
 }
 	

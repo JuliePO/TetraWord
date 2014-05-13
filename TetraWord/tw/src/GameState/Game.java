@@ -43,4 +43,8 @@ public class Game {
 		else	
 			currentState= stack.lastElement().update(0);
 	}
+	
+	public GameState getState(){
+		return currentState;
+	}
 }

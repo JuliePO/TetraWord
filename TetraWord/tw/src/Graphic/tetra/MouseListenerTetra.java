@@ -40,6 +40,7 @@ public class MouseListenerTetra implements MouseListener {
 	}
 	
 	private void clickAnagramme(PanelTetraWord tetra, int x, int y){
+		
 		Game g;
 		int insetsL;
 		int insetsR;
@@ -57,28 +58,14 @@ public class MouseListenerTetra implements MouseListener {
 			insetsR = (914 + tetra.getInsets().left);
 		}
 		
+		
 		if(x > insetsL && x < insetsR && y > insetsT && y < insetsB){
 			Player p = g.getPlayer();
 			
 			int xSquare = (x - insetsL)/27;
 			int ySquare = (((y - insetsT)/-27))+19;
 			
-			System.out.println(ySquare);
-			
-			if(p.isSquareAt(xSquare, ySquare)){
-				System.out.println( p.getSquareAt(xSquare, ySquare).getChar() );
-				an += p.getSquareAt(xSquare, ySquare).getChar();
-			}
-			else{
-				System.out.print(" Mot : " + an + "..." );
-				if( p.getShape().getDico().contains(an) )
-					System.out.println( "OK" );
-				else
-					System.out.println( "WRONG !" );
-				
-				System.out.print(">> Mots : ");
-				p.getShape().getDico().findWith(an);
-			}
+			g.getState().input(xSquare, ySquare);
 		}
 	}
 }
