@@ -119,12 +119,19 @@ public class Shape
     
     public Case[][] copyShape(){
     	
-    	Case[][] vc= new Case[4][5];
+    	Case[][] vc= new Case[4][minos];
     	
     	for(int i= 0; i < 4; ++i){	
 	    	for(int j= 0; j < minos; ++j)
-	    		vc[i][j]= new Case( blocs[j].getX(), blocs[j].getY() ); 
-	    	rotate( vc[i] );
+	    		vc[3-i][j]= new Case( blocs[j].getX(), blocs[j].getY() );
+	    	
+	    	for(int j = 0; j < i; ++j){
+	    		System.out.println(vc[3-j][0].x +","+ vc[3-j][0].y +" "+vc[3-j][1].x +","+ vc[3-j][1].y +" "+vc[3-j][2].x +","+ vc[3-j][2].y +" "+vc[3-j][3].x +","+ vc[3-j][3].y);
+			
+	    		rotate( vc[3 - j] );
+	    		System.out.println(vc[3-j][0].x +","+ vc[3-j][0].y +" "+vc[3-j][1].x +","+ vc[3-j][1].y +" "+vc[3-j][2].x +","+ vc[3-j][2].y +" "+vc[3-j][3].x +","+ vc[3-j][3].y);
+				
+	    	}
     	}
     	return vc;
     }

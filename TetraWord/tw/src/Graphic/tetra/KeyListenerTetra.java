@@ -38,8 +38,9 @@ public class KeyListenerTetra implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-
+		char tmp = arg0.getKeyChar();
+		game1.getState().input(tmp);
+		game2.getState().input(tmp);
 	}
 
 }
