@@ -129,6 +129,11 @@ public class Dictionary
         
         return tree.findWith( "", s.toCharArray() ); 
     }
+    
+    public String bestWith( String s ){
+        
+        return tree.longestWith("", s.toCharArray()); 
+    }
 
     public void printNextWord()
     {
@@ -189,7 +194,9 @@ public class Dictionary
         if( str.isEmpty() )
             return;
         else{
-            nb = dico.findWith( str );
+            //nb = dico.findWith( str );
+        	System.out.println( dico.bestWith( str ) );
+        	
         	System.out.println( dico.contains(str) );
         }
             

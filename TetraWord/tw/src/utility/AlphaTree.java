@@ -1,5 +1,7 @@
 package utility;
 
+import java.util.Vector;
+
 
 /**
  * Write a description of class AlphaTree here.
@@ -15,6 +17,7 @@ public class AlphaTree //Arbre ternaire lexicographique
     private AlphaTree f;    //fils direct
     private int nbWords;
     
+    private Vector<String> words;
     private Letter[] alphabet;
     /**
      * Constructor for objects of class AlphaTree
@@ -23,12 +26,14 @@ public class AlphaTree //Arbre ternaire lexicographique
     {
         this.L= let;
         alphabet= alph;
+        words= new Vector<String>();
     }
     
     public AlphaTree(Letter[] alph)
     {
         L= null;
         alphabet= alph;
+        words= new Vector<String>();
     }
     
     //ONLY FOR DEVELOPMENT
@@ -199,6 +204,51 @@ public class AlphaTree //Arbre ternaire lexicographique
         
     }
     
+    public String longestWith( String prefix, char[] nextLets ){
+    	
+    	int taille= 0, index= 0;
+    	fillWith( prefix, nextLets );
+    	
+    	for( int i= 0; i < words.size(); ++i ){
+    		if( words.elementAt(i).length() > taille ){
+    			taille = words.elementAt(i).length();
+    			index = i;
+    		}
+    	}
+    	
+    	String vs= new String( words.elementAt(index) );
+    	words.removeAllElements();
+    	
+    	return vs;    	
+    }
+    
+    public void fillWith( String prefix, char[] nextLets ){
+        
+        
+        for( int i= 0; i < nextLets.length; ++i ){
+            char[] ls= new char[nextLets.length-1];
+            int j= 0;
+            int k= 0;
+            while( j < nextLets.length-1 ){ //On remplit les futures prochaines lettres sans celle juste apres
+                
+                    ls[j] = nextLets[k];
+                    if( i != k )
+                        ++j;
+                    ++k;
+            }
+            
+            int tmp= search( prefix + nextLets[i] );
+            if(  tmp != -1 ){
+                if( tmp == 1 ){
+                    words.add( new String( prefix + nextLets[i] ) );  
+                }
+                
+                fillWith( prefix + nextLets[i], ls ); //On concatene la juste apres avec le prefix deja existant
+            }
+        }
+        
+    }
+    
     public int findWith( String prefix, char[] nextLets ){
         
         int founds= 0;
@@ -231,7 +281,6 @@ public class AlphaTree //Arbre ternaire lexicographique
         }
         
         return founds;
-        
     }
     
     public static void main(String[] args){

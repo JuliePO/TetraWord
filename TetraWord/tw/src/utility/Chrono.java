@@ -14,6 +14,11 @@ public class Chrono {
 		this(0);
 	}
 	
+	public void setGoal( int value ){
+		goal= value;
+		this.reset();
+	}
+	
 	public void incr(){
 		++currTime;
 	}

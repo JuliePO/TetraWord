@@ -1,0 +1,67 @@
+/**************************** TETRA WORD *******************************/
+
+	Bonjour, vous nous remercions de jouer à TetraWord. Enjoy ! 
+
+/--------- Installation ---------/
+
+
+/--------- Règles du jeu ---------/
+
+	TetraWord est un mélange entre deux jeux : Tetris et Boggle. La partie commence comme un jeu de Tetris classique. Cependant, chaque pièce de la forme contient une lettre. Une fois qu’une ligne est remplie, le mode anagramme s’active. Le joueur doit trouver un mot dans la ligne qui comporte au moins 70 % du meilleur anagramme. Pour cela, il doit cliquer sur les lettres dans l’ordre. Si cette condition est remplie, la ligne est détruite. Tout comme Tetris, lorsque la grille du joueur est remplie, ce dernier a perdu. 
+	Il est possible de jouer seul contre une intelligence artificielle ou de jouer à deux. 
+	Des bonus peuvent être activés :
+- Le bonus worddle : Ce dernier active le mode worddle. Ainsi dans toute la grille, le joueur doit trouver dans un temps à partie, le maximum de mot formés à partir de lettres adjacentes. Tout comme pour le jeu Boggle. 
+- Le bonus échange : Ce bonus permet d’échanger les plateaux des deux joueurs.
+- Le bonus retournement : Le plateau du joueur d’adverse se retourne. Les formes vont donc de bas en haut. 
+- Le bonus malus qui basse les points du joueur adverse
+- Le bonus qui ajoute des points au score
+Le joueur à la possibilité de stocker 3 bonus et les utiliser quand il veut. Attention, lorsqu’il a déjà 3 bonus en stoker le dernier est supprimé. 
+
+/--------- Politique des scores ---------/
+
+	Lorsqu’une brique arrive en bas et est donc positionner dans la grille, le joueur gagne 20 points. 
+
+
+
+
+/--------- Touches du clavier par défaut ---------/
+
+	Joueur 1 :
+	
+- A : e
+- B : a
+- R : f
+- L : r
+- HAUT : z
+- BAS : s
+- DROITE : d
+- GAUCHE : q
+
+	Joueur 2 :
+	
+- A : 9
+- B : 7 
+- R : +
+- L : -
+- HAUT : 8
+- BAS : 5
+- DROITE : 6
+- GAUCHE : 7
+
+HAUT : permet de tourner la brique
+BAS : permet de faire tomber plus rapidement la brique
+L : permet de naviguer dans le bonus 
+R : permet d’activer un bonus
+DROITE et GAUCHE : permettent de bouger la forme 
+BARRE D’ESPACE : permet de mettre le jeu en pause
+
+
+/--------- Configuration du jeu ---------/
+
+	Il est possible de configurer le jeu. Pour cela, il faut aller dans « Options ». Les paramètres modifiables sont :
+- La vitesse du jeu 
+- La fréquence d’apparition des bonus 
+- Les pseudos des joueurs
+- La fréquence des lettres
+
+

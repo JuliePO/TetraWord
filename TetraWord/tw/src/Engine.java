@@ -14,6 +14,7 @@ import utility.IA.PlayerIA;
 import GameState.Game;
 import GameState.GameState;
 import Graphic.Frame;
+import Audio.Audio;
 
 
 
@@ -28,6 +29,9 @@ public class Engine extends JPanel implements ActionListener
     private PlayerIA p2;
     
     private Frame fr;
+    
+    private Audio son;
+    boolean changeSound;
     
     int nbP; 
     
@@ -50,6 +54,11 @@ public class Engine extends JPanel implements ActionListener
     	game2 = new Game(p2, config);
     	
     	fr = new Frame(game1, game2, config);
+    	
+    	son = new Audio("sound/puzzle.wav");
+    	son.setEnd(true);
+        son.start();
+        changeSound = false;
 
     	time.start();
     }
@@ -64,10 +73,26 @@ public class Engine extends JPanel implements ActionListener
     	
     	if(!fr.isIA())
     		p2.desactive();
-    	
-    	if(fr.getPanelState() == 'g'){
-    		
+
+    	if(fr.getPanelState() == 'g') {
     		update(0);
+    		if(changeSound == false) {
+    			changeSound = true;
+    			son.setEnd(false);
+    			son.stopSound();
+    			son = new Audio("sound/phoenix.wav");
+    	    	son.setEnd(true);
+    	        son.start();
+    		}
+    	}
+    	
+    	if(fr.getPanelState() != 'g' && changeSound == true) {
+    		changeSound = false;
+			son.setEnd(false);
+			son.stopSound();
+			son = new Audio("sound/puzzle.wav");
+	    	son.setEnd(true);
+	        son.start();
     	}
 
     	fr.update();
@@ -91,6 +116,7 @@ public class Engine extends JPanel implements ActionListener
 	        game1.update(tps);
 	        game2.update(tps);
 	    }
+    	
     }
     
     public static void main(String[] args) {

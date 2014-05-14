@@ -71,11 +71,20 @@ public class Anagramme extends GameState {
 			else
 				System.out.println( "WRONG !" );
 			
-			System.out.print(">> Mots : ");
-			j.getShape().getDico().findWith(word);
+			//j.getShape().getDico().findWith(j.getBoard().getLineString(currentLine));
+			String strLine = j.getBoard().getLineString(currentLine);
+			
+			String best= j.getShape().getDico().bestWith( strLine );			
+			System.out.println(">> Meilleur Mot : " + best);
+			
+			int rate= (word.length()*10) / best.length();
+			
 			b.setLineTo(currentLine, 'n');
-			b.supprLine(currentLine);
-			j.getLines().remove(0);
+			
+			if( rate >= 7){
+				b.supprLine(currentLine);
+				j.getLines().remove(0);
+			}
 			
 			finish= true;
 		}
