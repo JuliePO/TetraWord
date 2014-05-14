@@ -54,9 +54,9 @@ public class BonusArrayComponent extends TetraComponent {
 		
 
 		Player p = new Player(1);
-		p.addBonus(new BonusScore(p, null));
+		/*p.addBonus(new BonusScore(p, null));
 		p.addBonus(new MalusScore(p, null));
-		p.addBonus(new ExchangePlateau(p, null));
+		p.addBonus(new ExchangePlateau(p, null));*/
 		
 		JFrame tmp = new JFrame();
 		

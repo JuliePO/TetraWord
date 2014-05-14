@@ -15,7 +15,9 @@ public class Tetris extends GameState {
 	private Chrono ch;
 	private Chrono fall;
 	private int g;
-
+	private int nextShape;
+	private Random alea;
+	
 	public Tetris(Player j, Configuration config) {
 		super( j, config );		
 		
@@ -25,7 +27,15 @@ public class Tetris extends GameState {
 		ch = new Chrono(4);
 		fall = new Chrono(g);
 		
-		j.newShape( config.getDico() );
+		alea= new Random();
+		
+		nextShape= alea.nextInt(6);
+		
+		j.newShape( config.getDico(), alea.nextInt(6) );
+	}
+	
+	public int getNextShape(){
+		return nextShape;
 	}
 	
 	public boolean isOver(){
@@ -40,6 +50,7 @@ public class Tetris extends GameState {
 		
 		if(!j.pause){
 			
+			
 			if( j.getShape().isArrived() ){
 				
 				fall.setGoal(g);
@@ -49,7 +60,7 @@ public class Tetris extends GameState {
 	        		//System.out.println("GAME OVER * GAME OVER * GAME OVER * GAME OVER *");
 	            
 	        	int lines= b.nbLines() ;
-	        	System.out.println("NB Lines : " + lines);
+	        	//System.out.println("NB Lines : " + lines);
 	            if( lines > 0 ){
 	            	
 	            	j.setFullLines( b.hasLines() );
@@ -61,6 +72,7 @@ public class Tetris extends GameState {
 	            	generate = true;
 	            
 	        }
+			
 			
 			fall.decr();
 			if( fall.isFinished() ){
@@ -92,10 +104,13 @@ public class Tetris extends GameState {
             // ** DYNAMIC FREE & ALLOC
                
 	        if( generate ){
-	        	j.newShape( config.getDico() );
+	        	j.newShape( config.getDico(), nextShape );
+	        	nextShape= alea.nextInt(6);
 	        	ch.reset();
 	        	generate = false;
 	        }
+	        
+	        b.applyBonus();
 			
 		}
 

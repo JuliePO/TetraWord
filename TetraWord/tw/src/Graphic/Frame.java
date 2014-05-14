@@ -152,18 +152,18 @@ public class Frame extends JFrame {
         
         Configuration config = new Configuration();
         Dictionary dico = config.getDico();        
-        Player J1= new Player(1, "georges", "ninja", null);
-        Player J2 = new Player(2, "louis", "panda", null);
+        Player J1= new Player(1, "georges", "ninja");
+        Player J2 = new Player(2, "louis", "panda");
         Board b= J1.getBoard();
         boolean[] fd= b.getField();
 
 
-    	J1.addBonus(new BonusScore(J1, J2));
+    	/*J1.addBonus(new BonusScore(J1, J2));
 		J1.addBonus(new BonusScore(J1, J2));
 		
     	J2.addBonus(new MalusScore(J2, J1));
 		J2.addBonus(new MalusScore(J2, J1));
-		J2.addBonus(new MalusScore(J2, J1));
+		J2.addBonus(new MalusScore(J2, J1));*/
 
         //Creation des blocs
         squares[0] = new Square( 2, 19, dico.pickLetter(), b , "blue");
