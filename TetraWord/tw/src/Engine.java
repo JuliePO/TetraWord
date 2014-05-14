@@ -38,7 +38,7 @@ public class Engine extends JPanel implements ActionListener
     
     Engine(Player p1, Player p2, Configuration config){
 
-    	time= new Timer(17, this);
+    	time= new Timer(17, this); //17
     	
     	game1 = new Game(p1, config);
     	game2 = new Game(p2, config);
@@ -77,7 +77,7 @@ public class Engine extends JPanel implements ActionListener
     	}
     	else{
 	        game1.update(tps);
-	        game2.update(tps);
+	        //game2.update(tps);
 	    }
     }
     

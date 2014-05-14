@@ -78,7 +78,7 @@ public class Square extends Case
 
     private boolean isBlocked(){
             
-        Square tmp= isNeighbour(x, y-1);
+        Square tmp= isNeighbour(x, y-1); 
         
         if( tmp != null )
             return tmp.isBlocked();
@@ -136,7 +136,7 @@ public class Square extends Case
         
         int pts= 0;
         this.nextState = 's';
-        setBusy();
+        //setBusy();
         
         if( newBloc ) // Seuls les nouveaux bloc rapportent des pts
             //System.out.println ("  >> SCORE + 5 << ");

@@ -9,21 +9,22 @@ import utility.Player;
 
 public class Tetris extends GameState {
 	
-
-	private int speed;
 	boolean[] fd;
 	int t=0;
 	boolean generate;
 	private Chrono ch;
+	private Chrono fall;
+	private int g;
 
 	public Tetris(Player j, Configuration config) {
-		super( j, config );
-		speed=30;
+		super( j, config );		
 		
-		
+		g= 4;
 		b= j.getBoard();
 		fd= b.getField();
 		ch = new Chrono(4);
+		fall = new Chrono(g);
+		
 		j.newShape( config.getDico() );
 	}
 	
@@ -39,54 +40,63 @@ public class Tetris extends GameState {
 		
 		if(!j.pause){
 			
-            // Calculate nextState ------------------------   
-            for( int i= 0; i < b.size(); ++i )
-                if( b.elmtAt(i).getNextState() == '?' )
-                    b.elmtAt(i).becoming(j); 
-            // --------------------------------------------
-            
-            //UPDATE------------------------  
-            for( int i= 0; i < b.size(); ++i ){
-                switch( b.elmtAt(i).getNextState() ){
-                    case 's':  // b.elmtAt(i).setBusy(); 
-                            break;
-                
-                case 'f':   b.elmtAt(i).fall();
-                            break;
-                            
-                default : System.err.println( "Error : nextState of a Square is " +  b.elmtAt(i).getNextState() );
-                            
-                }
-                
-                b.elmtAt(i).setNextState('?');
-            }               
-            // ** DYNAMIC FREE & ALLOC
-                
-
-	        if( generate ){
-	        	j.newShape( config.getDico() );
-	        	ch.reset();
-	        	generate = false;
-	        }
-	        
-	        if( j.getShape().isArrived() ){
+			if( j.getShape().isArrived() ){
+				
+				fall.setGoal(g);
 	        	
 	        	//if( isOver() )
 	        		//System.exit(0);
 	        		//System.out.println("GAME OVER * GAME OVER * GAME OVER * GAME OVER *");
 	            
-	        	Vector<Integer> lines= b.hasLines();
-	            if( !lines.isEmpty() ){
+	        	int lines= b.nbLines() ;
+	        	System.out.println("NB Lines : " + lines);
+	            if( lines > 0 ){
 	            	
-	            	System.out.println("lignes pleines: " + lines);
-	            	j.setFullLines(lines);
+	            	j.setFullLines( b.hasLines() );
 	            	return new Anagramme( j, config );
 	            }
 	            
 	            ch.decr();
 	            if( ch.isFinished() )
 	            	generate = true;
-	        }    
+	            
+	        }
+			
+			fall.decr();
+			if( fall.isFinished() ){
+				fall.reset();
+	            // Calculate nextState ------------------------   
+	            for( int i= 0; i < b.size(); ++i )
+	                if( b.elmtAt(i).getNextState() == '?' )
+	                    b.elmtAt(i).becoming(j); 
+	            // --------------------------------------------
+	            
+				
+	            //UPDATE------------------------  
+	            for( int i= 0; i < b.size(); ++i ){
+	                switch( b.elmtAt(i).getNextState() ){
+	                    case 's':   b.elmtAt(i).setBusy(); 
+	                            	break;
+	                
+		                case 'f':   b.elmtAt(i).fall();
+		                            break;
+		                            
+		                default : System.err.println( "Error : nextState of a Square is " +  b.elmtAt(i).getNextState() );
+	                            
+	                }
+	                
+	                b.elmtAt(i).setNextState('?');
+	            }
+	            
+			}
+            // ** DYNAMIC FREE & ALLOC
+               
+	        if( generate ){
+	        	j.newShape( config.getDico() );
+	        	ch.reset();
+	        	generate = false;
+	        }
+			
 		}
 
         return this;
@@ -104,6 +114,8 @@ public class Tetris extends GameState {
 			j.getShape().goRight();
 		else if(input == j.getInput("b"))
 			j.useBonus();
+		else if(input == j.getInput("down"))
+			fall.setGoal(1);
 	}
 }
 	

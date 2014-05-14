@@ -34,6 +34,28 @@ public class Board
         field= new boolean[width * height];
     }
     
+    public int nbLines(){
+    	
+    	int nb= 0;
+    	
+    	for(int i= 0; i < height; ++i ){
+    		int k= 0;
+    		for( int j= 0; j < width; ++j ){
+    			if( !this.isBusy(j, i) )
+    				break;
+    			
+    			++k;
+    		}
+    		
+    		if( k == width )
+    			++nb;
+    	}
+    			
+    	return nb;
+    	
+    }
+    
+    //Retourne un tableau contenant les numeros des lignes pleines
     public Vector<Integer> hasLines(){
     	
     	Vector<Integer> vect= new Vector<Integer>();    	
@@ -45,8 +67,6 @@ public class Board
     				break;
     			
     			++k;
-    			
-    			System.out.print( " {" + j + ", " + i + "}"+k+"\t" );
     		}
     		
     		if( k == width )
@@ -79,22 +99,17 @@ public class Board
 	    		setLineTo(v.elementAt(i), newState );		    	
     }
     
+    public String getLineString(int line){
+    	
+    	String vs= "";
+    	
+    	for(int j= 0; j < width; ++j)
+    		if( getSquareAt( j, line ) != null)
+    			vs += getSquareAt( j, line ).getChar();
+    	
+    	return vs;
+    }
     
-    //DANGER
-	public int hasLine(){
-		
-		System.exit(0);
-	    	
-    	for(int i= 0; i < height; ++i ){
-    		for( int j= 0; j < width; ++j ){
-    			if( !this.isBusy(i, j) )
-    				break;
-    		}
-    		return i;
-    	}
-    			
-    	return -1;
-	}
     
     public boolean[] copyField(){
     	
@@ -136,10 +151,8 @@ public class Board
     }
     
     public boolean outside( int x, int y ){
-        if( x >= width || x < 0 )
+        if( x >= width || x < 0 || y >= height || y < 0 )
             return true;
-        if( y >= height || y < 0 )
-            return true;    
         
         return false;
     }
@@ -148,10 +161,6 @@ public class Board
         Square sq= cases.elementAt(index);
         freeAt( sq.getX(), sq.getY() );
         cases.removeElementAt(index);
-    }
-    
-    public void suppr( Square c ){
-    	
     }
     
     public boolean[] getField(){
@@ -189,13 +198,23 @@ public class Board
     
     public void supprLine( int line ){
     	
+    	
     	for(int i= 0; i < cases.size(); ++i)
             if( elmtAt(i).getY() == line ){
                 supprAt(i);
                 --i;
             }
-    	
+	
     	fallFromLine(line+1);
+    }
+    
+    //ONLY FOR DEVELOPMENT
+    public void checkLine(int line){
+    	
+    	for(int i= 0; i < width; ++i)
+    		System.out.print( this.isBusy(i, line) + "(" + i + ")  \t" );
+    	
+    	System.out.println();
     }
     
     public Square getSquareAt(int x, int y){
@@ -222,27 +241,30 @@ public class Board
      */
     public boolean isBusy( int x, int y ){
         
-        if( x < 0 || x > 9 || y < 0 || y > 19 ) //limite (attribut)
+        if( this.outside(x, y) )
             return true;
         
         return field[ x + y*10 ];
     }
     
     void busyAt( int x, int y ){
-        
+    	
+    	if( this.outside(x, y) )
+        	return;
+    	
         field[ x + y*10 ] = true;
     }
     
     public void freeAt( int x, int y ){
     	
-        if( y > height )
-        	System.out.println( "y = " + y);
+    	if( this.outside(x, y) )
+        	return;
         field[ x + y*10 ] = false;
     }
     
     public void freeAll(){
         
-        for( int i= 0; i < 200; ++i ) // limite
+        for( int i= 0; i < width*height; ++i )
                 field[i] = false;
     }
 
