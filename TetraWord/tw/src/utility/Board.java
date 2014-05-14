@@ -1,6 +1,13 @@
 package utility;
 
+import java.util.Random;
 import java.util.Vector;
+
+import utility.Bonus.BonusScore;
+import utility.Bonus.BonusTetra;
+import utility.Bonus.ExchangePlateau;
+import utility.Bonus.MalusScore;
+import utility.Bonus.ReturnMalus;
 /**
  * Write a description of class Board here.
  * 
@@ -12,9 +19,11 @@ public class Board
     
     private boolean[] field;
     private Vector<Square> cases;
+    private Vector<BonusTetra> bonus;
     private int width;
     private int height;
     public boolean invert;
+    private Random alea;
     //Les limites du terrain ?
 
     /**
@@ -32,6 +41,8 @@ public class Board
         this.height= height;
         cases= new Vector<Square>(0);
         field= new boolean[width * height];
+        alea= new Random();
+        bonus= new Vector<BonusTetra>();
     }
     
     public int nbLines(){
@@ -52,6 +63,50 @@ public class Board
     	}
     			
     	return nb;
+    	
+    }
+    
+    public void applyBonus(){
+    	
+    	for( BonusTetra bon : bonus )
+    		if( bon.getTtl() <= 0 )
+    			bon.remove();
+    		else
+	    		if( isBusy( bon.getX(), bon.getY() ) )
+	    			bon.apply();
+    }
+    
+    public void addBonus(Player J, Player E){
+    	
+		int tx;
+		int ty;
+		
+		do{
+			tx= alea.nextInt(getWidth()-1);
+			ty= alea.nextInt(getHeight()-1);
+		}
+		while( isBusy(tx, ty) );
+		
+		//System.out.println("Bonus Here -> (" + tx +", " + ty  + ")");
+    	
+    	switch( alea.nextInt(3) ){
+    	
+	    	case 0:
+	    		bonus.add( new BonusScore( tx, ty, J, E) );
+	    		break;
+	    	case 1:
+	    		bonus.add( new ExchangePlateau( tx, ty, J, E) );
+	    		break;
+	    	case 2:
+	    		bonus.add( new MalusScore( tx, ty, J, E) );
+	    		break;
+	    	case 3:
+	    		bonus.add( new ReturnMalus( tx, ty, J, E) );
+	    		break;
+    		default:
+    			System.err.println("Impossible case (addBonus)");
+    			break;
+    	}
     	
     }
     

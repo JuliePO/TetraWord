@@ -108,7 +108,7 @@ public class FieldComponent extends TetraComponent {
     }
     
     public static void main(String[] args) {
-        Player p = new Player(1, "georges", "ninja", null);
+        Player p = new Player(1, "georges", "ninja");
         p.increaseScore(8000);
 
         p.getBoard().addCase(new Square(9, 19, new Letter((short) 1, 'k', 0), null, "blue"));

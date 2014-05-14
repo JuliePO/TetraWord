@@ -28,7 +28,7 @@ public class Player
     private BonusTetra activeBonus;
     
     private int nbBonus;
-    private Random alea;
+    //private Random alea;
 	public boolean pause;
 
 
@@ -78,15 +78,14 @@ public class Player
         this.name = name;        
     }
     
-    public Player(int number, String name, String avatar, Random r)
+    public Player(int number, String name, String avatar)
     {
         this(number, name);
         this.avatar = avatar; 
-        alea = r;
     }
     
-    public void newShape(Dictionary dico){
-        currentShape= new Shape(alea.nextInt(6), dico, board);
+    public void newShape(Dictionary dico, int next){
+        currentShape= new Shape(next, dico, board);
     }
     
     public Shape getShape(){

@@ -153,7 +153,7 @@ public class VersusComponent extends TetraComponent {
 		//3. Create components and put them in the frame.
 		//frame.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 	
-		frame.setContentPane(new VersusComponent(new Player(1, "georges", "ninja", null), new Player(2, "louis", "panda", null)));
+		frame.setContentPane(new VersusComponent(new Player(1, "georges", "ninja"), new Player(2, "louis", "panda")));
 	
 		//4. Size the frame.
 		frame.pack();
