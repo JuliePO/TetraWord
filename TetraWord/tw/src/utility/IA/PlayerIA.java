@@ -11,8 +11,8 @@ public class PlayerIA extends Player {
 	ShapePosition pattern;
 	boolean active;
 
-	public PlayerIA(int number, String name, String avatar, Random r) {
-		super(number, name, avatar, r);
+	public PlayerIA(int number, String name, String avatar) {
+		super(number, name, avatar);
 		iaTetris = new IAtetris();
 		active = true;
 	}
@@ -22,8 +22,8 @@ public class PlayerIA extends Player {
 	}
 	
 	@Override
-	public void newShape(Dictionary dico) {
-		super.newShape(dico);
+	public void newShape(Dictionary dico, int next) {
+		super.newShape(dico, next);
 		if(active){
 			iaTetris.setShape(currentShape);
 			pattern = iaTetris.getShapeIA();

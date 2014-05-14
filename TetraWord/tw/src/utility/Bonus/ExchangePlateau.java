@@ -6,8 +6,8 @@ import utility.Shape;
 
 public class ExchangePlateau extends BonusTetra{
 
-	public ExchangePlateau(Player owner, Player rival) {
-		super("exchange", owner, rival, 1);
+	public ExchangePlateau(int tx, int ty, Player owner, Player rival) {
+		super(tx, ty, "exchange", owner, rival, 1);
 	}
 
 	@Override

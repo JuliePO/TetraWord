@@ -147,7 +147,7 @@ public class PanelTetraWord extends PanelBase {
 		square.add(new Square(9, 1, new Letter((short)5, 'a', 0), null, "blue"));
 		square.add(new Square(1, 19, new Letter((short)5, 'z', 0), null, "yellow"));
 		
-		final Player p = new Player(1, "georges", "ninja", null);
+		final Player p = new Player(1, "georges", "ninja");
 		p.getBoard().addCase(new Square(9, 1, new Letter((short)5, 'a', 0), null, "blue"));
 		p.getBoard().addCase(new Square(1, 19, new Letter((short)5, 'a', 0), null, "yellow"));
 		p.increaseScore(8000);

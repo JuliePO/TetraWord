@@ -11,9 +11,7 @@ import java.awt.Color;
  */
 public class Square extends Case
 {
-    //private int x;
-    //private int y;
-    
+
     Square up;
     Square left;
     Square right;

@@ -4,8 +4,8 @@ import utility.Player;
 
 public class MalusScore extends BonusTetra {
 
-	public MalusScore(Player owner, Player rival) {
-		super("malus", owner, rival, 1);
+	public MalusScore(int tx, int ty, Player owner, Player rival) {
+		super(tx, ty, "malus", owner, rival, 1);
 	}
 
 	@Override
