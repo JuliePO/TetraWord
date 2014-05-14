@@ -38,15 +38,14 @@ public class Tetris extends GameState {
 	@Override
 	public GameState update(int tps) {
 		
-		if(!j.pause){
+		if(!j.pause && !end){
 			
 			if( j.getShape().isArrived() ){
 				
 				fall.setGoal(g);
 	        	
-	        	//if( isOver() )
-	        		//System.exit(0);
-	        		//System.out.println("GAME OVER * GAME OVER * GAME OVER * GAME OVER *");
+	        	if( isOver() )
+	        		end=true;
 	            
 	        	int lines= b.nbLines() ;
 	        	System.out.println("NB Lines : " + lines);

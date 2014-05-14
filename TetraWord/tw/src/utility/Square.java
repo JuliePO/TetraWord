@@ -47,7 +47,13 @@ public class Square extends Case
         setBusy();
     }
     
-    public void setBusy(){
+    public Square(int midX, int maxY, Letter pickLetter) {
+		super(midX, maxY);
+		this.letter=pickLetter;
+		
+	}
+
+	public void setBusy(){
         if(field != null)
             field.busyAt( x , y );
         else

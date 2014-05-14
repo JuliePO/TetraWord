@@ -118,7 +118,6 @@ public class PanelTetraWord extends PanelBase {
 		versus.setBounds(405, 448, versus.getW(), versus.getH());
 		add(versus);
 		
-		addMouseMotionListener(new MouseMotionListenerTetra());
 		addMouseListener(new MouseListenerTetra(G1, G2));
 		
 		addKeyListener(new KeyListenerTetra(G1, G2));
