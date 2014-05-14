@@ -10,6 +10,7 @@ import utility.Board;
 import utility.Configuration;
 import utility.Player;
 import utility.Square;
+import utility.IA.PlayerIA;
 import GameState.Game;
 import GameState.GameState;
 import Graphic.Frame;
