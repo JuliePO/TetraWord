@@ -19,7 +19,7 @@ public class IAtetris {
 		public int compare(Object o1, Object o2) {
 			
 			if(((ShapePosition)o1).value == ((ShapePosition)o2).value)
-				if(((ShapePosition)o1).yPosition >  ((ShapePosition)o2).yPosition)
+				if(((ShapePosition)o1).yPosition <  ((ShapePosition)o2).yPosition)
 					return 1;
 				else
 					return -1;

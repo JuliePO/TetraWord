@@ -27,7 +27,7 @@ public class PlayerIA extends Player {
 	@Override
 	public void update() {
 		super.update();
-		
+		System.out.println("lol");
 		if(pattern.rotate > 0 && currentShape.getSquares()[0].y < 16){
 			currentShape.rotate();
 			--pattern.rotate;

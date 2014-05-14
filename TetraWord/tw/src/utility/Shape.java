@@ -55,6 +55,10 @@ public class Shape
             default: 
                 System.err.println( "Unknown shape !" );
         }
+        
+        //setboard
+        for(int i= 0; i < minos; ++i )
+            bd.addCase( blocs[i] );
     }
     
     /**
@@ -92,25 +96,25 @@ public class Shape
     	for(int i= 0; i < 4; ++i){	
 	    		switch( shpNum ){
 		            case 0:
-		            	vc[i]= shapeI("green", blocs[i].getX(), blocs[i].getY() ); 
+		            	vc[i]= shapeIcopy("green", blocs[i].getX(), blocs[i].getY() ); 
 		                break;
 		            case 1:
-		            	vc[i]= shapeO("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[i]= shapeOcopy("green", blocs[i].getX(), blocs[i].getY() );
 		                break;
 		            case 2:
-		            	vc[i]= shapeT("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[i]= shapeTcopy("green", blocs[i].getX(), blocs[i].getY() );
 		                break;
 		            case 3:
-		            	vc[i]= shapeL("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[i]= shapeLcopy("green", blocs[i].getX(), blocs[i].getY() );
 		                break;
 		            case 4:
-		            	vc[i]= shapeJ("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[i]= shapeJcopy("green", blocs[i].getX(), blocs[i].getY() );
 		                break;
 		            case 5:
-		            	vc[i]= shapeZ("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[i]= shapeZcopy("green", blocs[i].getX(), blocs[i].getY() );
 		                break;
 		            case 6:
-		            	vc[i]= shapeS("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[i]= shapeScopy("green", blocs[i].getX(), blocs[i].getY() );
 		                break;
 		            default: 
 		                System.err.println( "Unknown shape !" );
@@ -135,6 +139,133 @@ public class Shape
     		
     	System.out.println(vs + "***********************************");
     }
+
+    private Square[] shapeScopy(String col, int midX, int maxY){
+        
+    	//int midX= 4;
+    	//int maxY= 19;
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter());
+        blocs[1] = new Square( midX+1, maxY, dico.pickLetter());
+        blocs[2] = new Square( midX, maxY-1, dico.pickLetter());
+        blocs[3] = new Square( midX-1, maxY-1, dico.pickLetter());
+        
+        
+
+        
+        return blocs;
+    }
+    
+    private Square[] shapeZcopy(String col, int midX, int maxY){
+        
+    	//int midX= 4;
+    	//int maxY= 19;
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter());
+        blocs[1] = new Square( midX-1, maxY, dico.pickLetter());
+        blocs[2] = new Square( midX, maxY-1, dico.pickLetter());
+        blocs[3] = new Square( midX+1, maxY-1, dico.pickLetter());
+        
+        
+
+        
+        return blocs;
+    }
+    
+    private Square[] shapeJcopy(String col, int midX, int maxY){
+        
+    	//int midX= 4;
+    	//int maxY= 19;
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter());
+        blocs[1] = new Square( midX+1, maxY, dico.pickLetter());
+        blocs[2] = new Square( midX-1, maxY, dico.pickLetter());
+        blocs[3] = new Square( midX+1, maxY-1, dico.pickLetter());
+        
+        
+
+        
+        
+        return blocs;
+    }
+    
+    private Square[] shapeLcopy(String col, int midX, int maxY){
+        
+    	//int midX= 4;
+    	//int maxY= 19;
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter());
+        blocs[1] = new Square( midX+1, maxY, dico.pickLetter());
+        blocs[2] = new Square( midX-1, maxY, dico.pickLetter());
+        blocs[3] = new Square( midX-1, maxY-1, dico.pickLetter());
+        
+        
+
+        
+        
+        return blocs;
+    }
+    
+    private Square[] shapeOcopy(String col, int midX, int maxY){
+        
+    	//int midX= 4;
+    	//int maxY= 19;
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        blocs[0] = new Square( midX, maxY-1, dico.pickLetter());
+        blocs[1] = new Square( midX+1, maxY-1, dico.pickLetter());
+        blocs[2] = new Square( midX+1, maxY, dico.pickLetter());
+        blocs[3] = new Square( midX, maxY, dico.pickLetter());
+        
+
+
+        
+        
+        
+        return blocs;
+    }
+    
+    private Square[] shapeIcopy(String col, int midX, int maxY){
+        
+    	//int midX= 4;
+    	//int maxY= 19;
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter());
+        blocs[1] = new Square( midX-1, maxY, dico.pickLetter());
+        blocs[2] = new Square( midX+1, maxY, dico.pickLetter());
+        blocs[3] = new Square( midX+2, maxY, dico.pickLetter());
+        
+        
+
+        
+        
+        return blocs;
+    }
+    
+    private Square[] shapeTcopy(String col, int midX, int maxY){
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        //Creation des blocs
+        blocs[0] = new Square( midX, maxY, dico.pickLetter());
+        blocs[1] = new Square( midX-1, maxY, dico.pickLetter());
+        blocs[2] = new Square( midX, maxY-1, dico.pickLetter());
+        blocs[3] = new Square( midX+1, maxY, dico.pickLetter());
+        
+        return blocs;
+        
+    }
     
     private Square[] shapeS(String col, int midX, int maxY){
         
@@ -152,9 +283,6 @@ public class Shape
         blocs[1].setNeighbour( null, blocs[0], null, null );
         blocs[2].setNeighbour( blocs[0], blocs[3], null, null );
         blocs[3].setNeighbour( null, null, blocs[2], null );
-        
-        for(int i= 0; i < minos; ++i )
-            bd.addCase( blocs[i] );
         
         return blocs;
     }
@@ -175,9 +303,6 @@ public class Shape
         blocs[1].setNeighbour( null, null, blocs[0], null );
         blocs[2].setNeighbour( blocs[0], null, blocs[3], null );
         blocs[3].setNeighbour( null, blocs[2], null, null );
-        
-        for(int i= 0; i < minos; ++i )
-            bd.addCase( blocs[i] );
         
         return blocs;
     }
@@ -200,9 +325,6 @@ public class Shape
         blocs[2].setNeighbour( null, null, blocs[0], null );
         blocs[3].setNeighbour( blocs[1], null, null, null );
         
-        for(int i= 0; i < minos; ++i )
-            bd.addCase( blocs[i] );
-        
         return blocs;
     }
     
@@ -223,9 +345,6 @@ public class Shape
         blocs[1].setNeighbour( null, blocs[0], null, null );
         blocs[2].setNeighbour( null, null, blocs[0], blocs[3] );
         blocs[3].setNeighbour( blocs[2], null, null, null );
-        
-        for(int i= 0; i < minos; ++i )
-            bd.addCase( blocs[i] );
         
         return blocs;
     }
@@ -248,9 +367,6 @@ public class Shape
         blocs[2].setNeighbour( null, blocs[3], null, blocs[1] );
         blocs[3].setNeighbour( null, null, blocs[2], blocs[0] );
         
-        for(int i= 0; i < minos; ++i )
-            bd.addCase( blocs[i] );
-        
         return blocs;
     }
     
@@ -271,9 +387,6 @@ public class Shape
         blocs[1].setNeighbour( null, null, blocs[0], null );
         blocs[2].setNeighbour( blocs[0], null, null, blocs[3] );
         blocs[3].setNeighbour( null, blocs[2], null, null );
-        
-        for(int i= 0; i < minos; ++i )
-            bd.addCase( blocs[i] );
         
         return blocs;
     }
@@ -299,10 +412,6 @@ public class Shape
         blocs[1].setNeighbour( null, null, blocs[0], null ); 
         blocs[2].setNeighbour( blocs[0], null, null, null );
         blocs[3].setNeighbour( null, blocs[0], null, null );
-        
-        //Ajout au plateau
-        for(int i= 0; i < minos; ++i )
-            bd.addCase( blocs[i] );
         
         return blocs;
         

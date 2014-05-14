@@ -46,6 +46,12 @@ public class Square extends Case
         state= 'n';
         setBusy();
     }
+
+    public Square(int pX, int pY, Letter pL)
+    {
+        super( pX, pY); 
+        letter= pL;
+    }
     
     public void setBusy(){
         if(field != null)
