@@ -32,6 +32,8 @@ public class Game {
 
 	public void update(int tps) {
 		
+		j.update();
+		
 		//currentState = currentState.update(tps);
 		while( currentState == null ){
 			stack.removeElementAt(stack.size()-1);
