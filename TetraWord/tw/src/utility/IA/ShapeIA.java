@@ -41,10 +41,13 @@ public class ShapeIA {
 		
 	}
 	
-	public void setShape(){
+	public int setShape(){
+		int decalage = 0;
 		while(!collideLeft()){
 			goLeft();
+			--decalage;
 		}
+		return decalage;
 	}
 
 	public boolean collideLeft(){

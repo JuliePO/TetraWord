@@ -21,7 +21,7 @@ public class Player
     private String avatar;
     private HashMap<String, Character> inputs;
 
-    private Shape currentShape;
+    protected Shape currentShape;
     
     private BonusTetra[] listBonus;
     private BonusTetra activeBonus;
