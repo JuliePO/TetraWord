@@ -360,34 +360,37 @@ public class Shape
     	for(int i= 0; i < 4; ++i){	
 	    		switch( shpNum ){
 		            case 0:
-		            	vc[i]= shapeIcopy("green", blocs[i].getX(), blocs[i].getY() ); 
+		            	vc[3-i]= shapeIcopy("green", blocs[i].getX(), blocs[i].getY() ); 
 		                break;
 		            case 1:
-		            	vc[i]= shapeOcopy("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[3-i]= shapeOcopy("green", blocs[i].getX(), blocs[i].getY() );
 		                break;
 		            case 2:
-		            	vc[i]= shapeTcopy("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[3-i]= shapeTcopy("green", blocs[i].getX(), blocs[i].getY() );
 		                break;
 		            case 3:
-		            	vc[i]= shapeLcopy("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[3-i]= shapeLcopy("green", blocs[i].getX(), blocs[i].getY() );
 		                break;
 		            case 4:
-		            	vc[i]= shapeJcopy("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[3-i]= shapeJcopy("green", blocs[i].getX(), blocs[i].getY() );
 		                break;
 		            case 5:
-		            	vc[i]= shapeZcopy("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[3-i]= shapeZcopy("green", blocs[i].getX(), blocs[i].getY() );
 		                break;
 		            case 6:
-		            	vc[i]= shapeScopy("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[3-i]= shapeScopy("green", blocs[i].getX(), blocs[i].getY() );
 		                break;
 		            default: 
 		                System.err.println( "Unknown shape !" );
 	    		}
-		    	for(int j = 0; j < minos; ++j){
-		    		--vc[i][j].y;
+		    	for(int j = 0; j < i; ++j){
+
+			    	for(int k = 0; k < minos; ++k){
+			    		--vc[3-j][k].y;
+			    		--vc[3-j][k].y;
+			    	}
+		    		rotate( vc[3-j] );
 		    	}
-			    	//System.out.println(vc[i][0].x +","+ vc[i][0].y +" "+vc[i][1].x +","+ vc[i][1].y +" "+vc[i][2].x +","+ vc[i][2].y +" "+vc[i][3].x +","+ vc[i][3].y);
-			    	rotate( vc[i] );
 			    	//System.out.println(vc[i][0].x +","+ vc[i][0].y +" "+vc[i][1].x +","+ vc[i][1].y +" "+vc[i][2].x +","+ vc[i][2].y +" "+vc[i][3].x +","+ vc[i][3].y);
 		    	
 	    	}

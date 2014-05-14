@@ -27,7 +27,7 @@ public class PanelCharacter extends PanelBase{
 	
 	 TexturePaint background;
 	 Player p1, p2;
-	 int select1 = 2, select2 = 3;
+	 int select1 = 0, select2 = 1;
 	 boolean set1 = false, set2 = false;
 	 SelecteurComponent selecteur;
 	 PresentationPlayerComponent j1;

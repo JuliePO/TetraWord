@@ -70,7 +70,7 @@ public class Engine extends JPanel implements ActionListener
     public void update(int tps){
     	
     	//Decomenter pour relancer le jeu en fin de partie
-    	if(/*game1.isEnd() || game2.isEnd()*/false){
+    	if(game1.isEnd() && game2.isEnd()){
     		System.out.println("gameover");
     		game1.restart();
     		game2.restart();
