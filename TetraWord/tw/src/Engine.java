@@ -95,7 +95,7 @@ public class Engine extends JPanel implements ActionListener
         Configuration config = new Configuration();
               
         Player J1= new Player(1, "georges", "ninja", alea);
-        Player J2 = new Player(2, "louis", "panda", alea);
+        Player J2 = new PlayerIA(2, "louis", "panda", alea);
                 
         Engine engine = new Engine(J1, J2, config);
        
