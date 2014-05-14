@@ -51,6 +51,9 @@ public class Game {
 	}
 	
 	public boolean isEnd(){
+		if(currentState == null)
+			return false;
+		
 		return currentState.isEnd();
 	}
 	
