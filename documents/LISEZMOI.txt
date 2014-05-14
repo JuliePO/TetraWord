@@ -4,13 +4,25 @@
 
 /--------- Installation ---------/
 
+Pour jouer double cliquez sur le fichier TetraWord.jar dans : TetraWord/tw/.
+
+Dans le cas où le fichier n’est pas présent, il faut le compiler. Vous avez deux solutions :
+- Aller dans votre console (Démarrer > taper cmd dans la barre de recherche) aller dans le dossier tw. Par exemple si le dossier se trouve dans MesDocuments/Tetraword/tw/ écrivez la ligne suivante :
+		
+	cd MesDocuments/Tetraword/tw/
+
+	Il faut ensuite, le compiler grace à la commande ant. Il faut donc taper la commande suivante :
+
+		Ant
+
+- Si vous avez le logiciel Eclipse, il faut faire un clic droit sur le fichier build.xml et cliquer sur run avec ant. 
+
 
 /--------- Règles du jeu ---------/
 
 	TetraWord est un mélange entre deux jeux : Tetris et Boggle. La partie commence comme un jeu de Tetris classique. Cependant, chaque pièce de la forme contient une lettre. Une fois qu’une ligne est remplie, le mode anagramme s’active. Le joueur doit trouver un mot dans la ligne qui comporte au moins 70 % du meilleur anagramme. Pour cela, il doit cliquer sur les lettres dans l’ordre. Si cette condition est remplie, la ligne est détruite. Tout comme Tetris, lorsque la grille du joueur est remplie, ce dernier a perdu. 
 	Il est possible de jouer seul contre une intelligence artificielle ou de jouer à deux. 
 	Des bonus peuvent être activés :
-- Le bonus worddle : Ce dernier active le mode worddle. Ainsi dans toute la grille, le joueur doit trouver dans un temps à partie, le maximum de mot formés à partir de lettres adjacentes. Tout comme pour le jeu Boggle. 
 - Le bonus échange : Ce bonus permet d’échanger les plateaux des deux joueurs.
 - Le bonus retournement : Le plateau du joueur d’adverse se retourne. Les formes vont donc de bas en haut. 
 - Le bonus malus qui basse les points du joueur adverse
