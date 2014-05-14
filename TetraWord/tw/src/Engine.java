@@ -11,9 +11,11 @@ import utility.Chrono;
 import utility.Configuration;
 import utility.Player;
 import utility.Square;
+import utility.IA.PlayerIA;
 import GameState.Game;
 import GameState.GameState;
 import Graphic.Frame;
+import Audio.Audio;
 
 
 
@@ -25,9 +27,12 @@ public class Engine extends JPanel implements ActionListener
     private GameState currentState;
     
     private Player p1;
-    private Player p2;
+    private PlayerIA p2;
     
     private Frame fr;
+    
+    private Audio son;
+    boolean changeSound;
     
     int nbP; 
     
@@ -38,15 +43,23 @@ public class Engine extends JPanel implements ActionListener
     private char state;
     private Chrono freqBonus;
     
-    Engine(Player p1, Player p2, Configuration config){
+    Engine(Configuration config){
 
-    	time= new Timer(17, this); //17
+    	time= new Timer(17, this);
+
+    	p1= new Player(1, "georges", "ninja");
+        p2 = new PlayerIA(2, "louis", "panda");
     	
     	game1 = new Game(p1, config);
     	game2 = new Game(p2, config);
     	
     	fr = new Frame(game1, game2, config);
     	freqBonus= new Chrono(new Random().nextInt(15) + 30);
+    	
+    	son = new Audio("sound/puzzle.wav");
+    	son.setEnd(true);
+        son.start();
+        changeSound = false;
 
     	time.start();
     }
@@ -58,8 +71,30 @@ public class Engine extends JPanel implements ActionListener
     
     @Override //ActionListener
 	public void actionPerformed(ActionEvent arg0) {
-    	if(fr.getPanelState() == 'g')
+    	
+    	if(!fr.isIA())
+    		p2.desactive();
+
+    	if(fr.getPanelState() == 'g') {
     		update(0);
+    		if(changeSound == false) {
+    			changeSound = true;
+    			son.setEnd(false);
+    			son.stopSound();
+    			son = new Audio("sound/phoenix.wav");
+    	    	son.setEnd(true);
+    	        son.start();
+    		}
+    	}
+    	
+    	if(fr.getPanelState() != 'g' && changeSound == true) {
+    		changeSound = false;
+			son.setEnd(false);
+			son.stopSound();
+			son = new Audio("sound/puzzle.wav");
+	    	son.setEnd(true);
+	        son.start();
+    	}
 
     	fr.update();
     	
@@ -72,7 +107,7 @@ public class Engine extends JPanel implements ActionListener
     public void update(int tps){
     	
     	//Decomenter pour relancer le jeu en fin de partie
-    	if(/*game1.isEnd() || game2.isEnd()*/false){
+    	if(game1.isEnd() && game2.isEnd()){
     		System.out.println("gameover");
     		game1.restart();
     		game2.restart();
@@ -84,21 +119,8 @@ public class Engine extends JPanel implements ActionListener
 	        game2.update(tps);
 	        
 	        freqBonus.decr();
-	        
-	        	/*   Pas encore fonctionnel
-    		if( freqBonus.isFinished()  ){
-				
-    			int tmp= new Random().nextInt(6);
-				freqBonus.setGoal(tmp);
-				
-				if( tmp%2 == 0) 
-					game1.getPlayer().getBoard().addBonus(game1.getPlayer(), game2.getPlayer());
-				else
-					game2.getPlayer().getBoard().addBonus(game2.getPlayer(), game1.getPlayer());
-				
-			}
-				*/
 	    }
+    	
     }
     
     public static void main(String[] args) {
@@ -107,16 +129,11 @@ public class Engine extends JPanel implements ActionListener
         long beforeTime= 0, deltaTime, fps = 60;
         beforeTime = System.currentTimeMillis();
 
-        //Random alea = new Random();
-
         
         // I N I T --------------------------
         Configuration config = new Configuration();
-              
-        Player J1= new Player(1, "georges", "ninja");
-        Player J2 = new Player(2, "louis", "panda");
                 
-        Engine engine = new Engine(J1, J2, config);
+        Engine engine = new Engine(config);
        
     }
 }

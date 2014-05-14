@@ -85,49 +85,6 @@ public class Shape
     	return bd.copyField();
     }
     
-    public Square[][] copyShape(){
-    	
-    	Square[][] vc= new Square[4][minos];
-    	
-    	for(int i= 0; i < 4; ++i){	
-	    	for(int j= 0; j < minos; ++j){
-	    		int tx= blocs[j].getX();
-	    		int ty= blocs[j].getY();
-	    		
-	    		switch( shpNum ){
-		            case 0:
-		            	vc[i]= shapeI("green", tx, ty ); 
-		                break;
-		            case 1:
-		            	vc[i]= shapeO("green", tx, ty );
-		                break;
-		            case 2:
-		            	vc[i]= shapeT("green", tx, ty );
-		                break;
-		            case 3:
-		            	vc[i]= shapeL("green", tx, ty );
-		                break;
-		            case 4:
-		            	vc[i]= shapeJ("green", tx, ty );
-		                break;
-		            case 5:
-		            	vc[i]= shapeZ("green", tx, ty );
-		                break;
-		            case 6:
-		            	vc[i]= shapeS("green", tx, ty );
-		                break;
-		            default: 
-		                System.err.println( "Unknown shape !" );
-	    		}
-	    	}
-	    		
-	    	//System.out.println(vc[i][0].x +","+ vc[i][0].y +" "+vc[i][1].x +","+ vc[i][1].y +" "+vc[i][2].x +","+ vc[i][2].y +" "+vc[i][3].x +","+ vc[i][3].y);
-	    	rotate( vc[i] );
-	    	//System.out.println(vc[i][0].x +","+ vc[i][0].y +" "+vc[i][1].x +","+ vc[i][1].y +" "+vc[i][2].x +","+ vc[i][2].y +" "+vc[i][3].x +","+ vc[i][3].y);
-    	}
-    	return vc;
-    }
-    
     public void printBlocs(){
     	
     	String vs= "BLOC :";
@@ -393,6 +350,208 @@ public class Shape
     
     public int getMinos(){
     	return minos;
+    }
+    
+
+    public Square[][] copyShape(){
+    	
+    	Square[][] vc= new Square[4][minos];
+    	
+    	for(int i= 0; i < 4; ++i){	
+	    		switch( shpNum ){
+		            case 0:
+		            	vc[3-i]= shapeIcopy("green", blocs[i].getX(), blocs[i].getY() ); 
+		                break;
+		            case 1:
+		            	vc[3-i]= shapeOcopy("green", blocs[i].getX(), blocs[i].getY() );
+		                break;
+		            case 2:
+		            	vc[3-i]= shapeTcopy("green", blocs[i].getX(), blocs[i].getY() );
+		                break;
+		            case 3:
+		            	vc[3-i]= shapeLcopy("green", blocs[i].getX(), blocs[i].getY() );
+		                break;
+		            case 4:
+		            	vc[3-i]= shapeJcopy("green", blocs[i].getX(), blocs[i].getY() );
+		                break;
+		            case 5:
+		            	vc[3-i]= shapeZcopy("green", blocs[i].getX(), blocs[i].getY() );
+		                break;
+		            case 6:
+		            	vc[3-i]= shapeScopy("green", blocs[i].getX(), blocs[i].getY() );
+		                break;
+		            default: 
+		                System.err.println( "Unknown shape !" );
+	    		}
+		    	for(int j = 0; j < i; ++j){
+
+			    	for(int k = 0; k < minos; ++k){
+			    		--vc[3-j][k].y;
+			    		--vc[3-j][k].y;
+			    	}
+		    		rotateCopy( vc[3-j] );
+		    	}
+			    	//System.out.println(vc[i][0].x +","+ vc[i][0].y +" "+vc[i][1].x +","+ vc[i][1].y +" "+vc[i][2].x +","+ vc[i][2].y +" "+vc[i][3].x +","+ vc[i][3].y);
+		    	
+	    	}
+    	return vc;
+    }
+
+    
+    private Square[] shapeScopy(String col, int midX, int maxY){
+        
+    	//int midX= 4;
+    	//int maxY= 19;
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter());
+        blocs[1] = new Square( midX+1, maxY, dico.pickLetter());
+        blocs[2] = new Square( midX, maxY-1, dico.pickLetter());
+        blocs[3] = new Square( midX-1, maxY-1, dico.pickLetter());
+        
+        
+
+        
+        return blocs;
+    }
+    
+    private Square[] shapeZcopy(String col, int midX, int maxY){
+        
+    	//int midX= 4;
+    	//int maxY= 19;
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter());
+        blocs[1] = new Square( midX-1, maxY, dico.pickLetter());
+        blocs[2] = new Square( midX, maxY-1, dico.pickLetter());
+        blocs[3] = new Square( midX+1, maxY-1, dico.pickLetter());
+        
+        
+
+        
+        return blocs;
+    }
+    
+    private Square[] shapeJcopy(String col, int midX, int maxY){
+        
+    	//int midX= 4;
+    	//int maxY= 19;
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter());
+        blocs[1] = new Square( midX+1, maxY, dico.pickLetter());
+        blocs[2] = new Square( midX-1, maxY, dico.pickLetter());
+        blocs[3] = new Square( midX+1, maxY-1, dico.pickLetter());
+        
+        
+
+        
+        
+        return blocs;
+    }
+    
+    private Square[] shapeLcopy(String col, int midX, int maxY){
+        
+    	//int midX= 4;
+    	//int maxY= 19;
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter());
+        blocs[1] = new Square( midX+1, maxY, dico.pickLetter());
+        blocs[2] = new Square( midX-1, maxY, dico.pickLetter());
+        blocs[3] = new Square( midX-1, maxY-1, dico.pickLetter());
+        
+        
+
+        
+        
+        return blocs;
+    }
+    
+    private Square[] shapeOcopy(String col, int midX, int maxY){
+        
+    	//int midX= 4;
+    	//int maxY= 19;
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        blocs[0] = new Square( midX, maxY-1, dico.pickLetter());
+        blocs[1] = new Square( midX+1, maxY-1, dico.pickLetter());
+        blocs[2] = new Square( midX+1, maxY, dico.pickLetter());
+        blocs[3] = new Square( midX, maxY, dico.pickLetter());
+        
+
+
+        
+        
+        
+        return blocs;
+    }
+    
+    private Square[] shapeIcopy(String col, int midX, int maxY){
+        
+    	//int midX= 4;
+    	//int maxY= 19;
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        blocs[0] = new Square( midX, maxY, dico.pickLetter());
+        blocs[1] = new Square( midX-1, maxY, dico.pickLetter());
+        blocs[2] = new Square( midX+1, maxY, dico.pickLetter());
+        blocs[3] = new Square( midX+2, maxY, dico.pickLetter());
+        
+        
+
+        
+        
+        return blocs;
+    }
+    
+    private Square[] shapeTcopy(String col, int midX, int maxY){
+    	
+    	Square[] blocs = new Square[minos];
+    	
+        //Creation des blocs
+        blocs[0] = new Square( midX, maxY, dico.pickLetter());
+        blocs[1] = new Square( midX-1, maxY, dico.pickLetter());
+        blocs[2] = new Square( midX, maxY-1, dico.pickLetter());
+        blocs[3] = new Square( midX+1, maxY, dico.pickLetter());
+        
+        return blocs;
+        
+    }
+    
+    public void rotateCopy( Case[] blocs ){
+    	
+    	//Génération de vecteurs relatifs
+        int xref= blocs[0].getX();
+        int yref= blocs[0].getY();
+        
+        int[] vectx= new int[minos-1];
+        int[] vecty= new int[minos-1];
+        
+        for( int i= 0; i < minos-1; ++i ){
+        	int nX= blocs[i+1].getY() - yref + xref;
+        	int nY= yref - blocs[i+1].getX() + xref;
+        	
+        	/*if( bd.outside( nX, nY ) || ( bd.isBusy(nX, nY) && !inShape(nX,nY) ) )
+        		return;*/
+        }
+
+        
+        for( int i= 0; i < minos-1; ++i ){
+        	
+            vectx[i]= blocs[i+1].getX() - xref;  
+            vecty[i]= blocs[i+1].getY() - yref;
+
+            blocs[i+1].setPosition(  xref + vecty[i], yref - vectx[i] );
+
+        }
+    	
     }
     
     public static void main(String[] args){

@@ -144,6 +144,9 @@ public class Frame extends JFrame {
 		}
 	}
 
+	public boolean isIA(){
+		return ((PanelBase)contentPane.getComponent(0)).ia;
+	}
     
     public static void main(String[] args) {
         

@@ -12,6 +12,8 @@ public abstract class PanelBase extends JPanel {
 	
 	protected String mPath; //ONLY FOR DEVELOPMENT
 	
+	public boolean ia = true;
+	
 	protected PanelBase(){
 	    mPath= "";
 	    //mPath= "../";// A commenter sous Ecllipse

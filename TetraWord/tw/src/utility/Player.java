@@ -22,7 +22,7 @@ public class Player
     private HashMap<String, Character> inputs;
     private Vector<Integer> fullLines;
 
-    private Shape currentShape;
+    protected Shape currentShape;
     
     private BonusTetra[] listBonus;
     private BonusTetra activeBonus;
