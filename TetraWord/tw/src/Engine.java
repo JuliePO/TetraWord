@@ -25,7 +25,7 @@ public class Engine extends JPanel implements ActionListener
     private GameState currentState;
     
     private Player p1;
-    private Player p2;
+    private PlayerIA p2;
     
     private Frame fr;
     
@@ -37,9 +37,14 @@ public class Engine extends JPanel implements ActionListener
     //private Option option = new Option();
     private char state;
     
-    Engine(Player p1, Player p2, Configuration config){
+    Engine(Configuration config){
 
     	time= new Timer(17, this);
+
+        Random alea = new Random();
+
+    	p1= new Player(1, "georges", "ninja", alea);
+        p2 = new PlayerIA(2, "louis", "panda", alea);
     	
     	game1 = new Game(p1, config);
     	game2 = new Game(p2, config);
@@ -56,8 +61,14 @@ public class Engine extends JPanel implements ActionListener
     
     @Override //ActionListener
 	public void actionPerformed(ActionEvent arg0) {
-    	if(fr.getPanelState() == 'g')
+    	
+    	if(!fr.isIA())
+    		p2.desactive();
+    	
+    	if(fr.getPanelState() == 'g'){
+    		
     		update(0);
+    	}
 
     	fr.update();
     	
@@ -87,17 +98,11 @@ public class Engine extends JPanel implements ActionListener
  
         long beforeTime= 0, deltaTime, fps = 60;
         beforeTime = System.currentTimeMillis();
-
-        Random alea = new Random();
-
         
         // I N I T --------------------------
         Configuration config = new Configuration();
-              
-        Player J1= new Player(1, "georges", "ninja", alea);
-        Player J2 = new PlayerIA(2, "louis", "panda", alea);
                 
-        Engine engine = new Engine(J1, J2, config);
+        Engine engine = new Engine(config);
        
     }
 }

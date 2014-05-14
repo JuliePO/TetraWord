@@ -37,7 +37,7 @@ public class Tetris extends GameState {
 	@Override
 	public GameState update(int tps) {
 		
-		if(!j.pause){
+		if(!j.pause && !end){
 			
             // Calculate nextState ------------------------   
             for( int i= 0; i < b.size(); ++i )

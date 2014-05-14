@@ -389,7 +389,7 @@ public class Shape
 			    		--vc[3-j][k].y;
 			    		--vc[3-j][k].y;
 			    	}
-		    		rotate( vc[3-j] );
+		    		rotateCopy( vc[3-j] );
 		    	}
 			    	//System.out.println(vc[i][0].x +","+ vc[i][0].y +" "+vc[i][1].x +","+ vc[i][1].y +" "+vc[i][2].x +","+ vc[i][2].y +" "+vc[i][3].x +","+ vc[i][3].y);
 		    	
@@ -523,6 +523,35 @@ public class Shape
         
         return blocs;
         
+    }
+    
+    public void rotateCopy( Case[] blocs ){
+    	
+    	//Génération de vecteurs relatifs
+        int xref= blocs[0].getX();
+        int yref= blocs[0].getY();
+        
+        int[] vectx= new int[minos-1];
+        int[] vecty= new int[minos-1];
+        
+        for( int i= 0; i < minos-1; ++i ){
+        	int nX= blocs[i+1].getY() - yref + xref;
+        	int nY= yref - blocs[i+1].getX() + xref;
+        	
+        	/*if( bd.outside( nX, nY ) || ( bd.isBusy(nX, nY) && !inShape(nX,nY) ) )
+        		return;*/
+        }
+
+        
+        for( int i= 0; i < minos-1; ++i ){
+        	
+            vectx[i]= blocs[i+1].getX() - xref;  
+            vecty[i]= blocs[i+1].getY() - yref;
+
+            blocs[i+1].setPosition(  xref + vecty[i], yref - vectx[i] );
+
+        }
+    	
     }
     
     public static void main(String[] args){

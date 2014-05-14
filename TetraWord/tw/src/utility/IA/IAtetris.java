@@ -55,14 +55,14 @@ public class IAtetris {
 	
 		boolean[] field = shape.copyField();
 		Case[][] shapeS = shape.copyShape();
-		
+/*		
 for (int i = 0; i < 4; i++) {
 	printSquare(shapeS[i]);
 	
-}
-		
+}*/
+printField(field);System.out.println("");		
 		cleanField(shapeS, field);
-		
+printField(field);		
 		//on remplit l'arbre
 		for(int rotate = 0; rotate < 4; ++rotate){
 			
@@ -131,11 +131,11 @@ for (int i = 0; i < 4; i++) {
 		
 		for(ShapePosition it : solveTree)
 			tp += it.value + ","+it.yPosition+" ";
-		
+/*		
 System.out.println(tp);
 System.out.println(solveTree.first().value +","+solveTree.first().yPosition);
 printField(solveTree.first().field);
-		
+*/		
 		return solveTree.first();
 	}
 	
