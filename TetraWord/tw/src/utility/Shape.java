@@ -388,15 +388,16 @@ public class Shape
 			    	//System.out.println(vc[i][0].x +","+ vc[i][0].y +" "+vc[i][1].x +","+ vc[i][1].y +" "+vc[i][2].x +","+ vc[i][2].y +" "+vc[i][3].x +","+ vc[i][3].y);
 		    	
 	    	}
-
-    	for(int j = 0; j < 4; ++j){
-
-	    	for(int k = 0; k < minos; ++k){
-	    		vc[j][k].y-=2;
+    	
+    	if(shpNum != 1)
+	    	for(int j = 0; j < 4; ++j){
+	
+		    	for(int k = 0; k < minos; ++k){
+		    		vc[j][k].y-=2;
+		    	}
+		    	for(int i = 0; i < j; ++i)
+		    		rotateCopy( vc[j] );
 	    	}
-	    	for(int i = 0; i < j; ++i)
-	    		rotateCopy( vc[j] );
-    	}
     	return vc;
     }
 
