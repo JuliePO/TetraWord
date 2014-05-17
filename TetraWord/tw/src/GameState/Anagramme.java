@@ -66,8 +66,11 @@ public class Anagramme extends GameState {
 			
 			System.out.print(" Mot : " + word + "..." );
 			
-			if( j.getShape().getDico().contains(word) )
+			boolean line = false;
+			if( j.getShape().getDico().contains(word) ){
 				System.out.println( "OK" );
+				line = true;
+			}
 			else
 				System.out.println( "WRONG !" );
 			
@@ -81,7 +84,7 @@ public class Anagramme extends GameState {
 			
 			b.setLineTo(currentLine, 'n');
 			
-			if( rate >= 7){
+			if( line && rate >= 4){
 				b.supprLine(currentLine);
 				j.getLines().remove(0);
 			}
