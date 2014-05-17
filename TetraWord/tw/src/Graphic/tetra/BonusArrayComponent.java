@@ -41,8 +41,10 @@ public class BonusArrayComponent extends TetraComponent {
 		for(int i = 0; i < 3; ++i){
 			if(tmp[i] != null){
 				bonusArray[i].setBonus(tmp[i].getName());
-				bonusArray[i].repaint();
 			}
+			else
+				bonusArray[i].setBonus(null);
+			bonusArray[i].repaint();
 		}
 	}
 	

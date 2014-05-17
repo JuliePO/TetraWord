@@ -19,6 +19,7 @@ import Graphic.TetraComponent;
 import utility.Letter;
 import utility.Player;
 import utility.Square;
+import utility.Bonus.BonusTetra;
 
 public class FieldComponent extends TetraComponent {
     
@@ -27,11 +28,13 @@ public class FieldComponent extends TetraComponent {
 	
     private Player p;
     private HashMap<String, TexturePaint> paints = new HashMap<String, TexturePaint>(7);
+	private HashMap<String, TexturePaint> paintsBonus = new HashMap<String, TexturePaint>(11);;
       
     
     private void loadImage(){
         
        String[] paths= {"blue", "dark_gray", "gray", "green", "orange", "pink", "purple", "red", "yellow"};
+       String[] pathBonus = {"bombe", "bonus", "exchange", "lapin", "malus", "return", "tempete", "time", "tortue", "tremblement", "worddle"};
        
 
        for(int i= 0; i < paths.length; ++i ){   
@@ -42,6 +45,15 @@ public class FieldComponent extends TetraComponent {
 	           System.out.println("Error 404: color missing !" + paths[i]);
 	       }   
        }
+       
+       for(int i= 0; i < pathBonus.length; ++i ){
+	        try {
+	          BufferedImage texture = ImageIO.read(new File(mPath+"texture/game/bonus/"+pathBonus[i]+".jpg"));
+	          paintsBonus.put(pathBonus[i], new TexturePaint(texture, new Rectangle(insetW, insetH, texture.getWidth(), texture.getHeight())));      
+	       } catch (IOException ex) {
+	           System.out.println("Error 404: bonus missing !" + pathBonus[i]);
+	       }   
+      }
         
     }
     
@@ -57,8 +69,10 @@ public class FieldComponent extends TetraComponent {
         if(p.getCases() != null){
             for(Square square : p.getCases()){
             	
+            	//on peint la case
             	TexturePaint tmp;
             	
+            	//on récupère la texture
             	switch (square.getState()) {
 				case 'c':
 					tmp = paints.get("dark_gray");
@@ -80,6 +94,7 @@ public class FieldComponent extends TetraComponent {
                 else
                 	g2.fillRect(square.getX() * tmp.getImage().getWidth(), 513 - tmp.getImage().getHeight() * square.getY(), tmp.getImage().getWidth(), tmp.getImage().getHeight());
                 
+                //on peint le caractere
                 char[] chartmp = new char[1];
                 chartmp[0] = square.getChar();
         		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
@@ -90,6 +105,18 @@ public class FieldComponent extends TetraComponent {
                 	g2.drawChars(chartmp, 0, 1, square.getX() * tmp.getImage().getWidth() + 7, tmp.getImage().getHeight() * square.getY() + 20);
                 else
                 	g2.drawChars(chartmp, 0, 1, square.getX() * tmp.getImage().getWidth() + 7, 513 - tmp.getImage().getHeight() * square.getY() + 20);   
+                
+                
+            }
+            
+            for(BonusTetra bonus : p.getBoard().getBonus()){
+            	TexturePaint tmp = paintsBonus.get(bonus.getName());
+            	g2.setPaint(tmp);
+            	  if(p.getBoard().invert)
+                  	g2.fillRect(bonus.getX() * tmp.getImage().getWidth(), tmp.getImage().getHeight() * bonus.getY(), tmp.getImage().getWidth(), tmp.getImage().getHeight());
+                  else
+                  	g2.fillRect(bonus.getX() * tmp.getImage().getWidth(), 513 - tmp.getImage().getHeight() * bonus.getY(), tmp.getImage().getWidth(), tmp.getImage().getHeight());
+                  
             }
         }
     }

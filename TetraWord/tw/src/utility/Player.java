@@ -197,6 +197,8 @@ public class Player
 			
 			listBonus[0] = listBonus[1];
 			listBonus[1] = listBonus[2];
+			
+			--nbBonus;
 		}
 	}
 	
