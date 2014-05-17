@@ -360,40 +360,41 @@ public class Shape
     	for(int i= 0; i < 4; ++i){	
 	    		switch( shpNum ){
 		            case 0:
-		            	vc[3-i]= shapeIcopy("green", blocs[i].getX(), blocs[i].getY() ); 
+		            	vc[i]= shapeIcopy("green", blocs[0].getX(), blocs[0].getY() ); 
 		                break;
 		            case 1:
-		            	vc[3-i]= shapeOcopy("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[i]= shapeOcopy("green", blocs[0].getX(), blocs[0].getY() );
 		                break;
 		            case 2:
-		            	vc[3-i]= shapeTcopy("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[i]= shapeTcopy("green", blocs[0].getX(), blocs[0].getY() );
 		                break;
 		            case 3:
-		            	vc[3-i]= shapeLcopy("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[i]= shapeLcopy("green", blocs[0].getX(), blocs[0].getY() );
 		                break;
 		            case 4:
-		            	vc[3-i]= shapeJcopy("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[i]= shapeJcopy("green", blocs[0].getX(), blocs[0].getY() );
 		                break;
 		            case 5:
-		            	vc[3-i]= shapeZcopy("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[i]= shapeZcopy("green", blocs[0].getX(), blocs[0].getY() );
 		                break;
 		            case 6:
-		            	vc[3-i]= shapeScopy("green", blocs[i].getX(), blocs[i].getY() );
+		            	vc[i]= shapeScopy("green", blocs[0].getX(), blocs[0].getY() );
 		                break;
 		            default: 
 		                System.err.println( "Unknown shape !" );
 	    		}
-		    	for(int j = 0; j < i; ++j){
-
-			    	for(int k = 0; k < minos; ++k){
-			    		--vc[3-j][k].y;
-			    		--vc[3-j][k].y;
-			    	}
-		    		rotateCopy( vc[3-j] );
-		    	}
 			    	//System.out.println(vc[i][0].x +","+ vc[i][0].y +" "+vc[i][1].x +","+ vc[i][1].y +" "+vc[i][2].x +","+ vc[i][2].y +" "+vc[i][3].x +","+ vc[i][3].y);
 		    	
 	    	}
+
+    	for(int j = 0; j < 4; ++j){
+
+	    	for(int k = 0; k < minos; ++k){
+	    		vc[j][k].y-=2;
+	    	}
+	    	for(int i = 0; i < j; ++i)
+	    		rotateCopy( vc[j] );
+    	}
     	return vc;
     }
 

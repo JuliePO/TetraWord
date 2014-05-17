@@ -55,12 +55,13 @@ public class IAtetris {
 	
 		boolean[] field = shape.copyField();
 		Case[][] shapeS = shape.copyShape();
-/*		
+/*	
 for (int i = 0; i < 4; i++) {
 	printSquare(shapeS[i]);
 	
-}*/
-printField(field);System.out.println("");		
+}
+*/
+//printField(field);System.out.println("");		
 		cleanField(shapeS, field);
 printField(field);		
 		//on remplit l'arbre
@@ -69,7 +70,7 @@ printField(field);
 			ShapeIA shapeIA = new ShapeIA(shapeS[rotate], field);
 			int xPosition = shapeIA.setShape();
 			
-		//	System.out.println(shapeIAS[i][0].x +","+ shapeS[i][0].y +" "+shapeS[i][1].x +","+ shapeS[i][1].y +" "+shapeS[i][2].x +","+ shapeS[i][2].y +" "+shapeS[i][3].x +","+ shapeS[i][3].y);
+//	System.out.println(shapeIAS[i][0].x +","+ shapeS[i][0].y +" "+shapeS[i][1].x +","+ shapeS[i][1].y +" "+shapeS[i][2].x +","+ shapeS[i][2].y +" "+shapeS[i][3].x +","+ shapeS[i][3].y);
 			
 			while(!shapeIA.collideRight()){
 				int yPosition = 0;
@@ -77,13 +78,13 @@ printField(field);
 					shapeIA.goDown();
 					++yPosition;
 				}
-			//	System.out.println(yPosition);
+//	System.out.println(yPosition);
 				solveTree.add(new ShapePosition(rotate, xPosition, yPosition, rateField(shapeIA.getCopyField()), shapeIA.getCopyField()));
 				shapeIA.resetY();
 				shapeIA.goRight();
 				++xPosition;
 			}
-			//System.out.println("stop");
+//System.out.println("stop");
 		}
 	}
 	
@@ -131,20 +132,27 @@ printField(field);
 		
 		for(ShapePosition it : solveTree)
 			tp += it.value + ","+it.yPosition+" ";
-/*		
+	
 System.out.println(tp);
-System.out.println(solveTree.first().value +","+solveTree.first().yPosition);
+System.out.println(solveTree.first().value +","+solveTree.first().xPosition+","+solveTree.first().rotate);
 printField(solveTree.first().field);
-*/		
+		
 		return solveTree.first();
 	}
 	
 	void cleanField(Case[][] cases, boolean[] field){
-		for(int i = 0; i < 4; ++i){
+		/*for(int i = 0; i < 4; ++i){
 			for(int j = 0; j < 4; ++j){
 				field[cases[i][j].x+10*cases[i][j].y] = false;
 			}
+		}*/
+		
+		for(int y = 0; y < 2; ++y){
+			for(int x = 0; x < 10; ++x){
+				field[x + 10*(19-y)]=false;
+			}
 		}
+		
 	}
 //TMP	
 	void printField(boolean[] field){
@@ -166,7 +174,7 @@ printField(solveTree.first().field);
 				for(int k = 0; k < 4; ++k)
 					if(cases[k].x == j && cases[k].y == i)
 						tmp = 'X';
-				System.out.print(""+tmp);
+				System.out.print(tmp+" ");
 			}
 			System.out.println("");
 		}

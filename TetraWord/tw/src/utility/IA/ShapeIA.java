@@ -55,12 +55,12 @@ public class ShapeIA {
 	}
 	
 	public boolean collideRight(){
-		return !(pos[0].x <8 && pos[1].x <8 && pos[2].x <8 && pos[3].x <8);
+		return !(pos[0].x <10 && pos[1].x <10 && pos[2].x <10 && pos[3].x <10);
 	}
 	
 	public boolean collideDown(){
 		for(int i = 0; i < 4; ++i)
-			if(pos[i].y < 1 || field[pos[i].x + pos[i].y*10 -1])
+			if(pos[i].y < 1 || field[pos[i].x + (pos[i].y-1)*10])
 				return true;
 		return false;
 	}

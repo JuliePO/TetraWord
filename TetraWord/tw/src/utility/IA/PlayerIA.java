@@ -34,20 +34,20 @@ public class PlayerIA extends Player {
 	public void update() {
 		super.update();
 		if(active){
-			if(pattern.rotate > 0 ){
+			if(pattern.rotate > 0 && currentShape.getSquares()[0].y< 16){
 				System.out.println("rotate" + ","+ pattern.rotate);
 				currentShape.rotate();
 				--pattern.rotate;
 			}
-			else if(pattern.xPosition > 0){
+			else if(pattern.xPosition < 0){
 				System.out.println("left," + pattern.xPosition);
 				currentShape.goLeft();
-				--pattern.xPosition;
+				++pattern.xPosition;
 			}
-			else if(pattern.xPosition < 0){
+			else if(pattern.xPosition > 0){
 				System.out.println("right," + pattern.xPosition);
 				currentShape.goRight();
-				++pattern.xPosition;
+				--pattern.xPosition;
 			}
 		}
 	}
