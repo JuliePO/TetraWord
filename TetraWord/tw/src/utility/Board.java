@@ -77,7 +77,6 @@ public class Board
     			bon.remove();
     		else
 	    		if( isBusy( bon.getX(), bon.getY() ) ){
-System.out.println("rm bonus !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 	    			bon.addToPlayer();
 	    			it.remove();
 	    		}

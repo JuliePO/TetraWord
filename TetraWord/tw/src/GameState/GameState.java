@@ -15,6 +15,7 @@ public abstract class GameState {
 	
 	protected Game rival;
 	
+	
 	public GameState(Player pl, Configuration cg, Game rival){
 		j= pl;
 		b= j.getBoard();

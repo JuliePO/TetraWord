@@ -98,6 +98,10 @@ public class PanelTetraWord extends PanelBase {
 			bonusArrayP1.setBounds(29, 197, bonusArrayP1.getW(), bonusArrayP1.getH());
 			add(bonusArrayP1);
 			
+			NextComponent next = new NextComponent(G1);
+			next.setBounds(396, 200, next.getW(), next.getH());
+			add(next);
+			
 		}
 		
 		if(P2 != null){
@@ -112,6 +116,10 @@ public class PanelTetraWord extends PanelBase {
 			BonusArrayComponent bonusArrayP2 = new BonusArrayComponent(P2);
 			bonusArrayP2.setBounds(945, 197, bonusArrayP2.getW(), bonusArrayP2.getH());
 			add(bonusArrayP2);
+			
+			NextComponent next = new NextComponent(G2);
+			next.setBounds(539, 200, next.getW(), next.getH());
+			add(next);
 		}
 		
 		VersusComponent versus = new VersusComponent(P1, P2);
