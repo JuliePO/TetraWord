@@ -13,11 +13,14 @@ public abstract class GameState {
 	
 	protected boolean end;
 	
-	public GameState(Player pl, Configuration cg){
+	protected Game rival;
+	
+	public GameState(Player pl, Configuration cg, Game rival){
 		j= pl;
 		b= j.getBoard();
 		config= cg;
 		end = false;
+		this.rival=rival;
 	}
 
 	

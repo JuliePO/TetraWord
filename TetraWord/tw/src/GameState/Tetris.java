@@ -18,8 +18,8 @@ public class Tetris extends GameState {
 	private int nextShape;
 	private Random alea;
 	
-	public Tetris(Player j, Configuration config) {
-		super( j, config );		
+	public Tetris(Player j, Configuration config, Game rival) {
+		super( j, config, rival);		
 		
 		g= 4;
 		b= j.getBoard();
@@ -62,8 +62,10 @@ public class Tetris extends GameState {
 	        	//System.out.println("NB Lines : " + lines);
 	            if( lines > 0 ){
 	            	
-	            	j.setFullLines( b.hasLines() );
-	            	return new Anagramme( j, config );
+	            	j.setFullLines( b.hasLines() );{
+	            		rival.getPlayer().pause=true;
+	            		return new Anagramme( j, config, rival);
+	            	}
 	            }
 	            
 	            ch.decr();
@@ -109,7 +111,7 @@ public class Tetris extends GameState {
 	        	generate = false;
 	        }
 	        
-	        b.applyBonus();
+	        b.applyBonus(j, rival.getPlayer());
 			
 		}
 

@@ -6,8 +6,8 @@ import utility.Player;
 public class Worddle extends GameState {
 
 
-	public Worddle(Player pl, Configuration cg) {
-		super(pl, cg);
+	public Worddle(Player pl, Configuration cg, Game rival) {
+		super(pl, cg, rival);
 		// TODO Auto-generated constructor stub
 	}
 

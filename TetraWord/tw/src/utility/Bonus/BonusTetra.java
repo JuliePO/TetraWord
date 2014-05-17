@@ -11,6 +11,7 @@ public abstract class BonusTetra  {
 	private String name;
 	protected Player owner;
 	protected Player rival;
+	public int ttlBoard = 600;
 	private int ttl;
 	private int x;
 	private int y;
@@ -66,5 +67,12 @@ public abstract class BonusTetra  {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+
+
+
+	public void addToPlayer() {
+		owner.addBonus(this);
+		
 	}
 }

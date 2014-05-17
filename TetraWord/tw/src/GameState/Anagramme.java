@@ -11,9 +11,9 @@ public class Anagramme extends GameState {
 	private Vector<Square> currentWord;
 	private boolean finish;
 
-	public Anagramme( Player p, Configuration c){
+	public Anagramme( Player p, Configuration c, Game rival){
 	
-		super( p, c );
+		super( p, c, rival );
 		
 		b.setLinesTo(j.getLines(), 's');
 		
@@ -24,8 +24,10 @@ public class Anagramme extends GameState {
 	public GameState update(int tps) {
 		
 		//System.out.println("ANAGRAMME");	
-		if( finish )
+		if( finish ){
+			rival.getPlayer().pause=false;
 			return null;
+		}
 		
 		return this;
 	}

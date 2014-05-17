@@ -53,6 +53,9 @@ public class Engine extends JPanel implements ActionListener
     	game1 = new Game(p1, config);
     	game2 = new Game(p2, config);
     	
+    	game1.startGame(game2);
+    	game2.startGame(game1);
+    	
     	fr = new Frame(game1, game2, config);
     	freqBonus= new Chrono(new Random().nextInt(15) + 30);
     	

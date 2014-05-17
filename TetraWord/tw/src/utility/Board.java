@@ -1,5 +1,6 @@
 package utility;
 
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Vector;
 
@@ -66,14 +67,35 @@ public class Board
     	
     }
     
-    public void applyBonus(){
+    public void applyBonus(Player owner, Player rival){
     	
-    	for( BonusTetra bon : bonus )
-    		if( bon.getTtl() <= 0 )
+    	Iterator<BonusTetra> it = bonus.iterator();
+    	
+    	while( it.hasNext() ){
+    		BonusTetra bon = it.next();
+    		if( bon.ttlBoard <= 0 )
     			bon.remove();
     		else
-	    		if( isBusy( bon.getX(), bon.getY() ) )
-	    			bon.apply();
+	    		if( isBusy( bon.getX(), bon.getY() ) ){
+System.out.println("rm bonus !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	    			bon.addToPlayer();
+	    			it.remove();
+	    		}
+    		--bon.ttlBoard;
+    	}
+    	
+    	int appear = alea.nextInt(300);
+    	if(appear <= 1){
+    		addBonus(owner, rival);
+    	}
+    }
+    
+    public BonusTetra getBonus(int x, int y){
+    	for(BonusTetra tmp : bonus){
+    		if(tmp.getX() == x && tmp.getY() == y)
+    			return tmp;
+    	}
+    	return null;
     }
     
     public void addBonus(Player J, Player E){
@@ -108,6 +130,10 @@ public class Board
     			break;
     	}
     	
+    }
+    
+    public Vector<BonusTetra> getBonus(){
+    	return bonus;
     }
     
     //Retourne un tableau contenant les numeros des lignes pleines

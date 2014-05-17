@@ -12,6 +12,7 @@ public class Game {
 	private Configuration config;
 	Player j;
 	Vector<GameState> stack;
+	Game rival;
 	/*
 	char state = 't';	// t : tetris, w : wordle, a : anagramme, m : menu
 	char stateBack = 'g';
@@ -21,7 +22,11 @@ public class Game {
 		this.config = config;
 		this.j=j;
 		stack= new Vector<GameState>();
-		GameState tetris= new Tetris(j, config); 
+	}
+	
+	public void startGame(Game rival){
+		this.rival = rival;
+		GameState tetris= new Tetris(j, config, rival); 
 		currentState = tetris;
 		stack.add( tetris );
 	}
@@ -60,6 +65,6 @@ public class Game {
 	public void restart(){
 		currentState.start();
 		j.reset();
-		currentState = new Tetris(j, config);
+		currentState = new Tetris(j, config, rival);
 	}
 }
