@@ -10,6 +10,7 @@ public class PlayerIA extends Player {
 	IAtetris iaTetris;
 	ShapePosition pattern;
 	boolean active;
+	private String currentWord;
 
 	public PlayerIA(int number, String name, String avatar) {
 		super(number, name, avatar);
@@ -30,25 +31,32 @@ public class PlayerIA extends Player {
 		}
 	}
 	
+	private void behaviorTetris(){
+		if(pattern.rotate > 0 && currentShape.getSquares()[0].y< 16){
+			System.out.println("rotate" + ","+ pattern.rotate);
+			if(currentShape.rotate())
+				--pattern.rotate;
+		}
+		else if(pattern.xPosition < 0){
+			System.out.println("left," + pattern.xPosition);
+			if(currentShape.goLeft())
+				++pattern.xPosition;
+		}
+		else if(pattern.xPosition > 0){
+			System.out.println("right," + pattern.xPosition);
+			if(currentShape.goRight())
+				--pattern.xPosition;
+		}
+	}
+	
 	@Override
 	public void update() {
 		super.update();
 		if(active){
-			if(pattern.rotate > 0 && currentShape.getSquares()[0].y< 16){
-				System.out.println("rotate" + ","+ pattern.rotate);
-				currentShape.rotate();
-				--pattern.rotate;
-			}
-			else if(pattern.xPosition < 0){
-				System.out.println("left," + pattern.xPosition);
-				currentShape.goLeft();
-				++pattern.xPosition;
-			}
-			else if(pattern.xPosition > 0){
-				System.out.println("right," + pattern.xPosition);
-				currentShape.goRight();
-				--pattern.xPosition;
-			}
+			if(game == 't')
+				behaviorTetris();
+			
+			
 		}
 	}
 

@@ -64,6 +64,7 @@ public class Tetris extends GameState {
 	            	
 	            	j.setFullLines( b.hasLines() );{
 	            		rival.getPlayer().pause=true;
+	            		j.setGame('a');
 	            		return new Anagramme( j, config, rival);
 	            	}
 	            }

@@ -2,14 +2,18 @@ package GameState;
 
 import java.util.Vector;
 
+import utility.Case;
 import utility.Configuration;
 import utility.Player;
 import utility.Square;
+import utility.IA.PlayerIA;
 
 public class Anagramme extends GameState {
 	
 	private Vector<Square> currentWord;
 	private boolean finish;
+	private String bestWord;
+	private int currentLine;
 
 	public Anagramme( Player p, Configuration c, Game rival){
 	
@@ -18,6 +22,33 @@ public class Anagramme extends GameState {
 		b.setLinesTo(j.getLines(), 's');
 		
 		currentWord = new Vector<>();
+		
+		if(j instanceof PlayerIA){
+			currentLine= j.getLines().firstElement();
+			
+			String strLine = j.getBoard().getLineString(currentLine);
+			
+			bestWord = j.getShape().getDico().bestWith( strLine );
+		}
+	}
+	
+	private void autoResolve(){
+		
+		if(bestWord.length() == 0){
+			input(j.getInput("b"));
+			return;
+		}
+		
+		char tmp = bestWord.charAt(0);
+		bestWord = bestWord.substring(1);
+		
+		for(Square cases : j.getBoard().getCases()){
+			if(cases.getState() == 's' && cases.getChar() == tmp){
+				cases.setState('c');
+				currentWord.add(cases);
+				return;
+			}
+		}
 	}
 	
 	@Override
@@ -26,9 +57,12 @@ public class Anagramme extends GameState {
 		//System.out.println("ANAGRAMME");	
 		if( finish ){
 			rival.getPlayer().pause=false;
+			j.setGame('t');
 			return null;
 		}
 		
+		if(j instanceof PlayerIA)
+			autoResolve();
 		return this;
 	}
 	

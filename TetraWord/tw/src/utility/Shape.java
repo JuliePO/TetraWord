@@ -277,7 +277,7 @@ public class Shape
         
     }
     
-    public void rotate( Case[] blocs ){
+    public boolean rotate( Case[] blocs ){
     	
     	//Génération de vecteurs relatifs
         int xref= blocs[0].getX();
@@ -291,7 +291,7 @@ public class Shape
         	int nY= yref - blocs[i+1].getX() + xref;
         	
         	if( bd.outside( nX, nY ) || ( bd.isBusy(nX, nY) && !inShape(nX,nY) ) )
-        		return;
+        		return false;
         }
 
         
@@ -303,7 +303,7 @@ public class Shape
             blocs[i+1].setPosition(  xref + vecty[i], yref - vectx[i] );
 
         }
-    	
+        return true;    	
     }
     
     public Dictionary getDico(){
@@ -311,36 +311,38 @@ public class Shape
     	return dico;
     }
     
-    public void rotate(){
+    public boolean rotate(){
     	
     	if( shpNum == 1 ){
     		Square.switchLetters(blocs[0], blocs[1]);
     		Square.switchLetters(blocs[2], blocs[3]);
     		Square.switchLetters(blocs[1], blocs[3]);
+    		return true;
     	}
     	else
-    		rotate( blocs );
+    		return rotate( blocs );
     }
     
-    public void goRight(){
+    public boolean goRight(){
         
         for( int i= 0; i < minos; ++i )
             if( bd.outside(blocs[i]) || blocs[i].isRightBusy() )
-                return;    
+                return false;    
 
         for( int i= 0; i < minos; ++i )
             blocs[i].translateX(1);
-        
+        return true;
     }
     
-    public void goLeft(){
+    public boolean goLeft(){
         
         for( int i= 0; i < minos; ++i )
             if( bd.outside(blocs[i]) || blocs[i].isLeftBusy() )
-                return;    
+                return false;    
 
         for( int i= 0; i < minos; ++i )
             blocs[i].translateX(-1);
+        return true;
         
     }
     

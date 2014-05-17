@@ -30,6 +30,8 @@ public class Player
     private int nbBonus;
     //private Random alea;
 	public boolean pause;
+	
+	protected char game = 't';
 
 
     /**
@@ -227,6 +229,10 @@ public class Player
 
 	public void setFullLines(Vector<Integer> fullLines) {
 		this.fullLines = fullLines;
+	}
+	
+	public void setGame(char game){
+		this.game=game;
 	}
     
 }
