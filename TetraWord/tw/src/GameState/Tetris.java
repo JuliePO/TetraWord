@@ -3,13 +3,14 @@ package GameState;
 import java.util.Random;
 import java.util.Vector;
 
+import utility.Board;
 import utility.Chrono;
 import utility.Configuration;
 import utility.Player;
 
 public class Tetris extends GameState {
 	
-	boolean[] fd;
+	//boolean[] fd;
 	int t=0;
 	boolean generate;
 	private Chrono ch;
@@ -19,11 +20,13 @@ public class Tetris extends GameState {
 	private Random alea;
 	
 	public Tetris(Player j, Configuration config, Game rival) {
-		super( j, config, rival);		
+		super( j, config, rival);	
+		
+		
 		
 		g= 4;
-		b= j.getBoard();
-		fd= b.getField();
+		//b= j.getBoard();
+		//fd= b.getField();
 		ch = new Chrono(4);
 		fall = new Chrono(g);
 		
@@ -49,6 +52,8 @@ public class Tetris extends GameState {
 	public GameState update(int tps) {
 		
 		if(!j.pause && !end){
+			
+			Board b = j.getBoard();
 			
 			
 			if( j.getShape().isArrived() ){

@@ -7,7 +7,7 @@ import utility.Player;
 
 public abstract class GameState {
 	
-	protected Board b;
+	//protected Board b;
 	protected Player j;
 	protected Configuration config;
 	
@@ -18,7 +18,7 @@ public abstract class GameState {
 	
 	public GameState(Player pl, Configuration cg, Game rival){
 		j= pl;
-		b= j.getBoard();
+		//b= j.getBoard();
 		config= cg;
 		end = false;
 		this.rival=rival;

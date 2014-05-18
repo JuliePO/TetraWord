@@ -2,6 +2,7 @@ package GameState;
 
 import java.util.Vector;
 
+import utility.Board;
 import utility.Case;
 import utility.Configuration;
 import utility.Player;
@@ -18,6 +19,8 @@ public class Anagramme extends GameState {
 	public Anagramme( Player p, Configuration c, Game rival){
 	
 		super( p, c, rival );
+		
+		Board b = p.getBoard();
 		
 		b.setLinesTo(j.getLines(), 's');
 		
@@ -92,6 +95,8 @@ public class Anagramme extends GameState {
 	public void input(char input) {
 				
 		if(j.getInput("b") == input){
+			
+			Board b = j.getBoard();
 			
 			String word = "";
 			int currentLine= j.getLines().firstElement();

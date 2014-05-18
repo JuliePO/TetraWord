@@ -102,6 +102,7 @@ public class Engine extends JPanel implements ActionListener
     	fr.update();
     	
     	if(fr.getPanelState() == 'e'){
+    		son.stop();
     		fr.dispose();
     		time.stop();
     	}
